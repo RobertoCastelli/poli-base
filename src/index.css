@@ -1,6 +1,7 @@
 body {
 	margin: 0;
-
+	color: #333;
+	background-color: #f4f4f4;
 	font-family: "ubuntu", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -34,6 +35,7 @@ code {
 }
 
 .panel {
+	margin-top: 1rem;
 	display: grid;
 	border-radius: 1rem;
 }
@@ -48,19 +50,30 @@ code {
 
 ul {
 	list-style: none;
+	padding: 0;
+}
+
+li {
+	font-size: small;
 }
 
 input {
+	background-color: #f4f4f4;
 	padding-left: 1rem;
 	margin-bottom: 1rem;
 	height: 2rem;
 	border: none;
 	border-bottom: 1px solid cadetblue;
+	color: cadetblue;
 }
 
 input:focus {
 	border-bottom: 2px solid cadetblue;
 	outline: none;
+}
+
+::placeholder {
+	color: cadetblue;
 }
 
 button {
