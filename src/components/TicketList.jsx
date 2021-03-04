@@ -10,11 +10,13 @@ const TicketList = () => {
 			<ul>
 				{todoList.map((todo, id) => {
 					return (
-						<li className='li-todo' key={id}>
+						<li key={id}>
 							<div>
 								<input type='checkbox' name={id} id={id} />
 								<input type='number' id={id} />
-								{todo.id} - {todo.text}
+								<span className='li-todo'>
+									{todo.id} - {todo.text}
+								</span>
 							</div>
 
 							<div className='delete-todo'>

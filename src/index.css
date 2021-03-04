@@ -49,11 +49,15 @@ ul {
 	padding: 0;
 }
 
-.li-todo {
+li {
 	font-size: 0.8rem;
-	margin: 1rem 0;
+	margin: 1rem 0.5rem;
 	display: flex;
 	justify-content: space-between;
+}
+
+.li-todo {
+	margin-left: 1rem;
 }
 
 .delete-todo {
