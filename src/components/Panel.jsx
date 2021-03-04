@@ -13,7 +13,7 @@ const Panel = () => {
 
 	return (
 		<>
-			<form className='panel' onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit}>
 				<input type='date' className='calendar' />
 				<input
 					type='text'

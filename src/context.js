@@ -5,10 +5,22 @@ export const DataContext = React.createContext()
 const ContextProvider = (props) => {
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
+	const [todoList, setTodoList] = useState([])
+
+	const addTodoList = () => {
+		setTodoList([
+			...todoList,
+			{
+				id: ticket,
+				text: description,
+				completed: false,
+			},
+		])
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		console.log(ticket, description)
+		addTodoList()
 		setTicket("")
 		setDescription("")
 	}
@@ -22,6 +34,7 @@ const ContextProvider = (props) => {
 					description,
 					setDescription,
 					handleSubmit,
+					todoList,
 				}}>
 				{props.children}
 			</DataContext.Provider>
