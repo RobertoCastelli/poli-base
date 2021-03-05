@@ -25,43 +25,63 @@ body {
 	flex-grow: 1;
 }
 
-.todo-count {
+.title {
+	display: grid;
+	background-color: lightgrey;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
+	padding-bottom: 1rem;
+	border-bottom: 3px solid #333;
+	cursor: pointer;
+}
+
+.icon {
+	margin: auto;
+	width: 100px;
+}
+
+form {
+	border: 1px solid grey;
+	padding: 1rem 1rem 0.5rem 1rem;
+	display: grid;
+}
+
+.ol-todo {
+	padding: 0;
+}
+
+.ul-count {
+	list-style: none;
+	padding: 0;
+	margin-bottom: 3rem;
 	display: flex;
 	justify-content: space-around;
 }
 
-.lock-open {
+.li-count-open {
 	color: cadetblue;
 }
 
-.lock-close {
+.li-count-close {
 	color: brown;
 }
 
-form {
-	margin-top: 1rem;
-	display: grid;
-	border-radius: 1rem;
-}
-
-ul {
-	list-style: none;
-	padding: 0;
-}
-
-li {
+.li-todo {
 	font-size: 0.8rem;
-	margin: 1rem 0.5rem;
+	margin: 1rem 0;
 	display: flex;
 	justify-content: space-between;
 }
 
-.li-todo {
-	margin-left: 1rem;
+.ticket-todo span {
+	text-transform: uppercase;
+	font-size: 1rem;
+	font-weight: bold;
 }
 
 .delete-todo {
 	cursor: pointer;
+	margin: 0 1rem 0 0;
 }
 
 input[type="number"] {
@@ -70,9 +90,10 @@ input[type="number"] {
 
 input[type="text"],
 input[type="date"] {
+	text-transform: uppercase;
 	background-color: #f4f4f4;
 	padding-left: 1rem;
-	margin-bottom: 1rem;
+
 	height: 2rem;
 	border: none;
 	border-bottom: 1px solid #333;
@@ -84,14 +105,12 @@ input:focus {
 }
 
 button {
-	width: 80px;
-	height: 50px;
-	margin: auto;
+	width: 100%;
 	border: none;
+	margin: 0 auto;
 	outline: none;
-	text-transform: uppercase;
-	color: #f4f4f4;
-	background-color: #999;
+	color: #333;
+	background-color: #f4f4f4;
 	cursor: pointer;
 }
 

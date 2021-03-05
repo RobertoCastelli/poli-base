@@ -6,6 +6,9 @@ const ContextProvider = (props) => {
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
 	const [todoList, setTodoList] = useState([])
+	const [isHidden, setIsHidden] = useState(true)
+
+	const toggleVisible = () => setIsHidden(!isHidden)
 
 	const addTodoList = () => {
 		setTodoList([
@@ -35,6 +38,8 @@ const ContextProvider = (props) => {
 					setDescription,
 					handleSubmit,
 					todoList,
+					toggleVisible,
+					isHidden,
 				}}>
 				{props.children}
 			</DataContext.Provider>

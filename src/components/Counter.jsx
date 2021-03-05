@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { BsFillUnlockFill } from "react-icons/bs"
 import { BsLockFill } from "react-icons/bs"
 import { FcTodoList } from "react-icons/fc"
+import { BiTime } from "react-icons/bi"
 import { DataContext } from "../context"
 
 const Counter = () => {
@@ -9,24 +10,30 @@ const Counter = () => {
 	const { todoList } = context
 
 	return (
-		<ul className='todo-count'>
-			<li>
-				<div className='list-icon'>
+		<ul className='ul-count'>
+			<li className='li-count-list'>
+				<div>
 					<FcTodoList size={20} />
 				</div>
-				<span>{todoList.length}</span>
+				<div>{todoList.length}</div>
 			</li>
-			<li>
-				<div className='lock-open'>
+			<li className='li-count-open'>
+				<div>
 					<BsFillUnlockFill size={20} />
 				</div>
-				<span>{todoList.length}</span>
+				<div>{todoList.length}</div>
 			</li>
-			<li>
-				<div className='lock-close'>
+			<li className='li-count-close'>
+				<div>
 					<BsLockFill size={20} />
 				</div>
-				<span>{todoList.length}</span>
+				<div>{todoList.length}</div>
+			</li>
+			<li className='li-count-time'>
+				<div>
+					<BiTime size={20} />
+				</div>
+				<div>{todoList.length}</div>
 			</li>
 		</ul>
 	)
