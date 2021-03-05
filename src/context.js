@@ -10,6 +10,11 @@ const ContextProvider = (props) => {
 
 	const toggleVisible = () => setIsHidden(!isHidden)
 
+	const deleteTodo = (todoId) => {
+		const updateTodoList = todoList.filter((todo) => todo.id !== todoId)
+		setTodoList(updateTodoList)
+	}
+
 	const addTodoList = () => {
 		setTodoList([
 			...todoList,
@@ -40,6 +45,7 @@ const ContextProvider = (props) => {
 					todoList,
 					toggleVisible,
 					isHidden,
+					deleteTodo,
 				}}>
 				{props.children}
 			</DataContext.Provider>
