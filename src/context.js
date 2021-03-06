@@ -10,6 +10,13 @@ const ContextProvider = (props) => {
 
 	const toggleVisible = () => setIsHidden(!isHidden)
 
+	const toggleCompleted = (todoId) => {
+		const updateTodoList = todoList.map((todo) => {
+			return todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+		})
+		setTodoList(updateTodoList)
+	}
+
 	const deleteTodo = (todoId) => {
 		const updateTodoList = todoList.filter((todo) => todo.id !== todoId)
 		setTodoList(updateTodoList)
@@ -46,6 +53,7 @@ const ContextProvider = (props) => {
 					toggleVisible,
 					isHidden,
 					deleteTodo,
+					toggleCompleted,
 				}}>
 				{props.children}
 			</DataContext.Provider>

@@ -69,14 +69,10 @@ form {
 .li-todo {
 	font-size: 0.8rem;
 	margin: 1rem 0;
+	text-transform: uppercase;
 	display: flex;
 	justify-content: space-between;
-}
-
-.ticket-todo span {
-	text-transform: uppercase;
-	font-size: 1rem;
-	font-weight: bold;
+	cursor: pointer;
 }
 
 .delete-todo {
