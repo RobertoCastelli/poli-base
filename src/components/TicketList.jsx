@@ -8,11 +8,11 @@ const TicketList = () => {
 	return (
 		<ol className='ol-todo'>
 			{todoList.map((todo, id) => (
-				<li
-					className='li-todo'
-					onClick={() => toggleCompleted(todo.id)}
-					key={id}>
-					<span className='ticket-todo'>
+				<li className='li-todo' key={id}>
+					<span
+						ore='3'
+						onClick={() => toggleCompleted(todo.id)}
+						className={todo.completed ? "todo-completed" : undefined}>
 						<b>{todo.id}</b> - {todo.text}
 					</span>
 					<span className='delete-todo' onClick={() => deleteTodo(todo.id)}>

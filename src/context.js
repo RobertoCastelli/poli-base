@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 export const DataContext = React.createContext()
 
@@ -7,6 +7,20 @@ const ContextProvider = (props) => {
 	const [description, setDescription] = useState("")
 	const [todoList, setTodoList] = useState([])
 	const [isHidden, setIsHidden] = useState(true)
+	const [completed, setCompleted] = useState(0)
+	const [incomplete, setIncomplete] = useState(0)
+
+	useEffect(
+		() =>
+			setCompleted(todoList.filter((todo) => todo.completed === true).length),
+		[todoList]
+	)
+
+	useEffect(
+		() =>
+			setIncomplete(todoList.filter((todo) => todo.completed === false).length),
+		[todoList]
+	)
 
 	const toggleVisible = () => setIsHidden(!isHidden)
 
@@ -17,10 +31,8 @@ const ContextProvider = (props) => {
 		setTodoList(updateTodoList)
 	}
 
-	const deleteTodo = (todoId) => {
-		const updateTodoList = todoList.filter((todo) => todo.id !== todoId)
-		setTodoList(updateTodoList)
-	}
+	const deleteTodo = (todoId) =>
+		setTodoList(todoList.filter((todo) => todo.id !== todoId))
 
 	const addTodoList = () => {
 		setTodoList([
@@ -54,6 +66,8 @@ const ContextProvider = (props) => {
 					isHidden,
 					deleteTodo,
 					toggleCompleted,
+					completed,
+					incomplete,
 				}}>
 				{props.children}
 			</DataContext.Provider>

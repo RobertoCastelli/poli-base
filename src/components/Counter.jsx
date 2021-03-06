@@ -7,7 +7,7 @@ import { DataContext } from "../context"
 
 const Counter = () => {
 	const context = useContext(DataContext)
-	const { todoList } = context
+	const { todoList, completed, incomplete } = context
 
 	return (
 		<ul className='ul-count'>
@@ -21,13 +21,13 @@ const Counter = () => {
 				<div>
 					<BsFillUnlockFill size={20} />
 				</div>
-				<div>{todoList.length}</div>
+				<div>{incomplete}</div>
 			</li>
 			<li className='li-count-close'>
 				<div>
 					<BsLockFill size={20} />
 				</div>
-				<div>{todoList.length}</div>
+				<div>{completed}</div>
 			</li>
 			<li className='li-count-time'>
 				<div>

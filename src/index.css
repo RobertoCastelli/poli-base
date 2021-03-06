@@ -80,6 +80,15 @@ form {
 	margin: 0 1rem 0 0;
 }
 
+.todo-completed {
+	text-decoration: line-through;
+	color: grey;
+}
+
+.todo-completed::after {
+	content: attr(ore);
+}
+
 input[type="number"] {
 	width: 50px;
 }
