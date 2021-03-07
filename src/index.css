@@ -40,10 +40,6 @@ body {
 	width: 80px;
 }
 
-.calendar {
-	display: grid;
-}
-
 form {
 	box-shadow: 0px 0px 15px -3px lightgray;
 	padding: 1rem 1rem 0.5rem 1rem;
@@ -52,14 +48,10 @@ form {
 	display: grid;
 }
 
-.ol-todo {
-	padding: 0;
-}
-
 .ul-count {
 	list-style: none;
 	padding: 0;
-	margin-bottom: 3rem;
+	margin: 3rem;
 	display: flex;
 	justify-content: space-around;
 }
@@ -72,21 +64,60 @@ form {
 	color: brown;
 }
 
+.ol-todo {
+	padding: 0;
+}
+
 .li-todo {
-	font-size: 0.8rem;
-	margin: 1rem 0;
+	font-size: 0.9rem;
+	margin-bottom: 1rem;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
+	padding-bottom: 1rem;
+	border-bottom: 3px solid #333;
+	padding: 0.5rem;
 	text-transform: uppercase;
-	display: flex;
-	justify-content: space-between;
 	cursor: pointer;
+	background-color: lightgrey;
+	display: grid;
+	grid-template-columns: 1fr auto auto;
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas:
+		"ticket ore delete"
+		"description description delete";
 }
 
 .delete-todo {
+	grid-area: delete;
 	cursor: pointer;
+	justify-self: right;
+	align-self: center;
+	color: brown;
+	padding: 0.3rem;
 }
 
-.todo-completed {
+.completed-todo {
 	color: grey;
+}
+
+.completed-todo::after {
+	content: " - chiuso";
+}
+
+.ticket-todo {
+	grid-area: ticket;
+	font-weight: bold;
+}
+
+.desc-todo {
+	grid-area: description;
+	text-transform: lowercase;
+	font-style: italic;
+}
+
+.ore-todo {
+	grid-area: ore;
+	justify-self: center;
 }
 
 input[type="number"] {

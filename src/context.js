@@ -9,7 +9,6 @@ const ContextProvider = (props) => {
 	const [isHidden, setIsHidden] = useState(true)
 	const [completed, setCompleted] = useState(0)
 	const [incomplete, setIncomplete] = useState(0)
-	const [ore, setOre] = useState(0)
 
 	const data = new Date().toLocaleString().split(",")[0]
 
@@ -25,14 +24,18 @@ const ContextProvider = (props) => {
 		[todoList]
 	)
 
-	const toggleVisible = () => setIsHidden(!isHidden)
+	const count = () => {
+		console.log(document.querySelectorAll(".ore-todo"))
+	}
+	count()
 
-	const addOre = () => setOre(prompt("immetti ore"))
+	const toggleVisible = () => setIsHidden(!isHidden)
 
 	const toggleCompleted = (todoId) => {
 		const updateTodoList = todoList.map((todo) => {
-			addOre()
-			return todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+			return todo.id === todoId
+				? { ...todo, completed: !todo.completed, ore: prompt("Inserire ore") }
+				: todo
 		})
 		setTodoList(updateTodoList)
 	}
@@ -46,7 +49,7 @@ const ContextProvider = (props) => {
 			{
 				id: ticket,
 				text: description,
-				ore,
+				ore: 0,
 				completed: false,
 			},
 		])
@@ -75,7 +78,6 @@ const ContextProvider = (props) => {
 					toggleCompleted,
 					completed,
 					incomplete,
-					ore,
 					data,
 				}}>
 				{props.children}

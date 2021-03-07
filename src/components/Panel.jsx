@@ -23,6 +23,7 @@ const Panel = () => {
 						placeholder='ticket'
 						onChange={(e) => setTicket(e.target.value)}
 						value={ticket}
+						required
 					/>
 					<input
 						type='text'
@@ -30,6 +31,7 @@ const Panel = () => {
 						placeholder='description'
 						onChange={(e) => setDescription(e.target.value)}
 						value={description}
+						required
 					/>
 					<button type='submit'>
 						<ImDownload size={30} />
