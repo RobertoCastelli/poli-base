@@ -9,6 +9,7 @@ const ContextProvider = (props) => {
 	const [isHidden, setIsHidden] = useState(true)
 	const [completed, setCompleted] = useState(0)
 	const [incomplete, setIncomplete] = useState(0)
+	const [oreTotali, setOreTotali] = useState(0)
 
 	const data = new Date().toLocaleString().split(",")[0]
 
@@ -24,17 +25,23 @@ const ContextProvider = (props) => {
 		[todoList]
 	)
 
-	const count = () => {
-		console.log(document.querySelectorAll(".ore-todo"))
-	}
-	count()
+	useEffect(() => {
+		const todoListTemp = [...todoList]
+		const ore = todoListTemp.map((ore) => ore.ore)
+		const sommaOre = ore.reduce((a, b) => a + b, 0)
+		setOreTotali(sommaOre)
+	}, [todoList])
 
 	const toggleVisible = () => setIsHidden(!isHidden)
 
 	const toggleCompleted = (todoId) => {
 		const updateTodoList = todoList.map((todo) => {
 			return todo.id === todoId
-				? { ...todo, completed: !todo.completed, ore: prompt("Inserire ore") }
+				? {
+						...todo,
+						completed: !todo.completed,
+						ore: parseInt(prompt("Inserire ore")),
+				  }
 				: todo
 		})
 		setTodoList(updateTodoList)
@@ -79,6 +86,7 @@ const ContextProvider = (props) => {
 					completed,
 					incomplete,
 					data,
+					oreTotali,
 				}}>
 				{props.children}
 			</DataContext.Provider>

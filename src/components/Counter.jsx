@@ -7,7 +7,7 @@ import { DataContext } from "../context"
 
 const Counter = () => {
 	const context = useContext(DataContext)
-	const { todoList, completed, incomplete } = context
+	const { todoList, completed, incomplete, oreTotali } = context
 
 	return (
 		<ul className='ul-count'>
@@ -33,7 +33,7 @@ const Counter = () => {
 				<div>
 					<BiTime size={20} />
 				</div>
-				<div>{todoList.length}</div>
+				<div>{oreTotali}</div>
 			</li>
 		</ul>
 	)

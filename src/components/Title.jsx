@@ -8,12 +8,10 @@ const Title = () => {
 
 	return (
 		<div onClick={toggleVisible} className='title'>
-			<h2>Politecnico di Milano</h2>
+			<h2>Politecnico di Milano 1863</h2>
+			<p>gestione ticket presidio</p>
 			<img className='icon' src={icon} alt='icon' />
-			<p className='calendar'>
-				<small>gestione ticket presidio</small>
-			</p>
-			<b>{data}</b>
+			<h4>{data}</h4>
 		</div>
 	)
 }
