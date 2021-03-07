@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { DataContext } from "../context"
-import { GiPlainArrow } from "react-icons/gi"
+import { ImDownload } from "react-icons/im"
 
 const Panel = () => {
 	const context = useContext(DataContext)
@@ -17,7 +17,6 @@ const Panel = () => {
 		<>
 			{!isHidden && (
 				<form onSubmit={handleSubmit}>
-					<input type='date' className='calendar' />
 					<input
 						type='text'
 						className='ticket'
@@ -33,9 +32,7 @@ const Panel = () => {
 						value={description}
 					/>
 					<button type='submit'>
-						<h1>
-							<GiPlainArrow />
-						</h1>
+						<ImDownload size={30} />
 					</button>
 				</form>
 			)}

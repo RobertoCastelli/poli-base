@@ -37,12 +37,18 @@ body {
 
 .icon {
 	margin: auto;
-	width: 100px;
+	width: 80px;
+}
+
+.calendar {
+	display: grid;
 }
 
 form {
-	border: 1px solid grey;
+	box-shadow: 0px 0px 15px -3px lightgray;
 	padding: 1rem 1rem 0.5rem 1rem;
+	border-bottom-left-radius: 1rem;
+	border-bottom-right-radius: 1rem;
 	display: grid;
 }
 
@@ -77,31 +83,23 @@ form {
 
 .delete-todo {
 	cursor: pointer;
-	margin: 0 1rem 0 0;
 }
 
 .todo-completed {
-	text-decoration: line-through;
 	color: grey;
-}
-
-.todo-completed::after {
-	content: attr(ore);
 }
 
 input[type="number"] {
 	width: 50px;
 }
 
-input[type="text"],
-input[type="date"] {
+input[type="text"] {
 	text-transform: uppercase;
 	background-color: #f4f4f4;
 	padding-left: 1rem;
-
 	height: 2rem;
 	border: none;
-	border-bottom: 1px solid #333;
+	border-bottom: 1px dotted #999;
 }
 
 input:focus {
@@ -112,11 +110,15 @@ input:focus {
 button {
 	width: 100%;
 	border: none;
-	margin: 0 auto;
+	margin: 1rem auto;
 	outline: none;
-	color: #333;
+	color: #999;
 	background-color: #f4f4f4;
 	cursor: pointer;
+}
+
+button:hover {
+	color: #333;
 }
 
 button:active,
