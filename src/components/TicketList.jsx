@@ -4,7 +4,7 @@ import { DataContext } from "../context"
 
 const TicketList = () => {
 	const context = useContext(DataContext)
-	const { todoList, deleteTodo, toggleCompleted } = context
+	const { todoList, deleteTodo, toggleCompleted, calendar } = context
 	return (
 		<ol className='ol-todo'>
 			{todoList.map((todo, id) => (
