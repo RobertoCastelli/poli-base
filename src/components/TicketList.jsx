@@ -4,10 +4,10 @@ import { DataContext } from "../context"
 
 const TicketList = () => {
 	const context = useContext(DataContext)
-	const { todoList, deleteTodo, toggleCompleted } = context
+	const { deleteTodo, toggleCompleted, filteredList } = context
 	return (
 		<ol className='ol-todo'>
-			{todoList.map((todo, id) => (
+			{filteredList.map((todo, id) => (
 				<li className='li-todo' key={id}>
 					<div
 						onClick={() => toggleCompleted(todo.id)}

@@ -56,12 +56,18 @@ form {
 	justify-content: space-around;
 }
 
+.li-count-tot {
+	cursor: pointer;
+}
+
 .li-count-open {
 	color: cadetblue;
+	cursor: pointer;
 }
 
 .li-count-close {
 	color: brown;
+	cursor: pointer;
 }
 
 .ol-todo {
