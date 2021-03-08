@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react"
+import sndClick from "./sounds/add.mp3"
+import sndClick2 from "./sounds/complete.mp3"
 
 export const DataContext = React.createContext()
 
@@ -12,6 +14,9 @@ const ContextProvider = (props) => {
 	const [completed, setCompleted] = useState(0)
 	const [incomplete, setIncomplete] = useState(0)
 	const [oreTotali, setOreTotali] = useState(0)
+
+	const sndAdd = new Audio(sndClick)
+	const sndComplete = new Audio(sndClick2)
 
 	// SHOW DATA (i.e. 01/01/2021)
 	const data = new Date().toLocaleString().split(",")[0]
@@ -34,12 +39,13 @@ const ContextProvider = (props) => {
 
 	// TOGGLE COMPLETED ITEM
 	const toggleCompleted = (todoId) => {
+		sndComplete.play()
 		const updateTodoList = todoList.map((todo) => {
 			return todo.id === todoId
 				? {
 						...todo,
 						completed: !todo.completed,
-						ore: parseInt(window.prompt("Inserire ore")),
+						ore: parseInt(window.prompt("Inserire ore (i.e. 6)")),
 				  }
 				: todo
 		})
@@ -65,7 +71,7 @@ const ContextProvider = (props) => {
 		setFilteredList(todoListTemp.filter((todo) => todo))
 	}
 
-	// CREATE A COPY FOR FILTER, WHEN A TICKET IS CREATED
+	// CREATE A COPY TO USE WITH FILTER, WHEN A TICKET IS CREATED
 	useEffect(() => {
 		setFilteredList(todoList)
 	}, [todoList])
@@ -93,8 +99,10 @@ const ContextProvider = (props) => {
 	}, [todoList])
 
 	// DELETE TICKET
-	const deleteTodo = (todoId) =>
-		setTodoList(todoList.filter((todo) => todo.id !== todoId))
+	const deleteTodo = (todoId) => {
+		let result = window.confirm("OK per cancellare il TICKET")
+		result && setTodoList(todoList.filter((todo) => todo.id !== todoId))
+	}
 
 	// HANDLE INPUT SUBMIT & clear textbox
 	const handleSubmit = (e) => {
@@ -126,6 +134,7 @@ const ContextProvider = (props) => {
 					filterTotal,
 					filterClose,
 					filteredList,
+					sndAdd,
 				}}>
 				{props.children}
 			</DataContext.Provider>

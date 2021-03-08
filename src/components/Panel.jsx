@@ -11,6 +11,7 @@ const Panel = () => {
 		setDescription,
 		handleSubmit,
 		isHidden,
+		sndAdd,
 	} = context
 
 	return (
@@ -21,6 +22,7 @@ const Panel = () => {
 						type='text'
 						className='ticket'
 						placeholder='ticket'
+						maxLength='10'
 						onChange={(e) => setTicket(e.target.value)}
 						value={ticket}
 						required
@@ -29,11 +31,12 @@ const Panel = () => {
 						type='text'
 						className='description'
 						placeholder='description'
+						maxLength='28'
 						onChange={(e) => setDescription(e.target.value)}
 						value={description}
 						required
 					/>
-					<button type='submit'>
+					<button type='submit' onClick={() => sndAdd.play()}>
 						<ImDownload size={30} />
 					</button>
 				</form>
