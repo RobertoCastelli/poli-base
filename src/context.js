@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import sndClick from "./sounds/add.mp3"
 import sndClick2 from "./sounds/complete.mp3"
+import { db } from "./firebase"
 
 export const DataContext = React.createContext()
 
