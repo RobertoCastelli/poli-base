@@ -11,5 +11,7 @@ const firebaseConfig = {
 }
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
+const db = firebase.firestore()
+const dbRef = db.collection("tickets")
 
-export const db = firebase.firestore()
+export { dbRef }

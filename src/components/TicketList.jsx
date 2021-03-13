@@ -4,26 +4,28 @@ import { DataContext } from "../context"
 
 const TicketList = () => {
 	const context = useContext(DataContext)
-	const { deleteTodo, toggleCompleted, filteredList } = context
+	const { tickets } = context
 	return (
-		<ol className='ol-todo'>
-			{filteredList.map((todo, id) => (
-				<li className='li-todo' key={id}>
-					<div
-						onClick={() => toggleCompleted(todo.id)}
-						className={todo.completed ? "completed-todo" : undefined}>
-						<span className='ticket-todo'>{todo.id}</span>
-					</div>
-					<div className='desc-todo'>{todo.text}</div>
-					<div className='ore-todo'>
-						ore: <span id='ore'>{todo.ore}</span>
-					</div>
-					<div className='delete-todo' onClick={() => deleteTodo(todo.id)}>
-						<RiDeleteBinLine size={20} />
-					</div>
-				</li>
-			))}
-		</ol>
+		<ul className='ul-todo'>
+			{tickets.map((tk) => {
+				return (
+					<li className='li-todo' key={tk.id}>
+						<div
+							// onClick={() => toggleCompleted(tk.ticket)}
+							className={tk.completed ? "completed-todo" : undefined}>
+							<span className='ticket-todo'>{tk.ticket}</span>
+						</div>
+						<div className='desc-todo'>{tk.description}</div>
+						<div className='ore-todo'>
+							ore: <span id='ore'>{tk.ore}</span>
+						</div>
+						<div className='delete-todo'>
+							<RiDeleteBinLine size={20} />
+						</div>
+					</li>
+				)
+			})}
+		</ul>
 	)
 }
 

@@ -11,7 +11,6 @@ const Panel = () => {
 		setDescription,
 		handleSubmit,
 		isHidden,
-		sndAdd,
 	} = context
 
 	return (
@@ -36,7 +35,7 @@ const Panel = () => {
 						value={description}
 						required
 					/>
-					<button type='submit' onClick={() => sndAdd.play()}>
+					<button type='submit'>
 						<ImDownload size={30} />
 					</button>
 				</form>
