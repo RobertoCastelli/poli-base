@@ -8,26 +8,28 @@ import { DataContext } from "../context"
 const Counter = () => {
 	const {
 		oreTotali,
-		totalTickets,
 		filterCompleted,
 		filterIncomplete,
+		showCompletedTickets,
+		showIncompleteTickets,
+		showAllTickets,
 	} = useContext(DataContext)
 
 	return (
 		<ul className='ul-count'>
-			<li className='li-count-list'>
+			<li className='li-count-list' onClick={() => showAllTickets()}>
 				<div className='li-count-tot'>
 					<FcTodoList size={20} />
 				</div>
-				<div>{totalTickets}</div>
+				<div>{filterCompleted + filterIncomplete}</div>
 			</li>
-			<li className='li-count-open'>
+			<li className='li-count-open' onClick={() => showIncompleteTickets()}>
 				<div>
 					<BsFillUnlockFill size={20} />
 				</div>
 				<div>{filterIncomplete}</div>
 			</li>
-			<li className='li-count-close'>
+			<li className='li-count-close' onClick={() => showCompletedTickets()}>
 				<div>
 					<BsLockFill size={20} />
 				</div>

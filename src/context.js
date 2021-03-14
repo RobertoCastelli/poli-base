@@ -21,9 +21,9 @@ const ContextProvider = (props) => {
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
 	const [tickets, setTickets] = useState([])
+	const [filterAll, setFilterAll] = useState(0)
 	const [isHidden, setIsHidden] = useState(false)
 	const [oreTotali, setOreTotali] = useState(0)
-	const [totalTickets, setTotalTickets] = useState(0)
 	const [filterCompleted, setFilterCompleted] = useState(0)
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
 
@@ -34,6 +34,11 @@ const ContextProvider = (props) => {
 
 	// TOGGLE INPUT PANEL
 	const togglePanel = () => setIsHidden(!isHidden)
+
+	// SHOW TICKETS ON LOAD
+	useEffect(() => {
+		showAllTickets()
+	}, [])
 
 	// ADD TICKET TO DB
 	const addTicket = () => {
@@ -73,27 +78,6 @@ const ContextProvider = (props) => {
 				.catch((err) => `hups! --> ${err.message}`)
 	}
 
-	// SUM ALL ORE
-	useEffect(() => {
-		const getAllOre = tickets.map((ore) => ore.ore)
-		setOreTotali(getAllOre.reduce((a, b) => a + b, 0))
-	}, [tickets])
-
-	// FILTER COMPLETED TICKETS
-	useEffect(() => {
-		const filtered = tickets.filter((ticket) => ticket.completed === true)
-		setFilterCompleted(filtered.length)
-	}, [tickets])
-
-	// FILTER INCOMPLETE TICKETS
-	useEffect(() => {
-		const filtered = tickets.filter((ticket) => ticket.completed !== true)
-		setFilterIncomplete(filtered.length)
-	}, [tickets])
-
-	// FILTER ALL TICKETS
-	useEffect(() => setTotalTickets(tickets.length), [tickets])
-
 	// SUBMIT TICKET + clean inputs
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -102,8 +86,66 @@ const ContextProvider = (props) => {
 		setDescription("")
 	}
 
-	// SHOW TICKETS ON SCREEN
+	// SUM ALL ORE
 	useEffect(() => {
+		const getAllOre = tickets.map((ore) => ore.ore)
+		setOreTotali(getAllOre.reduce((a, b) => a + b, 0))
+	}, [tickets])
+
+	// COUNT COMPLETED TICKETS
+	useEffect(() => {
+		let oreTemp = 0
+		dbRef
+			.where("completed", "==", true)
+			.get()
+			.then((snapshot) =>
+				snapshot.forEach(() => setFilterCompleted((oreTemp += 1)))
+			)
+	}, [tickets])
+
+	// COUNT INCOMPLETE TICKETS
+	useEffect(() => {
+		let oreTemp = 0
+		dbRef
+			.where("completed", "==", false)
+			.get()
+			.then((snapshot) =>
+				snapshot.forEach(() => setFilterIncomplete((oreTemp += 1)))
+			)
+	}, [tickets])
+
+	// SHOW INCOMPLETE TICKETS ON CLICK
+	const showIncompleteTickets = () => {
+		dbRef.where("completed", "==", false).onSnapshot((snapshot) =>
+			setTickets(
+				snapshot.docs.map((doc) => ({
+					id: doc.id,
+					ticket: doc.data().ticket,
+					description: doc.data().description,
+					ore: doc.data().ore,
+					completed: doc.data().completed,
+				}))
+			)
+		)
+	}
+
+	// SHOW COMPLETED TICKETS ON CLICK
+	const showCompletedTickets = () => {
+		dbRef.where("completed", "==", true).onSnapshot((snapshot) =>
+			setTickets(
+				snapshot.docs.map((doc) => ({
+					id: doc.id,
+					ticket: doc.data().ticket,
+					description: doc.data().description,
+					ore: doc.data().ore,
+					completed: doc.data().completed,
+				}))
+			)
+		)
+	}
+
+	// SHOW ALL TICKETS ON CLICK
+	const showAllTickets = () => {
 		dbRef.orderBy("time", "desc").onSnapshot((snapshot) =>
 			setTickets(
 				snapshot.docs.map((doc) => ({
@@ -115,7 +157,7 @@ const ContextProvider = (props) => {
 				}))
 			)
 		)
-	}, [])
+	}
 
 	return (
 		<div>
@@ -132,9 +174,12 @@ const ContextProvider = (props) => {
 					deleteTicket,
 					editTicket,
 					oreTotali,
-					totalTickets,
 					filterCompleted,
 					filterIncomplete,
+					showCompletedTickets,
+					showIncompleteTickets,
+					showAllTickets,
+					filterAll,
 				}}>
 				{props.children}
 			</DataContext.Provider>

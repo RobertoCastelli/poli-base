@@ -99,6 +99,10 @@ form {
 	}
 }
 
+.info-todo {
+	margin: auto;
+}
+
 .delete-todo {
 	grid-area: delete;
 	cursor: pointer;
