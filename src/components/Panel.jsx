@@ -3,7 +3,6 @@ import { DataContext } from "../context"
 import { ImDownload } from "react-icons/im"
 
 const Panel = () => {
-	const context = useContext(DataContext)
 	const {
 		ticket,
 		description,
@@ -11,7 +10,7 @@ const Panel = () => {
 		setDescription,
 		handleSubmit,
 		isHidden,
-	} = context
+	} = useContext(DataContext)
 
 	return (
 		<>

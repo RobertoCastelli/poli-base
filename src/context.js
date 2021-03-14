@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
-import { dbRef } from "./firebase"
 import firebase from "firebase/app"
+import { dbRef } from "./firebase"
 
+// CREATE CONTEXT
 export const DataContext = React.createContext()
 
 const ContextProvider = (props) => {
@@ -18,6 +19,26 @@ const ContextProvider = (props) => {
 	// TOGGLE INPUT PANEL
 	const togglePanel = () => setIsHidden(!isHidden)
 
+	// DELETE TICKET
+	const deleteTicket = (ticketID) =>
+		dbRef
+			.doc(ticketID)
+			.delete()
+			.then(() => console.log(`ticket deleted ID: ${ticketID}`))
+			.catch((err) => console.log(`hups! --> ${err.message}`))
+
+	// UPDATE TICKET COMPLETE --> TRUE / FALSE
+	const editTicket = (ticketID, completed) => {
+		dbRef
+			.doc(ticketID)
+			.update({
+				completed: !completed,
+			})
+			.then(() => console.log(`edited ID: ${ticketID} to ${completed}`))
+			.catch((err) => `hups! --> ${err.message}`)
+	}
+
+	// ADD TICKET TO DB
 	const addTicket = () => {
 		dbRef
 			.add({
@@ -28,9 +49,18 @@ const ContextProvider = (props) => {
 				time: timeNow,
 			})
 			.then((docRef) => console.log(`ticket added ID: ${docRef.id}`))
-			.catch((err) => console.log(`hups! ${err.message}`))
+			.catch((err) => console.log(`hups! --> ${err.message}`))
 	}
 
+	// SUBMIT TICKET + clean inputs
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		addTicket()
+		setTicket("")
+		setDescription("")
+	}
+
+	// SHOW TICKETS ON SCREEN
 	useEffect(() => {
 		dbRef.orderBy("time", "desc").onSnapshot((snapshot) =>
 			setTickets(
@@ -45,13 +75,6 @@ const ContextProvider = (props) => {
 		)
 	}, [])
 
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		addTicket()
-		setTicket("")
-		setDescription("")
-	}
-
 	return (
 		<div>
 			<DataContext.Provider
@@ -64,6 +87,8 @@ const ContextProvider = (props) => {
 					tickets,
 					togglePanel,
 					isHidden,
+					deleteTicket,
+					editTicket,
 				}}>
 				{props.children}
 			</DataContext.Provider>

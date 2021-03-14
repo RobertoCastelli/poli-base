@@ -3,8 +3,7 @@ import { DataContext } from "../context"
 import icon from "../images/icona.png"
 
 const Title = () => {
-	const context = useContext(DataContext)
-	const { togglePanel, data } = context
+	const { togglePanel, data } = useContext(DataContext)
 
 	return (
 		<div onClick={togglePanel} className='title'>
