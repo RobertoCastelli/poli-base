@@ -18,28 +18,28 @@ const Counter = () => {
 	return (
 		<ul className='ul-count'>
 			<li className='li-count-list' onClick={() => showAllTickets()}>
-				<div className='li-count-tot'>
+				<div className='li-count-icon'>
 					<FcTodoList size={20} />
 				</div>
-				<div>{filterCompleted + filterIncomplete}</div>
+				<div>tot {filterCompleted + filterIncomplete}</div>
 			</li>
 			<li className='li-count-open' onClick={() => showIncompleteTickets()}>
-				<div>
+				<div className='li-count-icon'>
 					<BsFillUnlockFill size={20} />
 				</div>
-				<div>{filterIncomplete}</div>
+				<div>aperti {filterIncomplete}</div>
 			</li>
 			<li className='li-count-close' onClick={() => showCompletedTickets()}>
-				<div>
+				<div className='li-count-icon'>
 					<BsLockFill size={20} />
 				</div>
-				<div>{filterCompleted}</div>
+				<div>chiusi {filterCompleted}</div>
 			</li>
 			<li className='li-count-time'>
-				<div>
+				<div className='li-count-icon'>
 					<BiTime size={20} />
 				</div>
-				<div>{oreTotali}</div>
+				<div>ore {oreTotali}</div>
 			</li>
 		</ul>
 	)

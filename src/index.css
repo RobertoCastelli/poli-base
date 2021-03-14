@@ -57,18 +57,18 @@ form {
 	justify-content: space-around;
 }
 
-.li-count-tot {
+.li-count-icon {
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
 }
 
 .li-count-open {
 	color: cadetblue;
-	cursor: pointer;
 }
 
 .li-count-close {
 	color: brown;
-	cursor: pointer;
 }
 
 .ul-todo {
@@ -80,7 +80,6 @@ form {
 	margin-bottom: 0.5rem;
 	padding: 0.5rem;
 	text-transform: uppercase;
-	cursor: pointer;
 	background-color: lightgrey;
 	display: grid;
 	grid-template-columns: 1fr 1fr auto;
@@ -99,8 +98,11 @@ form {
 	}
 }
 
-.info-todo {
-	margin: auto;
+.info {
+	display: flex;
+	justify-content: center;
+	color: cadetblue;
+	animation: fader 0.5s ease;
 }
 
 .delete-todo {
@@ -110,6 +112,10 @@ form {
 	align-self: center;
 	color: brown;
 	padding: 0.3rem;
+}
+
+.incomplete-todo {
+	cursor: pointer;
 }
 
 .completed-todo::after {

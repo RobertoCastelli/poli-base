@@ -21,7 +21,6 @@ const ContextProvider = (props) => {
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
 	const [tickets, setTickets] = useState([])
-	const [filterAll, setFilterAll] = useState(0)
 	const [isHidden, setIsHidden] = useState(false)
 	const [oreTotali, setOreTotali] = useState(0)
 	const [filterCompleted, setFilterCompleted] = useState(0)
@@ -32,13 +31,17 @@ const ContextProvider = (props) => {
 		firebase.firestore.Timestamp.now().seconds * 1000
 	).toLocaleString()
 
-	// TOGGLE INPUT PANEL
-	const togglePanel = () => setIsHidden(!isHidden)
-
 	// SHOW TICKETS ON LOAD
 	useEffect(() => {
 		showAllTickets()
 	}, [])
+
+	//~~~~~~~~~~~~~//
+	//    PANEL    //
+	//~~~~~~~~~~~~~//
+
+	// TOGGLE INPUT PANEL
+	const togglePanel = () => setIsHidden(!isHidden)
 
 	// ADD TICKET TO DB
 	const addTicket = () => {
@@ -53,6 +56,18 @@ const ContextProvider = (props) => {
 			.then((docRef) => console.log(`ticket added ID: ${docRef.id}`))
 			.catch((err) => console.log(`hups! --> ${err.message}`))
 	}
+
+	// SUBMIT TICKET + clean inputs
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		addTicket()
+		setTicket("")
+		setDescription("")
+	}
+
+	//~~~~~~~~~~~~~~~~~//
+	//   TICKET LIST   //
+	//~~~~~~~~~~~~~~~~~//
 
 	// DELETE TICKET TO DB
 	const deleteTicket = (ticketID) => {
@@ -78,13 +93,9 @@ const ContextProvider = (props) => {
 				.catch((err) => `hups! --> ${err.message}`)
 	}
 
-	// SUBMIT TICKET + clean inputs
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		addTicket()
-		setTicket("")
-		setDescription("")
-	}
+	//~~~~~~~~~~~~~~~//
+	//    FILTERS    //
+	//~~~~~~~~~~~~~~~//
 
 	// SUM ALL ORE
 	useEffect(() => {
@@ -179,7 +190,6 @@ const ContextProvider = (props) => {
 					showCompletedTickets,
 					showIncompleteTickets,
 					showAllTickets,
-					filterAll,
 				}}>
 				{props.children}
 			</DataContext.Provider>

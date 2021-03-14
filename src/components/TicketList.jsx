@@ -6,29 +6,26 @@ const TicketList = () => {
 	const { tickets, deleteTicket, editTicket } = useContext(DataContext)
 
 	return (
-		<div>
-			<p className='info-todo'>elenco ticket</p>
-			<ul className='ul-todo'>
-				{tickets.map((tk) => {
-					return (
-						<li className='li-todo' key={tk.id}>
-							<div
-								onClick={() => editTicket(tk.id, tk.completed)}
-								className={tk.completed ? "completed-todo" : undefined}>
-								<span className='ticket-todo'>{tk.ticket}</span>
-							</div>
-							<div className='desc-todo'>{tk.description}</div>
-							<div className='ore-todo'>
-								ore: <span id='ore'>{tk.ore}</span>
-							</div>
-							<div className='delete-todo' onClick={() => deleteTicket(tk.id)}>
-								<RiDeleteBinLine size={20} />
-							</div>
-						</li>
-					)
-				})}
-			</ul>
-		</div>
+		<ul className='ul-todo'>
+			{tickets.map((tk) => {
+				return (
+					<li className='li-todo' key={tk.id}>
+						<div
+							onClick={() => editTicket(tk.id, tk.completed)}
+							className={tk.completed ? "completed-todo" : "incomplete-todo"}>
+							<span className='ticket-todo'>{tk.ticket}</span>
+						</div>
+						<div className='desc-todo'>{tk.description}</div>
+						<div className='ore-todo'>
+							ore: <span id='ore'>{tk.ore}</span>
+						</div>
+						<div className='delete-todo' onClick={() => deleteTicket(tk.id)}>
+							<RiDeleteBinLine size={20} />
+						</div>
+					</li>
+				)
+			})}
+		</ul>
 	)
 }
 
