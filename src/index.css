@@ -83,8 +83,8 @@ form {
 	cursor: pointer;
 	background-color: lightgrey;
 	display: grid;
-	grid-template-columns: 1fr auto auto;
-	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr auto;
+	grid-template-rows: repeat(2, 1fr);
 	grid-template-areas:
 		"ticket ore delete"
 		"description description delete";
@@ -108,17 +108,15 @@ form {
 	padding: 0.3rem;
 }
 
-.completed-todo {
-	color: brown;
-}
-
 .completed-todo::after {
+	color: brown;
 	content: " - chiuso";
 }
 
 .ticket-todo {
 	grid-area: ticket;
 	font-weight: bold;
+	color: cadetblue;
 }
 
 .desc-todo {
