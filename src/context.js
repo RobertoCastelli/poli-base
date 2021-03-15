@@ -28,6 +28,7 @@ const ContextProvider = (props) => {
 	const [filterCompleted, setFilterCompleted] = useState(0)
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
 	const [filterTitle, setFilterTitle] = useState("")
+	const [modalOre, setModalOre] = useState(0)
 
 	// GET DATE & TIME
 	let timeNow = new Date(
@@ -90,7 +91,7 @@ const ContextProvider = (props) => {
 				.doc(ticketID)
 				.update({
 					completed: !completed,
-					ore: parseInt(window.prompt("Inserire ore totali lavorate (i.e. 8)")),
+					ore: parseInt(modalOre),
 				})
 				.then(() => console.log(`edited ID: ${ticketID} to ${completed}`))
 				.catch((err) => `hups! --> ${err.message}`)
@@ -108,7 +109,6 @@ const ContextProvider = (props) => {
 
 	// COUNT COMPLETED TICKETS
 	useEffect(() => {
-		let oreTemp = 0
 		dbRef
 			.where("completed", "==", true)
 			.get()
@@ -118,7 +118,6 @@ const ContextProvider = (props) => {
 
 	// COUNT INCOMPLETE TICKETS
 	useEffect(() => {
-		let oreTemp = 0
 		dbRef
 			.where("completed", "==", false)
 			.get()
@@ -174,6 +173,15 @@ const ContextProvider = (props) => {
 		)
 	}
 
+	//~~~~~~~~~~~//
+	//   MODAL   //
+	//~~~~~~~~~~~//
+
+	const handleModal = (e) => {
+		e.preventDefault()
+		console.log(modalOre)
+	}
+
 	return (
 		<div>
 			<DataContext.Provider
@@ -196,6 +204,8 @@ const ContextProvider = (props) => {
 					showAllTickets,
 					filterTitle,
 					timeNow,
+					handleModal,
+					setModalOre,
 				}}>
 				{props.children}
 			</DataContext.Provider>

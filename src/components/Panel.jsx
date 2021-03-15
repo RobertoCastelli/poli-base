@@ -15,10 +15,9 @@ const Panel = () => {
 	return (
 		<>
 			{!isHidden && (
-				<form onSubmit={handleSubmit}>
+				<form className='panel' onSubmit={handleSubmit}>
 					<input
 						type='text'
-						className='ticket'
 						placeholder='ticket'
 						maxLength='10'
 						onChange={(e) => setTicket(e.target.value)}
@@ -27,7 +26,6 @@ const Panel = () => {
 					/>
 					<input
 						type='text'
-						className='description'
 						placeholder='description'
 						maxLength='28'
 						onChange={(e) => setDescription(e.target.value)}

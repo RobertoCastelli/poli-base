@@ -5,7 +5,7 @@ const FilterTitle = () => {
 	const { filterTitle, timeNow } = useContext(DataContext)
 	return (
 		<div className='filter-title'>
-			<p>{filterTitle}</p>
+			<div>{filterTitle}</div>
 			<small>{timeNow}</small>
 		</div>
 	)
