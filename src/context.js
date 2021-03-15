@@ -6,8 +6,10 @@ import { dbRef } from "./firebase"
  * TODO:
  * report excel all tickets
  * filter for month
- * filter complete / incomplete
  * hide ORE if they are 0
+ * change permission firebase
+ * add edificio
+ *
  *
  * FIXME:
  * prompt only numbers
@@ -25,6 +27,7 @@ const ContextProvider = (props) => {
 	const [oreTotali, setOreTotali] = useState(0)
 	const [filterCompleted, setFilterCompleted] = useState(0)
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
+	const [filterTitle, setFilterTitle] = useState("")
 
 	// GET DATE & TIME
 	let timeNow = new Date(
@@ -87,7 +90,7 @@ const ContextProvider = (props) => {
 				.doc(ticketID)
 				.update({
 					completed: !completed,
-					ore: parseInt(window.prompt("Inserire ore (i.e. 8")),
+					ore: parseInt(window.prompt("Inserire ore totali lavorate (i.e. 8)")),
 				})
 				.then(() => console.log(`edited ID: ${ticketID} to ${completed}`))
 				.catch((err) => `hups! --> ${err.message}`)
@@ -127,6 +130,7 @@ const ContextProvider = (props) => {
 
 	// SHOW INCOMPLETE TICKETS ON CLICK
 	const showIncompleteTickets = () => {
+		setFilterTitle("open tickets")
 		dbRef.where("completed", "==", false).onSnapshot((snapshot) =>
 			setTickets(
 				snapshot.docs.map((doc) => ({
@@ -142,6 +146,7 @@ const ContextProvider = (props) => {
 
 	// SHOW COMPLETED TICKETS ON CLICK
 	const showCompletedTickets = () => {
+		setFilterTitle("close tickets")
 		dbRef.where("completed", "==", true).onSnapshot((snapshot) =>
 			setTickets(
 				snapshot.docs.map((doc) => ({
@@ -157,6 +162,7 @@ const ContextProvider = (props) => {
 
 	// SHOW ALL TICKETS ON CLICK
 	const showAllTickets = () => {
+		setFilterTitle("total tickets")
 		dbRef.orderBy("time", "desc").onSnapshot((snapshot) =>
 			setTickets(
 				snapshot.docs.map((doc) => ({
@@ -190,6 +196,8 @@ const ContextProvider = (props) => {
 					showCompletedTickets,
 					showIncompleteTickets,
 					showAllTickets,
+					filterTitle,
+					timeNow,
 				}}>
 				{props.children}
 			</DataContext.Provider>
