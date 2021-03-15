@@ -3,10 +3,12 @@ import { GrSend } from "react-icons/gr"
 import { DataContext } from "../context"
 
 const Modal = () => {
-	const { handleModal, setModalOre } = useContext(DataContext)
+	const { handleModal, setModalOre, isOpenModal } = useContext(DataContext)
 	return (
 		<div>
-			<form className='modal' onSubmit={handleModal}>
+			<form
+				className={isOpenModal ? "modal" : undefined}
+				onSubmit={handleModal}>
 				<div className='modal-title'>inserire le ore</div>
 				<select
 					defaultValue={"DEFAULT"}

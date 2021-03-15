@@ -29,6 +29,7 @@ const ContextProvider = (props) => {
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
 	const [filterTitle, setFilterTitle] = useState("")
 	const [modalOre, setModalOre] = useState(0)
+	const [isOpenModal, setIsOpenModal] = useState(false)
 
 	// GET DATE & TIME
 	let timeNow = new Date(
@@ -86,15 +87,14 @@ const ContextProvider = (props) => {
 
 	// EDIT TICKET IF COMPLETED
 	const editTicket = (ticketID, completed) => {
-		!completed &&
-			dbRef
-				.doc(ticketID)
-				.update({
-					completed: !completed,
-					ore: parseInt(modalOre),
-				})
-				.then(() => console.log(`edited ID: ${ticketID} to ${completed}`))
-				.catch((err) => `hups! --> ${err.message}`)
+		dbRef
+			.doc(ticketID)
+			.update({
+				completed: !completed,
+				ore: parseInt(modalOre),
+			})
+			.then(() => console.log(`edited ID: ${ticketID} to ${completed}`))
+			.catch((err) => `hups! --> ${err.message}`)
 	}
 
 	//~~~~~~~~~~~~~~~//
@@ -179,7 +179,7 @@ const ContextProvider = (props) => {
 
 	const handleModal = (e) => {
 		e.preventDefault()
-		console.log(modalOre)
+		console.log(`Ore inserite: ${modalOre}`)
 	}
 
 	return (
