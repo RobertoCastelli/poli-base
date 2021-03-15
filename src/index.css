@@ -53,7 +53,7 @@ form {
 .filter-title {
 	text-align: center;
 	text-transform: uppercase;
-margin-top: 3rem;
+	margin-top: 3rem;
 }
 
 .li-count-open,
@@ -73,7 +73,7 @@ margin-top: 3rem;
 .li-count-open:hover,
 .li-count-close:hover,
 .li-count-list:hover {
-	background-color: lightgray;
+	border: 1px solid #333;
 }
 
 .li-count-time {
@@ -128,13 +128,6 @@ margin-top: 3rem;
 	}
 }
 
-.info {
-	display: flex;
-	justify-content: center;
-	color: cadetblue;
-	animation: fader 0.5s ease;
-}
-
 .delete-todo {
 	grid-area: delete;
 	cursor: pointer;
@@ -142,15 +135,6 @@ margin-top: 3rem;
 	align-self: center;
 	color: brown;
 	padding: 0.3rem;
-}
-
-.incomplete-todo {
-	cursor: pointer;
-}
-
-.completed-todo::after {
-	color: brown;
-	content: " - closed";
 }
 
 .ticket-todo {
@@ -170,29 +154,17 @@ margin-top: 3rem;
 	justify-self: center;
 }
 
-.modal-wrapper {
-	position: fixed;
-	display: grid;
-	place-content: center;
-	top:0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: 1;
-	background-color: rgba(244, 244, 244, 0.8);	
+.incomplete-todo {
+	cursor: pointer;
 }
 
-.modal {
-	background-color: #f4f4f4;
-	border: 3px solid #333;
-	padding: 3rem;
-	border-radius: 1rem;
-	display: grid;
-	place-content: center;	
+.completed-todo {
+	cursor: default;
 }
 
-.modal-title {
-	text-transform: uppercase;
+.completed-todo::after {
+	color: brown;
+	content: " - closed";
 }
 
 select {

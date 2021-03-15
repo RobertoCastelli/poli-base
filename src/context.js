@@ -112,9 +112,8 @@ const ContextProvider = (props) => {
 		dbRef
 			.where("completed", "==", true)
 			.get()
-			.then((snapshot) =>
-				snapshot.forEach(() => setFilterCompleted((oreTemp += 1)))
-			)
+			.then((snapshot) => setFilterCompleted(snapshot.size))
+			.catch((err) => console.log(`hups! ${err.message}`))
 	}, [tickets])
 
 	// COUNT INCOMPLETE TICKETS
@@ -123,9 +122,8 @@ const ContextProvider = (props) => {
 		dbRef
 			.where("completed", "==", false)
 			.get()
-			.then((snapshot) =>
-				snapshot.forEach(() => setFilterIncomplete((oreTemp += 1)))
-			)
+			.then((snapshot) => setFilterIncomplete(snapshot.size))
+			.catch((err) => console.log(`hups! ${err.message}`))
 	}, [tickets])
 
 	// SHOW INCOMPLETE TICKETS ON CLICK
