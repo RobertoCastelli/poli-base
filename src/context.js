@@ -20,6 +20,7 @@ export const DataContext = React.createContext()
 
 const ContextProvider = (props) => {
 	// VARIABLE STATE
+	const [index, setIndex] = useState("")
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
 	const [tickets, setTickets] = useState([])
@@ -55,7 +56,6 @@ const ContextProvider = (props) => {
 				ticket,
 				description,
 				ore: 0,
-				completed: false,
 				time: timeNow,
 			})
 			.then((docRef) => console.log(`ticket added ID: ${docRef.id}`))
@@ -85,16 +85,31 @@ const ContextProvider = (props) => {
 				.catch((err) => console.log(`hups! --> ${err.message}`))
 	}
 
-	// EDIT TICKET IF COMPLETED
-	const editTicket = (ticketID, completed) => {
+	// UPDATE TICKET STATE
+	const updateTicketStateAndOre = () => {
 		dbRef
-			.doc(ticketID)
+			.doc(index)
 			.update({
-				completed: !completed,
 				ore: parseInt(modalOre),
 			})
-			.then(() => console.log(`edited ID: ${ticketID} to ${completed}`))
+			.then(() => console.log(`edited ore ID: ${index} to ${modalOre} ore`))
 			.catch((err) => `hups! --> ${err.message}`)
+	}
+	//~~~~~~~~~~~//
+	//   MODAL   //
+	//~~~~~~~~~~~//
+
+	// OPEN MODAL
+	const openModal = (ticketID) => {
+		setIsOpenModal(true)
+		setIndex(ticketID)
+	}
+
+	// UPDATE ORE --> CLOSE MODAL
+	const handleModal = (e) => {
+		e.preventDefault()
+		updateTicketStateAndOre()
+		setIsOpenModal(false)
 	}
 
 	//~~~~~~~~~~~~~~~//
@@ -173,15 +188,6 @@ const ContextProvider = (props) => {
 		)
 	}
 
-	//~~~~~~~~~~~//
-	//   MODAL   //
-	//~~~~~~~~~~~//
-
-	const handleModal = (e) => {
-		e.preventDefault()
-		console.log(`Ore inserite: ${modalOre}`)
-	}
-
 	return (
 		<div>
 			<DataContext.Provider
@@ -195,7 +201,7 @@ const ContextProvider = (props) => {
 					togglePanel,
 					isHidden,
 					deleteTicket,
-					editTicket,
+					openModal,
 					oreTotali,
 					filterCompleted,
 					filterIncomplete,
@@ -206,6 +212,7 @@ const ContextProvider = (props) => {
 					timeNow,
 					handleModal,
 					setModalOre,
+					isOpenModal,
 				}}>
 				{props.children}
 			</DataContext.Provider>

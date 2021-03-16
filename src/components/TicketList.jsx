@@ -3,7 +3,7 @@ import { RiDeleteBinLine } from "react-icons/ri"
 import { DataContext } from "../context"
 
 const TicketList = () => {
-	const { tickets, deleteTicket, editTicket } = useContext(DataContext)
+	const { tickets, deleteTicket, openModal } = useContext(DataContext)
 
 	return (
 		<ul className='ul-todo'>
@@ -11,8 +11,8 @@ const TicketList = () => {
 				return (
 					<li className='li-todo' key={tk.id}>
 						<div
-							onClick={() => editTicket(tk.id, tk.completed)}
-							className={tk.completed ? "completed-todo" : "incomplete-todo"}>
+							onClick={() => openModal(tk.id)}
+							className={tk.ore !== 0 ? "completed-todo" : "incomplete-todo"}>
 							<span className='ticket-todo'>{tk.ticket}</span>
 						</div>
 						<div className='desc-todo'>{tk.description}</div>

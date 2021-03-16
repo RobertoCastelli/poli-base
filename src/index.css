@@ -154,12 +154,9 @@ body {
 	justify-self: center;
 }
 
-.incomplete-todo {
-	cursor: pointer;
-}
-
+.incomplete-todo,
 .completed-todo {
-	cursor: default;
+	cursor: pointer;
 }
 
 .completed-todo::after {
@@ -216,13 +213,31 @@ footer {
 	border-top: 3px solid #333;
 }
 
-.modal {
-	display: grid;
-	place-content: center;
-	border: 2px solid #333;	
+.modal-wrapper {
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	top:0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	background-color: rgba(128, 128, 128, 0.8);
 }
+
+.modal{
+	border: 3px solid #333;
+	padding: 3rem;
+	border-radius: 1rem;
+	background-color: #f4f4f4;
+	text-align: center;
+}
+
 
 .modal-title {
 	text-transform: uppercase;
 	margin: 1rem;
 }
+
