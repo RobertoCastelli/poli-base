@@ -157,10 +157,14 @@ body {
 .incomplete-todo,
 .completed-todo {
 	cursor: pointer;
+	color: cadetblue;
+}
+
+.completed-todo {
+	color: brown;
 }
 
 .completed-todo::after {
-	color: brown;
 	content: " - closed";
 }
 

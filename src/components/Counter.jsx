@@ -33,7 +33,7 @@ const Counter = () => {
 				<div>
 					<BsLockFill size={20} />
 				</div>
-				<div>close {filterCompleted}</div>
+				<div>closed {filterCompleted}</div>
 			</li>
 			<li className='li-count-time'>
 				<div>
