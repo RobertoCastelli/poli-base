@@ -140,7 +140,7 @@ body {
 .ticket-todo {
 	grid-area: ticket;
 	font-weight: bold;
-	color: cadetblue;
+;
 }
 
 .desc-todo {

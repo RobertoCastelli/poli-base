@@ -125,7 +125,7 @@ const ContextProvider = (props) => {
 	// COUNT COMPLETED TICKETS
 	useEffect(() => {
 		dbRef
-			.where("completed", "==", true)
+			.where("ore", ">", 0)
 			.get()
 			.then((snapshot) => setFilterCompleted(snapshot.size))
 			.catch((err) => console.log(`hups! ${err.message}`))
@@ -134,7 +134,7 @@ const ContextProvider = (props) => {
 	// COUNT INCOMPLETE TICKETS
 	useEffect(() => {
 		dbRef
-			.where("completed", "==", false)
+			.where("ore", "==", 0)
 			.get()
 			.then((snapshot) => setFilterIncomplete(snapshot.size))
 			.catch((err) => console.log(`hups! ${err.message}`))
@@ -143,7 +143,7 @@ const ContextProvider = (props) => {
 	// SHOW INCOMPLETE TICKETS ON CLICK
 	const showIncompleteTickets = () => {
 		setFilterTitle("open tickets")
-		dbRef.where("completed", "==", false).onSnapshot((snapshot) =>
+		dbRef.where("ore", "==", 0).onSnapshot((snapshot) =>
 			setTickets(
 				snapshot.docs.map((doc) => ({
 					id: doc.id,
@@ -159,7 +159,7 @@ const ContextProvider = (props) => {
 	// SHOW COMPLETED TICKETS ON CLICK
 	const showCompletedTickets = () => {
 		setFilterTitle("close tickets")
-		dbRef.where("completed", "==", true).onSnapshot((snapshot) =>
+		dbRef.where("ore", ">", 0).onSnapshot((snapshot) =>
 			setTickets(
 				snapshot.docs.map((doc) => ({
 					id: doc.id,

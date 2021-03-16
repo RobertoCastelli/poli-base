@@ -9,20 +9,20 @@ const Modal = () => {
 			{isOpenModal && (
 				<div className='modal-wrapper'>
 					<form className='modal' onSubmit={handleModal}>
-						<div className='modal-title'>inserire le ore</div>
+						<div className='modal-title'>inserire le ore - riapri ticket</div>
 						<select
 							defaultValue={"DEFAULT"}
 							onChange={(e) => setModalOre(e.target.value)}>
-							<option value='DEFAULT'>Ore </option>
-							<option value='0'>TICKET APERTO</option>
-							<option value='2'>2</option>
-							<option value='4'>4</option>
-							<option value='6'>6</option>
-							<option value='8'>8</option>
-							<option value='10'>10</option>
-							<option value='12'>12</option>
-							<option value='14'>14</option>
-							<option value='16'>16</option>
+							<option value='DEFAULT'>...</option>
+							<option value='0'>RIAPRI TICKET</option>
+							<option value='2'>2 ore</option>
+							<option value='4'>4 ore</option>
+							<option value='6'>6 ore</option>
+							<option value='8'>8 ore</option>
+							<option value='10'>10 ore</option>
+							<option value='12'>12 ore</option>
+							<option value='14'>14 ore</option>
+							<option value='16'>16 ore</option>
 						</select>
 						<button type='submit'>
 							<GrSend size={30} />
