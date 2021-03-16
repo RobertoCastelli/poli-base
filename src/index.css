@@ -234,6 +234,7 @@ footer {
 .modal{
 	border: 3px solid #333;
 	padding: 3rem;
+	margin: 1rem;
 	border-radius: 1rem;
 	background-color: #f4f4f4;
 	text-align: center;

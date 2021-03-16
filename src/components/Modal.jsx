@@ -9,7 +9,7 @@ const Modal = () => {
 			{isOpenModal && (
 				<div className='modal-wrapper'>
 					<form className='modal' onSubmit={handleModal}>
-						<div className='modal-title'>inserire le ore - riapri ticket</div>
+						<div className='modal-title'>inserire le ore</div>
 						<select
 							defaultValue={"DEFAULT"}
 							onChange={(e) => setModalOre(e.target.value)}>

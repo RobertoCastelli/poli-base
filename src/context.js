@@ -24,7 +24,7 @@ const ContextProvider = (props) => {
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
 	const [tickets, setTickets] = useState([])
-	const [isHidden, setIsHidden] = useState(false)
+	const [isHidden, setIsHidden] = useState(true)
 	const [oreTotali, setOreTotali] = useState(0)
 	const [filterCompleted, setFilterCompleted] = useState(0)
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
@@ -158,7 +158,7 @@ const ContextProvider = (props) => {
 
 	// SHOW COMPLETED TICKETS ON CLICK
 	const showCompletedTickets = () => {
-		setFilterTitle("close tickets")
+		setFilterTitle("closed tickets")
 		dbRef.where("ore", ">", 0).onSnapshot((snapshot) =>
 			setTickets(
 				snapshot.docs.map((doc) => ({
