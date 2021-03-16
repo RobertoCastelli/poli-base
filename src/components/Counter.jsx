@@ -21,7 +21,7 @@ const Counter = () => {
 				<div>
 					<FcTodoList size={20} />
 				</div>
-				<div>total {filterCompleted + filterIncomplete}</div>
+				<div>totals {filterCompleted + filterIncomplete}</div>
 			</li>
 			<li className='li-count-open' onClick={() => showIncompleteTickets()}>
 				<div>
