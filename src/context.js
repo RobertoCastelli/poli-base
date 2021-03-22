@@ -35,7 +35,9 @@ const ContextProvider = (props) => {
 	// GET DATE & TIME
 	let dateAndTimeNow = new Date(
 		firebase.firestore.Timestamp.now().seconds * 1000
-	).toLocaleString()
+	)
+		.toLocaleString()
+		.split(",")[0]
 
 	// SHOW TICKETS ON LOAD
 	useEffect(() => showAllTickets(), [])

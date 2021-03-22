@@ -250,3 +250,9 @@ footer {
 .calendar {
 	margin-top: 1rem;
 }
+
+.link {
+	color: #333;
+	text-decoration: none;
+	font-weight: bold;
+}

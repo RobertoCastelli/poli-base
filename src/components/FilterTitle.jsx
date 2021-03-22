@@ -7,8 +7,8 @@ const FilterTitle = () => {
 	return (
 		<div className='filter-title'>
 			<div>{filterTitle}</div>
-			<Link to='/calendar'>
-				<small>{dateAndTimeNow}</small>
+			<Link className='link' to='/calendar'>
+				<p>{dateAndTimeNow}</p>
 			</Link>
 		</div>
 	)
