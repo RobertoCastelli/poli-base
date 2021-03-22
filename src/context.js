@@ -12,7 +12,7 @@ import { dbRef } from "./firebase"
  *
  *
  * FIXME:
- * prompt only numbers
+ *
  */
 
 // CREATE CONTEXT
@@ -33,14 +33,12 @@ const ContextProvider = (props) => {
 	const [isOpenModal, setIsOpenModal] = useState(false)
 
 	// GET DATE & TIME
-	let timeNow = new Date(
+	let dateAndTimeNow = new Date(
 		firebase.firestore.Timestamp.now().seconds * 1000
 	).toLocaleString()
 
 	// SHOW TICKETS ON LOAD
-	useEffect(() => {
-		showAllTickets()
-	}, [])
+	useEffect(() => showAllTickets(), [])
 
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
@@ -56,7 +54,7 @@ const ContextProvider = (props) => {
 				ticket,
 				description,
 				ore: 0,
-				time: timeNow,
+				time: dateAndTimeNow,
 			})
 			.then((docRef) => console.log(`ticket added ID: ${docRef.id}`))
 			.catch((err) => console.log(`hups! --> ${err.message}`))
@@ -140,52 +138,43 @@ const ContextProvider = (props) => {
 			.catch((err) => console.log(`hups! ${err.message}`))
 	}, [tickets])
 
+	// BOILER PLATE TEMPLATE
+	const template = (doc) => ({
+		id: doc.id,
+		ticket: doc.data().ticket,
+		description: doc.data().description,
+		ore: doc.data().ore,
+		completed: doc.data().completed,
+	})
+
 	// SHOW INCOMPLETE TICKETS ON CLICK
 	const showIncompleteTickets = () => {
 		setFilterTitle("open tickets")
-		dbRef.where("ore", "==", 0).onSnapshot((snapshot) =>
-			setTickets(
-				snapshot.docs.map((doc) => ({
-					id: doc.id,
-					ticket: doc.data().ticket,
-					description: doc.data().description,
-					ore: doc.data().ore,
-					completed: doc.data().completed,
-				}))
+		dbRef
+			.where("ore", "==", 0)
+			.onSnapshot((snapshot) =>
+				setTickets(snapshot.docs.map((doc) => template(doc)))
 			)
-		)
 	}
 
 	// SHOW COMPLETED TICKETS ON CLICK
 	const showCompletedTickets = () => {
 		setFilterTitle("closed tickets")
-		dbRef.where("ore", ">", 0).onSnapshot((snapshot) =>
-			setTickets(
-				snapshot.docs.map((doc) => ({
-					id: doc.id,
-					ticket: doc.data().ticket,
-					description: doc.data().description,
-					ore: doc.data().ore,
-					completed: doc.data().completed,
-				}))
+		dbRef
+			.where("ore", ">", 0)
+			.onSnapshot((snapshot) =>
+				setTickets(snapshot.docs.map((doc) => template(doc)))
 			)
-		)
 	}
 
 	// SHOW ALL TICKETS ON CLICK
 	const showAllTickets = () => {
 		setFilterTitle("total tickets")
-		dbRef.orderBy("time", "desc").onSnapshot((snapshot) =>
-			setTickets(
-				snapshot.docs.map((doc) => ({
-					id: doc.id,
-					ticket: doc.data().ticket,
-					description: doc.data().description,
-					ore: doc.data().ore,
-					completed: doc.data().completed,
-				}))
+		dbRef
+			.orderBy("time", "desc")
+			.onSnapshot((snapshot) =>
+				setTickets(snapshot.docs.map((doc) => template(doc)))
 			)
-		)
 	}
 
 	return (
@@ -209,7 +198,7 @@ const ContextProvider = (props) => {
 					showIncompleteTickets,
 					showAllTickets,
 					filterTitle,
-					timeNow,
+					dateAndTimeNow,
 					handleModal,
 					setModalOre,
 					isOpenModal,
