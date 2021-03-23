@@ -63,7 +63,7 @@ body {
 
 .li-count-open,
 .li-count-close,
-.li-count-list,
+/* .li-count-list, */
 .calendar-icon {
 	display: grid;
 	place-content: center;

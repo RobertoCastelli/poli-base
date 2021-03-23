@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { BsFillUnlockFill } from "react-icons/bs"
 import { BsLockFill } from "react-icons/bs"
-import { FcTodoList } from "react-icons/fc"
+// import { FcTodoList } from "react-icons/fc"
 import { BiTime } from "react-icons/bi"
 import { DataContext } from "../context"
 import { Link } from "react-router-dom"
@@ -14,18 +14,18 @@ const Counter = () => {
 		filterIncomplete,
 		showCompletedTickets,
 		showIncompleteTickets,
-		showAllTickets,
+		// showAllTickets,
 		handleCalendar,
 	} = useContext(DataContext)
 
 	return (
 		<ul className='ul-count'>
-			<li className='li-count-list' onClick={() => showAllTickets()}>
+			{/* <li className='li-count-list' onClick={() => showAllTickets()}>
 				<div>
 					<FcTodoList size={20} />
 				</div>
 				<div>totals {filterCompleted + filterIncomplete}</div>
-			</li>
+			</li> */}
 			<li className='li-count-open' onClick={() => showIncompleteTickets()}>
 				<div>
 					<BsFillUnlockFill size={20} />

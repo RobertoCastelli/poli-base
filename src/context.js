@@ -216,7 +216,7 @@ const ContextProvider = (props) => {
 					filterIncomplete,
 					showCompletedTickets,
 					showIncompleteTickets,
-					showAllTickets,
+					// showAllTickets,
 					filterTitle,
 					handleModal,
 					setModalOre,
