@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react"
-import firebase from "firebase/app"
+// import firebase from "firebase/app"
 import { dbRef } from "./firebase"
 
 /**
@@ -18,11 +18,14 @@ import { dbRef } from "./firebase"
 // CREATE CONTEXT
 export const DataContext = React.createContext()
 
+const today = new Date().toISOString().substring(0, 10)
+
 const ContextProvider = (props) => {
 	// VARIABLE STATE
 	const [index, setIndex] = useState("")
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
+	const [dateAndTime, setDateAndTime] = useState(today)
 	const [tickets, setTickets] = useState([])
 	const [isHidden, setIsHidden] = useState(true)
 	const [oreTotali, setOreTotali] = useState(0)
@@ -38,17 +41,14 @@ const ContextProvider = (props) => {
 	//~~~~~~~~~~~~~//
 
 	// SHOW ALL TICKETS ON CLICK
-	const showAllTickets = useCallback(() => {
-		setFilterTitle("total tickets")
-		dbRef
-			.orderBy("time", "desc")
-			.onSnapshot((snapshot) =>
-				setTickets(snapshot.docs.map((doc) => template(doc)))
-			)
-	}, [])
-
-	// SHOW TICKETS ON LOAD
-	useEffect(() => showAllTickets(), [showAllTickets])
+	// const showAllTickets = useCallback(() => {
+	// 	setFilterTitle("total tickets")
+	// 	dbRef
+	// 		.orderBy("time", "desc")
+	// 		.onSnapshot((snapshot) =>
+	// 			setTickets(snapshot.docs.map((doc) => template(doc)))
+	// 		)
+	// }, [])
 
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
@@ -64,7 +64,7 @@ const ContextProvider = (props) => {
 				ticket,
 				description,
 				ore: 0,
-				time: dateAndTimeNow,
+				time: dateAndTime,
 			})
 			.then((docRef) => console.log(`ticket added ID: ${docRef.id}`))
 			.catch((err) => console.log(`hups! --> ${err.message}`))
@@ -83,17 +83,17 @@ const ContextProvider = (props) => {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 	// GET DATE & TIME
-	let dateAndTimeNow = new Date(
-		firebase.firestore.Timestamp.now().seconds * 1000
-	)
-		.toLocaleString()
-		.split(",")[0]
+	// let dateAndTimeNow = new Date(
+	// 	firebase.firestore.Timestamp.now().seconds * 1000
+	// )
+	// 	.toLocaleString()
+	// 	.split(",")[0]
 
 	// SHOW TICKETS TO CALENDAR
 	const handleCalendar = () => {
 		const ticketsTemp = [...tickets]
 		setCalendarEntries(
-			ticketsTemp.map((tk) => ({ title: tk.ticket, date: "2021-03-03" }))
+			ticketsTemp.map((tk) => ({ title: tk.ticket, date: tk.time }))
 		)
 	}
 
@@ -178,14 +178,14 @@ const ContextProvider = (props) => {
 	})
 
 	// SHOW INCOMPLETE TICKETS ON CLICK
-	const showIncompleteTickets = () => {
+	const showIncompleteTickets = useCallback(() => {
 		setFilterTitle("open tickets")
 		dbRef
 			.where("ore", "==", 0)
 			.onSnapshot((snapshot) =>
 				setTickets(snapshot.docs.map((doc) => template(doc)))
 			)
-	}
+	}, [])
 
 	// SHOW COMPLETED TICKETS ON CLICK
 	const showCompletedTickets = () => {
@@ -197,6 +197,9 @@ const ContextProvider = (props) => {
 			)
 	}
 
+	// SHOW COMPLETED TICKETS ON LOAD
+	useEffect(() => showIncompleteTickets(), [showIncompleteTickets])
+
 	return (
 		<div>
 			<DataContext.Provider
@@ -205,6 +208,8 @@ const ContextProvider = (props) => {
 					setTicket,
 					description,
 					setDescription,
+					dateAndTime,
+					setDateAndTime,
 					handleSubmit,
 					tickets,
 					togglePanel,

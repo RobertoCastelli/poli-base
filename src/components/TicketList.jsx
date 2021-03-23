@@ -15,7 +15,9 @@ const TicketList = () => {
 							className={tk.ore !== 0 ? "completed-todo" : "incomplete-todo"}>
 							<span className='ticket-todo'>{tk.ticket}</span>
 						</div>
-						<div className='desc-todo'>{tk.description}</div>
+						<div className='desc-todo'>
+							{tk.time} - {tk.description}
+						</div>
 						<div className='ore-todo'>
 							ore: <span id='ore'>{tk.ore}</span>
 						</div>

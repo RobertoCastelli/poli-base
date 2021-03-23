@@ -38,18 +38,18 @@ const Counter = () => {
 				</div>
 				<div>closed {filterCompleted}</div>
 			</li>
-			<li className='li-count-time'>
-				<div>
-					<BiTime size={20} />
-				</div>
-				<div>hours {oreTotali}</div>
-			</li>
 			<li>
 				<Link className='link' to='/calendar'>
 					<div className='calendar-icon' onClick={() => handleCalendar()}>
 						<BiCalendar size={20} />
 					</div>
 				</Link>
+			</li>
+			<li className='li-count-time'>
+				<div>
+					<BiTime size={20} />
+				</div>
+				<div>hours {oreTotali}</div>
 			</li>
 		</ul>
 	)

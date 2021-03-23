@@ -64,7 +64,8 @@ body {
 .li-count-open,
 .li-count-close,
 /* .li-count-list, */
-.calendar-icon {
+.calendar-icon,
+.home-icon {
 	display: grid;
 	place-content: center;
 	text-align: center;
@@ -79,7 +80,8 @@ body {
 .li-count-open:hover,
 .li-count-close:hover,
 .li-count-list:hover,
-.calendar-icon:hover {
+.calendar-icon:hover,
+.home-icon:hover {
 	border: 1px solid #333;
 }
 
