@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import firebase from "firebase/app"
 import { dbRef } from "./firebase"
 
@@ -12,7 +12,7 @@ import { dbRef } from "./firebase"
  *
  *
  * FIXME:
- * prompt only numbers
+ *
  */
 
 // CREATE CONTEXT
@@ -31,16 +31,43 @@ const ContextProvider = (props) => {
 	const [filterTitle, setFilterTitle] = useState("")
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
+	const [calendarEntries, setCalendarEntries] = useState([])
 
-	// GET DATE & TIME
-	let timeNow = new Date(
-		firebase.firestore.Timestamp.now().seconds * 1000
-	).toLocaleString()
+	//~~~~~~~~~~~~~//
+	//   ON LOAD   //
+	//~~~~~~~~~~~~~//
+
+	// SHOW ALL TICKETS ON CLICK
+	const showAllTickets = useCallback(() => {
+		setFilterTitle("total tickets")
+		dbRef
+			.orderBy("time", "desc")
+			.onSnapshot((snapshot) =>
+				setTickets(snapshot.docs.map((doc) => template(doc)))
+			)
+	}, [])
 
 	// SHOW TICKETS ON LOAD
-	useEffect(() => {
-		showAllTickets()
-	}, [])
+	useEffect(() => showAllTickets(), [showAllTickets])
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~//
+	//    DATE TIME CALENDAR   //
+	//~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+	// GET DATE & TIME
+	let dateAndTimeNow = new Date(
+		firebase.firestore.Timestamp.now().seconds * 1000
+	)
+		.toLocaleString()
+		.split(",")[0]
+
+	// SHOW TICKETS TO CALENDAR
+	const handleCalendar = () => {
+		const ticketsTemp = [...tickets]
+		setCalendarEntries(
+			ticketsTemp.map((tk) => ({ title: tk.ticket, date: "2021-03-03" }))
+		)
+	}
 
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
@@ -56,7 +83,7 @@ const ContextProvider = (props) => {
 				ticket,
 				description,
 				ore: 0,
-				time: timeNow,
+				time: dateAndTimeNow,
 			})
 			.then((docRef) => console.log(`ticket added ID: ${docRef.id}`))
 			.catch((err) => console.log(`hups! --> ${err.message}`))
@@ -140,52 +167,33 @@ const ContextProvider = (props) => {
 			.catch((err) => console.log(`hups! ${err.message}`))
 	}, [tickets])
 
+	// BOILERPLATE TEMPLATE
+	const template = (doc) => ({
+		id: doc.id,
+		ticket: doc.data().ticket,
+		description: doc.data().description,
+		ore: doc.data().ore,
+		completed: doc.data().completed,
+	})
+
 	// SHOW INCOMPLETE TICKETS ON CLICK
 	const showIncompleteTickets = () => {
 		setFilterTitle("open tickets")
-		dbRef.where("ore", "==", 0).onSnapshot((snapshot) =>
-			setTickets(
-				snapshot.docs.map((doc) => ({
-					id: doc.id,
-					ticket: doc.data().ticket,
-					description: doc.data().description,
-					ore: doc.data().ore,
-					completed: doc.data().completed,
-				}))
+		dbRef
+			.where("ore", "==", 0)
+			.onSnapshot((snapshot) =>
+				setTickets(snapshot.docs.map((doc) => template(doc)))
 			)
-		)
 	}
 
 	// SHOW COMPLETED TICKETS ON CLICK
 	const showCompletedTickets = () => {
 		setFilterTitle("closed tickets")
-		dbRef.where("ore", ">", 0).onSnapshot((snapshot) =>
-			setTickets(
-				snapshot.docs.map((doc) => ({
-					id: doc.id,
-					ticket: doc.data().ticket,
-					description: doc.data().description,
-					ore: doc.data().ore,
-					completed: doc.data().completed,
-				}))
+		dbRef
+			.where("ore", ">", 0)
+			.onSnapshot((snapshot) =>
+				setTickets(snapshot.docs.map((doc) => template(doc)))
 			)
-		)
-	}
-
-	// SHOW ALL TICKETS ON CLICK
-	const showAllTickets = () => {
-		setFilterTitle("total tickets")
-		dbRef.orderBy("time", "desc").onSnapshot((snapshot) =>
-			setTickets(
-				snapshot.docs.map((doc) => ({
-					id: doc.id,
-					ticket: doc.data().ticket,
-					description: doc.data().description,
-					ore: doc.data().ore,
-					completed: doc.data().completed,
-				}))
-			)
-		)
 	}
 
 	return (
@@ -209,10 +217,12 @@ const ContextProvider = (props) => {
 					showIncompleteTickets,
 					showAllTickets,
 					filterTitle,
-					timeNow,
+					dateAndTimeNow,
 					handleModal,
 					setModalOre,
 					isOpenModal,
+					handleCalendar,
+					calendarEntries,
 				}}>
 				{props.children}
 			</DataContext.Provider>
