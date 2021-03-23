@@ -4,6 +4,8 @@ import { BsLockFill } from "react-icons/bs"
 import { FcTodoList } from "react-icons/fc"
 import { BiTime } from "react-icons/bi"
 import { DataContext } from "../context"
+import { Link } from "react-router-dom"
+import { BiCalendar } from "react-icons/bi"
 
 const Counter = () => {
 	const {
@@ -13,6 +15,7 @@ const Counter = () => {
 		showCompletedTickets,
 		showIncompleteTickets,
 		showAllTickets,
+		handleCalendar,
 	} = useContext(DataContext)
 
 	return (
@@ -40,6 +43,13 @@ const Counter = () => {
 					<BiTime size={20} />
 				</div>
 				<div>hours {oreTotali}</div>
+			</li>
+			<li>
+				<Link className='link' to='/calendar'>
+					<div className='calendar-icon' onClick={() => handleCalendar()}>
+						<BiCalendar size={20} />
+					</div>
+				</Link>
 			</li>
 		</ul>
 	)

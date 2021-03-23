@@ -50,25 +50,6 @@ const ContextProvider = (props) => {
 	// SHOW TICKETS ON LOAD
 	useEffect(() => showAllTickets(), [showAllTickets])
 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~//
-	//    DATE TIME CALENDAR   //
-	//~~~~~~~~~~~~~~~~~~~~~~~~~//
-
-	// GET DATE & TIME
-	let dateAndTimeNow = new Date(
-		firebase.firestore.Timestamp.now().seconds * 1000
-	)
-		.toLocaleString()
-		.split(",")[0]
-
-	// SHOW TICKETS TO CALENDAR
-	const handleCalendar = () => {
-		const ticketsTemp = [...tickets]
-		setCalendarEntries(
-			ticketsTemp.map((tk) => ({ title: tk.ticket, date: "2021-03-03" }))
-		)
-	}
-
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
 	//~~~~~~~~~~~~~//
@@ -97,6 +78,25 @@ const ContextProvider = (props) => {
 		setDescription("")
 	}
 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~//
+	//    DATE TIME CALENDAR   //
+	//~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+	// GET DATE & TIME
+	let dateAndTimeNow = new Date(
+		firebase.firestore.Timestamp.now().seconds * 1000
+	)
+		.toLocaleString()
+		.split(",")[0]
+
+	// SHOW TICKETS TO CALENDAR
+	const handleCalendar = () => {
+		const ticketsTemp = [...tickets]
+		setCalendarEntries(
+			ticketsTemp.map((tk) => ({ title: tk.ticket, date: "2021-03-03" }))
+		)
+	}
+
 	//~~~~~~~~~~~~~~~~~//
 	//   TICKET LIST   //
 	//~~~~~~~~~~~~~~~~~//
@@ -122,6 +122,7 @@ const ContextProvider = (props) => {
 			.then(() => console.log(`edited ore ID: ${index} to ${modalOre} ore`))
 			.catch((err) => `hups! --> ${err.message}`)
 	}
+
 	//~~~~~~~~~~~//
 	//   MODAL   //
 	//~~~~~~~~~~~//
@@ -217,7 +218,6 @@ const ContextProvider = (props) => {
 					showIncompleteTickets,
 					showAllTickets,
 					filterTitle,
-					dateAndTimeNow,
 					handleModal,
 					setModalOre,
 					isOpenModal,

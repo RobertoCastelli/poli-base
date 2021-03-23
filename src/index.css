@@ -53,12 +53,18 @@ body {
 .filter-title {
 	text-align: center;
 	text-transform: uppercase;
-	margin-top: 3rem;
+	margin-top: 1rem;
+}
+
+.calendar-icon {
+	color: #333;
+	background-color: lightgray;
 }
 
 .li-count-open,
 .li-count-close,
-.li-count-list {
+.li-count-list,
+.calendar-icon {
 	display: grid;
 	place-content: center;
 	text-align: center;
@@ -72,7 +78,8 @@ body {
 
 .li-count-open:hover,
 .li-count-close:hover,
-.li-count-list:hover {
+.li-count-list:hover,
+.calendar-icon:hover {
 	border: 1px solid #333;
 }
 
@@ -260,5 +267,4 @@ footer {
 .link {
 	color: #333;
 	text-decoration: none;
-	font-weight: bold;
 }
