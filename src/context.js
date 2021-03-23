@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import firebase from "firebase/app"
 import { dbRef } from "./firebase"
 
@@ -31,6 +31,28 @@ const ContextProvider = (props) => {
 	const [filterTitle, setFilterTitle] = useState("")
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
+	const [calendarEntries, setCalendarEntries] = useState([])
+
+	//~~~~~~~~~~~~~//
+	//   ON LOAD   //
+	//~~~~~~~~~~~~~//
+
+	// SHOW ALL TICKETS ON CLICK
+	const showAllTickets = useCallback(() => {
+		setFilterTitle("total tickets")
+		dbRef
+			.orderBy("time", "desc")
+			.onSnapshot((snapshot) =>
+				setTickets(snapshot.docs.map((doc) => template(doc)))
+			)
+	}, [])
+
+	// SHOW TICKETS ON LOAD
+	useEffect(() => showAllTickets(), [showAllTickets])
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~//
+	//    DATE TIME CALENDAR   //
+	//~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 	// GET DATE & TIME
 	let dateAndTimeNow = new Date(
@@ -39,8 +61,13 @@ const ContextProvider = (props) => {
 		.toLocaleString()
 		.split(",")[0]
 
-	// SHOW TICKETS ON LOAD
-	useEffect(() => showAllTickets(), [])
+	// SHOW TICKETS TO CALENDAR
+	const handleCalendar = () => {
+		const ticketsTemp = [...tickets]
+		setCalendarEntries(
+			ticketsTemp.map((tk) => ({ title: tk.ticket, date: "2021-03-03" }))
+		)
+	}
 
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
@@ -140,7 +167,7 @@ const ContextProvider = (props) => {
 			.catch((err) => console.log(`hups! ${err.message}`))
 	}, [tickets])
 
-	// BOILER PLATE TEMPLATE
+	// BOILERPLATE TEMPLATE
 	const template = (doc) => ({
 		id: doc.id,
 		ticket: doc.data().ticket,
@@ -164,16 +191,6 @@ const ContextProvider = (props) => {
 		setFilterTitle("closed tickets")
 		dbRef
 			.where("ore", ">", 0)
-			.onSnapshot((snapshot) =>
-				setTickets(snapshot.docs.map((doc) => template(doc)))
-			)
-	}
-
-	// SHOW ALL TICKETS ON CLICK
-	const showAllTickets = () => {
-		setFilterTitle("total tickets")
-		dbRef
-			.orderBy("time", "desc")
 			.onSnapshot((snapshot) =>
 				setTickets(snapshot.docs.map((doc) => template(doc)))
 			)
@@ -204,6 +221,8 @@ const ContextProvider = (props) => {
 					handleModal,
 					setModalOre,
 					isOpenModal,
+					handleCalendar,
+					calendarEntries,
 				}}>
 				{props.children}
 			</DataContext.Provider>

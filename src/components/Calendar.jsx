@@ -6,17 +6,14 @@ import { FcHome } from "react-icons/fc"
 import { DataContext } from "../context"
 
 const Calendar = () => {
-	const context = useContext(DataContext)
+	const { calendarEntries } = useContext(DataContext)
 
 	return (
 		<div className='calendar'>
 			<FullCalendar
 				defaultView='dayGridMonth'
 				plugins={[dayGridPlugin]}
-				events={[
-					{ title: "TEST1", date: "2021-03-03" },
-					{ title: "TEST2", date: "2021-03-03" },
-				]}
+				events={calendarEntries}
 			/>
 			<Link to='/'>
 				<button>

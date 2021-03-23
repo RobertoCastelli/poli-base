@@ -32,6 +32,7 @@ const Panel = () => {
 						value={description}
 						required
 					/>
+					<input className='datepicker' type='date' required />
 					<button type='submit'>
 						<ImDownload size={30} />
 					</button>

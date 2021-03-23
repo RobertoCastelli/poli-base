@@ -247,8 +247,14 @@ footer {
 	text-align: center;
 }
 
-.calendar {
-	margin-top: 1rem;
+.datepicker {
+	margin: 1rem auto;
+	border: none;
+	width: 50%;
+	padding: 0.4rem 0;
+	font-family: "ubuntu", sans-serif;
+	background-color: #f4f4f4;
+	border-bottom: 1px dotted #999;
 }
 
 .link {
