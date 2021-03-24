@@ -41,16 +41,6 @@ const ContextProvider = (props) => {
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
 
-	// SHOW ALL TICKETS ON CLICK
-	// const showAllTickets = useCallback(() => {
-	// 	setFilterTitle("total tickets")
-	// 	dbRef
-	// 		.orderBy("time", "desc")
-	// 		.onSnapshot((snapshot) =>
-	// 			setTickets(snapshot.docs.map((doc) => template(doc)))
-	// 		)
-	// }, [])
-
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
 	//~~~~~~~~~~~~~//
@@ -189,15 +179,8 @@ const ContextProvider = (props) => {
 			{ title: "ciao", date: "2021-03-06" },
 			{ title: "prova", date: "2021-03-08" },
 			{ title: "test", date: "2021-03-18" },
-			{ title: "rob", date: "2021-03-28" },
 		])
 	}, [tickets])
-
-	//SHOW TICKETS TO CALENDAR
-	// const handleCalendar = () => {
-	// 	const ticketsTemp = [...tickets]
-	// 	setCalendarInputs(ticketsTemp.map((tk) => console.log(tk.data())))
-	// }
 
 	return (
 		<div>
@@ -220,7 +203,6 @@ const ContextProvider = (props) => {
 					filterIncomplete,
 					showCompletedTickets,
 					showIncompleteTickets,
-					// showAllTickets,
 					filterTitle,
 					handleModal,
 					setModalOre,
