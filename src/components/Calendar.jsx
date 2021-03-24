@@ -6,14 +6,14 @@ import { FaUniversity } from "react-icons/fa"
 import { DataContext } from "../context"
 
 const Calendar = () => {
-	const { calendarEntries } = useContext(DataContext)
+	const { calendarInputs } = useContext(DataContext)
 
 	return (
-		<div>
+		<div className='calendar'>
 			<FullCalendar
-				defaultView='dayGridMonth'
+				// headerToolbar={{ left: "", center: "title", right: "" }}
 				plugins={[dayGridPlugin]}
-				events={calendarEntries}
+            events={[{title: 'ciao', date: '2021-03-06'}]}
 			/>
 			<Link to='/'>
 				<button className='home-icon'>

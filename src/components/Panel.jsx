@@ -8,8 +8,8 @@ const Panel = () => {
 		description,
 		setTicket,
 		setDescription,
-		dateAndTime,
-		setDateAndTime,
+		date,
+		setDate,
 		handleSubmit,
 		isHidden,
 	} = useContext(DataContext)
@@ -37,8 +37,8 @@ const Panel = () => {
 					<input
 						className='datepicker'
 						type='date'
-						defaultValue={dateAndTime}
-						onChange={(e) => setDateAndTime(e.target.value)}
+						onChange={(e) => setDate(e.target.value)}
+						value={date}
 						required
 					/>
 					<button type='submit'>

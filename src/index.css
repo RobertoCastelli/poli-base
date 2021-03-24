@@ -56,11 +56,6 @@ body {
 	margin-top: 1rem;
 }
 
-.calendar-icon {
-	color: #333;
-	background-color: lightgray;
-}
-
 .li-count-open,
 .li-count-close,
 /* .li-count-list, */
@@ -269,4 +264,13 @@ footer {
 .link {
 	color: #333;
 	text-decoration: none;
+}
+
+.calendar {
+	margin-top: 1rem;
+}
+
+.calendar-icon {
+	color: #333;
+	background-color: lightgray;
 }

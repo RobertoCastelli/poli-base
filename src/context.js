@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react"
-// import firebase from "firebase/app"
+import firebase from "firebase/app"
 import { dbRef } from "./firebase"
 
 /**
@@ -18,14 +18,15 @@ import { dbRef } from "./firebase"
 // CREATE CONTEXT
 export const DataContext = React.createContext()
 
-const today = new Date().toISOString().substring(0, 10)
+// const today = new Date().toISOString().substring(0, 10)
+const dateAndTimeNow = firebase.firestore.FieldValue.serverTimestamp()
 
 const ContextProvider = (props) => {
 	// VARIABLE STATE
 	const [index, setIndex] = useState("")
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
-	const [dateAndTime, setDateAndTime] = useState(today)
+	const [date, setDate] = useState("")
 	const [tickets, setTickets] = useState([])
 	const [isHidden, setIsHidden] = useState(true)
 	const [oreTotali, setOreTotali] = useState(0)
@@ -34,7 +35,7 @@ const ContextProvider = (props) => {
 	const [filterTitle, setFilterTitle] = useState("")
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
-	const [calendarEntries, setCalendarEntries] = useState([])
+	const [calendarInputs, setCalendarInputs] = useState([])
 
 	//~~~~~~~~~~~~~//
 	//   ON LOAD   //
@@ -64,7 +65,8 @@ const ContextProvider = (props) => {
 				ticket,
 				description,
 				ore: 0,
-				time: dateAndTime,
+				date,
+				createdAt: dateAndTimeNow,
 			})
 			.then((docRef) => console.log(`ticket added ID: ${docRef.id}`))
 			.catch((err) => console.log(`hups! --> ${err.message}`))
@@ -79,29 +81,27 @@ const ContextProvider = (props) => {
 	}
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~//
-	//    DATE TIME CALENDAR   //
+	//   DATE CALENDAR EVENTS  //
 	//~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-	// GET DATE & TIME
+	//GET DATE & TIME
 	// let dateAndTimeNow = new Date(
 	// 	firebase.firestore.Timestamp.now().seconds * 1000
 	// )
 	// 	.toLocaleString()
 	// 	.split(",")[0]
 
-	// SHOW TICKETS TO CALENDAR
+	//SHOW TICKETS TO CALENDAR
 	const handleCalendar = () => {
 		const ticketsTemp = [...tickets]
-		setCalendarEntries(
-			ticketsTemp.map((tk) => ({ title: tk.ticket, date: tk.time }))
-		)
+		setCalendarInputs(ticketsTemp.map((tk) => console.log(tk.date)))
 	}
 
 	//~~~~~~~~~~~~~~~~~//
 	//   TICKET LIST   //
 	//~~~~~~~~~~~~~~~~~//
 
-	// DELETE TICKET TO DB
+	// DELETE TICKET
 	const deleteTicket = (ticketID) => {
 		let result = window.confirm("premere OK per cancellare il TICKET")
 		result &&
@@ -112,7 +112,7 @@ const ContextProvider = (props) => {
 				.catch((err) => console.log(`hups! --> ${err.message}`))
 	}
 
-	// UPDATE TICKET STATE
+	// UPDATE TICKET STATE (ORE)
 	const updateTicketStateAndOre = () => {
 		dbRef
 			.doc(index)
@@ -181,6 +181,7 @@ const ContextProvider = (props) => {
 	const showIncompleteTickets = useCallback(() => {
 		setFilterTitle("open tickets")
 		dbRef
+			.orderBy("createdAt", "desc")
 			.where("ore", "==", 0)
 			.onSnapshot((snapshot) =>
 				setTickets(snapshot.docs.map((doc) => template(doc)))
@@ -208,8 +209,8 @@ const ContextProvider = (props) => {
 					setTicket,
 					description,
 					setDescription,
-					dateAndTime,
-					setDateAndTime,
+					date,
+					setDate,
 					handleSubmit,
 					tickets,
 					togglePanel,
@@ -227,7 +228,7 @@ const ContextProvider = (props) => {
 					setModalOre,
 					isOpenModal,
 					handleCalendar,
-					calendarEntries,
+					calendarInputs,
 				}}>
 				{props.children}
 			</DataContext.Provider>
