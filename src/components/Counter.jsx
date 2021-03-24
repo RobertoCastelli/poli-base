@@ -13,17 +13,10 @@ const Counter = () => {
 		filterIncomplete,
 		showCompletedTickets,
 		showIncompleteTickets,
-		// showAllTickets,
 	} = useContext(DataContext)
 
 	return (
 		<ul className='ul-count'>
-			{/* <li className='li-count-list' onClick={() => showAllTickets()}>
-				<div>
-					<FcTodoList size={20} />
-				</div>
-				<div>totals {filterCompleted + filterIncomplete}</div>
-			</li> */}
 			<li className='li-count-open' onClick={() => showIncompleteTickets()}>
 				<div>
 					<BsFillUnlockFill size={20} />

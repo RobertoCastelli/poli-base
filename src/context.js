@@ -174,12 +174,21 @@ const ContextProvider = (props) => {
 	// SHOW COMPLETED TICKETS ON LOAD
 	useEffect(() => showIncompleteTickets(), [showIncompleteTickets])
 
+	// SHOW TICKET ON CALENDAR
 	useEffect(() => {
-		setTicketsToCalendar([
-			{ title: "ciao", date: "2021-03-06" },
-			{ title: "prova", date: "2021-03-08" },
-			{ title: "test", date: "2021-03-18" },
-		])
+		const ticketsToCalendarArr = []
+		dbRef
+			.get()
+			.then((snapshot) => {
+				snapshot.forEach((doc) =>
+					ticketsToCalendarArr.push({
+						title: doc.data().ticket,
+						date: doc.data().date,
+					})
+				)
+			})
+			.catch((err) => `hups! ${err.message}`)
+		setTicketsToCalendar(ticketsToCalendarArr)
 	}, [tickets])
 
 	return (

@@ -12,6 +12,7 @@ const Calendar = () => {
 		<div className='calendar'>
 			<FullCalendar
 				headerToolbar={{ left: "today", center: "title", right: "prev,next" }}
+				weekends={false}
 				plugins={[dayGridPlugin]}
 				events={ticketsToCalendar}
 			/>
