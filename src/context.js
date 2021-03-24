@@ -2,31 +2,35 @@ import React, { useState, useEffect, useCallback } from "react"
 import firebase from "firebase/app"
 import { dbRef } from "./firebase"
 
-/**
- * TODO:
- * report excel all tickets
- * filter for month
- * hide ORE if they are 0
- * change permission firebase
- * add edificio
- *
- *
- * FIXME:
- *
- */
-
 // CREATE CONTEXT
 export const DataContext = React.createContext()
 
-// const today = new Date().toISOString().substring(0, 10)
+//~~~~~~~~~~~~~~~//
+//  DATE & TIME  //
+//~~~~~~~~~~~~~~~//
+
+// TODAY DATEPICKER
+const today = new Date().toISOString().substring(0, 10)
+
+// TODAY DATE & TIME FROM DB
+// let dateAndTimeNow = new Date(
+// 	firebase.firestore.Timestamp.now().seconds * 1000
+// )
+// 	.toLocaleString()
+// 	.split(",")[0]
+
+// TODAY DATE & TIME FROM DB
 const dateAndTimeNow = firebase.firestore.FieldValue.serverTimestamp()
 
+//~~~~~~~~~~~~~~//
+//  FC CONTEXT  //
+//~~~~~~~~~~~~~~//
 const ContextProvider = (props) => {
 	// VARIABLE STATE
 	const [index, setIndex] = useState("")
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
-	const [date, setDate] = useState("")
+	const [date, setDate] = useState(today)
 	const [tickets, setTickets] = useState([])
 	const [isHidden, setIsHidden] = useState(true)
 	const [oreTotali, setOreTotali] = useState(0)
@@ -35,11 +39,7 @@ const ContextProvider = (props) => {
 	const [filterTitle, setFilterTitle] = useState("")
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
-	const [calendarInputs, setCalendarInputs] = useState([])
-
-	//~~~~~~~~~~~~~//
-	//   ON LOAD   //
-	//~~~~~~~~~~~~~//
+	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
 
 	// SHOW ALL TICKETS ON CLICK
 	// const showAllTickets = useCallback(() => {
@@ -55,7 +55,7 @@ const ContextProvider = (props) => {
 	//    PANEL    //
 	//~~~~~~~~~~~~~//
 
-	// TOGGLE INPUT PANEL
+	// TOGGLE ADMIN INPUT PANEL
 	const togglePanel = () => setIsHidden(!isHidden)
 
 	// ADD TICKET TO DB
@@ -78,23 +78,6 @@ const ContextProvider = (props) => {
 		addTicket()
 		setTicket("")
 		setDescription("")
-	}
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~//
-	//   DATE CALENDAR EVENTS  //
-	//~~~~~~~~~~~~~~~~~~~~~~~~~//
-
-	//GET DATE & TIME
-	// let dateAndTimeNow = new Date(
-	// 	firebase.firestore.Timestamp.now().seconds * 1000
-	// )
-	// 	.toLocaleString()
-	// 	.split(",")[0]
-
-	//SHOW TICKETS TO CALENDAR
-	const handleCalendar = () => {
-		const ticketsTemp = [...tickets]
-		setCalendarInputs(ticketsTemp.map((tk) => console.log(tk.date)))
 	}
 
 	//~~~~~~~~~~~~~~~~~//
@@ -201,6 +184,21 @@ const ContextProvider = (props) => {
 	// SHOW COMPLETED TICKETS ON LOAD
 	useEffect(() => showIncompleteTickets(), [showIncompleteTickets])
 
+	useEffect(() => {
+		setTicketsToCalendar([
+			{ title: "ciao", date: "2021-03-06" },
+			{ title: "prova", date: "2021-03-08" },
+			{ title: "test", date: "2021-03-18" },
+			{ title: "rob", date: "2021-03-28" },
+		])
+	}, [tickets])
+
+	//SHOW TICKETS TO CALENDAR
+	// const handleCalendar = () => {
+	// 	const ticketsTemp = [...tickets]
+	// 	setCalendarInputs(ticketsTemp.map((tk) => console.log(tk.data())))
+	// }
+
 	return (
 		<div>
 			<DataContext.Provider
@@ -227,8 +225,7 @@ const ContextProvider = (props) => {
 					handleModal,
 					setModalOre,
 					isOpenModal,
-					handleCalendar,
-					calendarInputs,
+					ticketsToCalendar,
 				}}>
 				{props.children}
 			</DataContext.Provider>
@@ -237,3 +234,16 @@ const ContextProvider = (props) => {
 }
 
 export default ContextProvider
+
+/**
+ * TODO:
+ * report excel all tickets
+ * filter for month
+ * hide ORE if they are 0
+ * change permission firebase
+ * add edificio
+ *
+ *
+ * FIXME:
+ *
+ */
