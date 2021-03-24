@@ -11,9 +11,12 @@ const Calendar = () => {
 	return (
 		<div className='calendar'>
 			<FullCalendar
-				// headerToolbar={{ left: "", center: "title", right: "" }}
+				headerToolbar={{ left: "prev", center: "title,today", right: "next" }}
 				plugins={[dayGridPlugin]}
-            events={[{title: 'ciao', date: '2021-03-06'}]}
+				events={[
+					{ title: "ciao", date: "2021-03-06" },
+					{ title: "prova", date: "2021-03-08" },
+				]}
 			/>
 			<Link to='/'>
 				<button className='home-icon'>
