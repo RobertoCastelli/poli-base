@@ -1,9 +1,12 @@
 import React, { useContext } from "react"
 import { GrSend } from "react-icons/gr"
 import { DataContext } from "../context"
+import { FcCancel } from "react-icons/fc"
 
 const Modal = () => {
-	const { handleModal, setModalOre, isOpenModal } = useContext(DataContext)
+	const { handleModal, setModalOre, isOpenModal, closeModal } = useContext(
+		DataContext
+	)
 	return (
 		<>
 			{isOpenModal && (
@@ -24,9 +27,16 @@ const Modal = () => {
 							<option value='14'>14 ore</option>
 							<option value='16'>16 ore</option>
 						</select>
-						<button type='submit'>
-							<GrSend size={30} />
-						</button>
+						<div className='buttons'>
+							<label htmlFor='send'>invia</label>
+							<button name='send' type='submit'>
+								<GrSend size={30} />
+							</button>
+							<label htmlFor='cancel'>annulla</label>
+							<button name='cancel' type='button' onClick={closeModal}>
+								<FcCancel size={30} />
+							</button>
+						</div>
 					</form>
 				</div>
 			)}

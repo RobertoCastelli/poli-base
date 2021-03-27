@@ -107,6 +107,9 @@ const ContextProvider = (props) => {
 		setIndex(ticketID)
 	}
 
+	// CLOSE MODAL
+	const closeModal = () => setIsOpenModal(false)
+
 	// UPDATE ORE --> CLOSE MODAL
 	const handleModal = (e) => {
 		e.preventDefault()
@@ -148,7 +151,6 @@ const ContextProvider = (props) => {
 		ticket: doc.data().ticket,
 		description: doc.data().description,
 		ore: doc.data().ore,
-		completed: doc.data().completed,
 	})
 
 	// SHOW INCOMPLETE TICKETS ON CLICK
@@ -172,7 +174,7 @@ const ContextProvider = (props) => {
 			)
 	}
 
-	// SHOW COMPLETED TICKETS ON LOAD
+	// SHOW INCOMPLETE TICKETS ON LOAD
 	useEffect(() => showIncompleteTickets(), [showIncompleteTickets])
 
 	//~~~~~~~~~~~~~~~~//
@@ -181,8 +183,10 @@ const ContextProvider = (props) => {
 
 	// HANDLE TICKET "EVENT" ON CALENDAR
 	const handleCalendarTicket = (ticketID) => {
+		const ticketsTemp = [...tickets]
+		console.log(tickets)
 		const calendarTitle = ticketID.event._def.title
-		const test = tickets.filter((ticket) => ticket.ticket === calendarTitle)
+		const test = ticketsTemp.filter((ticket) => ticket.ticket === calendarTitle)
 		console.log(test.pop().description)
 	}
 
@@ -201,7 +205,7 @@ const ContextProvider = (props) => {
 			})
 			.catch((err) => `hups! ${err.message}`)
 		setTicketsToCalendar(ticketsToCalendarArr)
-	}, [tickets])
+	}, [])
 
 	return (
 		<div>
@@ -219,6 +223,7 @@ const ContextProvider = (props) => {
 					isHidden,
 					deleteTicket,
 					openModal,
+					closeModal,
 					oreTotali,
 					filterCompleted,
 					filterIncomplete,
@@ -241,13 +246,13 @@ export default ContextProvider
 
 /**
  * TODO:
- * report excel all tickets
- * filter for month
  * hide ORE if they are 0
  * change permission firebase
  * add edificio
  *
  *
  * FIXME:
+ * cancel button on Modal
+ * event ticket on calendar if completed bug
  *
  */

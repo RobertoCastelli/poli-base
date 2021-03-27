@@ -30,7 +30,7 @@ const Counter = () => {
 				<div>closed {filterCompleted}</div>
 			</li>
 			<li>
-				<Link className='link' to='/calendar'>
+				<Link to='/calendar'>
 					<div className='calendar-icon'>
 						<BiCalendar size={20} />
 					</div>

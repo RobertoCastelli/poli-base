@@ -193,6 +193,12 @@ input:focus {
 	outline: none;
 }
 
+label {
+	text-transform: uppercase;
+	font-size: 0.6rem;
+	margin-left: 0.5rem;
+}
+
 button {
 	width: 100%;
 	border: none;
@@ -208,6 +214,11 @@ button:active,
 .li-count-close:active,
 .li-count-list:active {
 	transform: translateY(1px);
+}
+
+.buttons {
+	display: flex;
+	align-items: center;
 }
 
 footer {
@@ -261,11 +272,6 @@ footer {
 	border-bottom: 1px dotted #999;
 }
 
-.link {
-	color: #333;
-	text-decoration: none;
-}
-
 .calendar {
 	margin-top: 1rem;
 }
@@ -279,8 +285,13 @@ footer {
 	background-color: lightgrey;
 	color: #333;
 	text-transform: uppercase;
+	cursor: pointer;
 }
 
 .fc-h-event {
 	border: 1px solid lightgray !important;
+}
+
+.fc-h-event:hover {
+	border: 1px dotted #333 !important;
 }
