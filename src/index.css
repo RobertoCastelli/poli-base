@@ -274,3 +274,13 @@ footer {
 	color: #333;
 	background-color: lightgray;
 }
+
+.fc-event-title-container {
+	background-color: lightgrey;
+	color: #333;
+	text-transform: uppercase;
+}
+
+.fc-h-event {
+	border: 1px solid lightgray !important;
+}

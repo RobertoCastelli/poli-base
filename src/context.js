@@ -25,6 +25,7 @@ const dateAndTimeNow = firebase.firestore.FieldValue.serverTimestamp()
 //~~~~~~~~~~~~~~//
 //  FC CONTEXT  //
 //~~~~~~~~~~~~~~//
+
 const ContextProvider = (props) => {
 	// VARIABLE STATE
 	const [index, setIndex] = useState("")
@@ -85,7 +86,7 @@ const ContextProvider = (props) => {
 				.catch((err) => console.log(`hups! --> ${err.message}`))
 	}
 
-	// UPDATE TICKET STATE (ORE)
+	// UPDATE TICKET STATE (IN ORE MODAL)
 	const updateTicketStateAndOre = () => {
 		dbRef
 			.doc(index)
@@ -174,6 +175,17 @@ const ContextProvider = (props) => {
 	// SHOW COMPLETED TICKETS ON LOAD
 	useEffect(() => showIncompleteTickets(), [showIncompleteTickets])
 
+	//~~~~~~~~~~~~~~~~//
+	//    CALENDAR    //
+	//~~~~~~~~~~~~~~~~//
+
+	// HANDLE TICKET "EVENT" ON CALENDAR
+	const handleCalendarTicket = (ticketID) => {
+		const calendarTitle = ticketID.event._def.title
+		const test = tickets.filter((ticket) => ticket.ticket === calendarTitle)
+		console.log(test.pop().description)
+	}
+
 	// SHOW TICKET ON CALENDAR
 	useEffect(() => {
 		const ticketsToCalendarArr = []
@@ -217,6 +229,7 @@ const ContextProvider = (props) => {
 					setModalOre,
 					isOpenModal,
 					ticketsToCalendar,
+					handleCalendarTicket,
 				}}>
 				{props.children}
 			</DataContext.Provider>
