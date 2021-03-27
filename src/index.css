@@ -1,3 +1,9 @@
+/**
+/*~~~~~~~~~~~~~~~//
+/* MAIN
+/*~~~~~~~~~~~~~~~//
+**/
+
 body {
 	margin: 0;
 	color: #333;
@@ -11,6 +17,12 @@ body {
 * {
 	box-sizing: border-box;
 }
+
+/**
+/*~~~~~~~~~~~~~~~//
+/* CONTAINER
+/*~~~~~~~~~~~~~~~//
+**/
 
 .container {
 	position: relative;
@@ -27,6 +39,12 @@ body {
 	flex-grow: 1;
 }
 
+/**
+/*~~~~~~~~~~~~~~~//
+/* TITLE
+/*~~~~~~~~~~~~~~~//
+**/
+
 .title {
 	text-align: center;
 	display: grid;
@@ -42,6 +60,12 @@ body {
 	width: 80px;
 }
 
+/**
+/*~~~~~~~~~~~~~~~//
+/* INPUT PANEL
+/*~~~~~~~~~~~~~~~//
+**/
+
 .panel {
 	box-shadow: 0px 0px 25px -3px lightgray;
 	padding: 1rem 1rem 0.5rem 1rem;
@@ -49,6 +73,40 @@ body {
 	border-bottom-right-radius: 1rem;
 	display: grid;
 }
+
+.datepicker {
+	margin: 1rem auto;
+	border: none;
+	width: 50%;
+	padding: 0.4rem 0;
+	font-family: "ubuntu", sans-serif;
+	background-color: #f4f4f4;
+	border-bottom: 1px dotted #999;
+}
+
+input[type="number"] {
+	width: 50px;
+}
+
+input[type="text"] {
+	text-transform: uppercase;
+	background-color: #f4f4f4;
+	padding-left: 1rem;
+	height: 2rem;
+	border: none;
+	border-bottom: 1px dotted #999;
+}
+
+input:focus {
+	border-bottom: 2px solid #333;
+	outline: none;
+}
+
+/**
+/*~~~~~~~~~~~~~~~//
+/* FILTER
+/*~~~~~~~~~~~~~~~//
+**/
 
 .filter-title {
 	text-align: center;
@@ -58,7 +116,6 @@ body {
 
 .li-count-open,
 .li-count-close,
-/* .li-count-list, */
 .calendar-icon,
 .home-icon {
 	display: grid;
@@ -103,6 +160,12 @@ body {
 .li-count-close {
 	color: brown;
 }
+
+/**
+/*~~~~~~~~~~~~~~~//
+/* TICKET LIST
+/*~~~~~~~~~~~~~~~//
+**/
 
 .ul-todo {
 	padding: 0;
@@ -175,29 +238,11 @@ select {
 	padding: 0.5rem;
 }
 
-input[type="number"] {
-	width: 50px;
-}
-
-input[type="text"] {
-	text-transform: uppercase;
-	background-color: #f4f4f4;
-	padding-left: 1rem;
-	height: 2rem;
-	border: none;
-	border-bottom: 1px dotted #999;
-}
-
-input:focus {
-	border-bottom: 2px solid #333;
-	outline: none;
-}
-
-label {
-	text-transform: uppercase;
-	font-size: 0.6rem;
-	margin-left: 0.5rem;
-}
+/**
+/*~~~~~~~~~~~~~~~//
+/* BUTTONS
+/*~~~~~~~~~~~~~~~//
+**/
 
 button {
 	width: 100%;
@@ -216,10 +261,22 @@ button:active,
 	transform: translateY(1px);
 }
 
+label {
+	text-transform: uppercase;
+	font-size: 0.6rem;
+	margin-left: 0.5rem;
+}
+
 .buttons {
 	display: flex;
 	align-items: center;
 }
+
+/**
+/*~~~~~~~~~~~~~~~//
+/* FOOTER
+/*~~~~~~~~~~~~~~~//
+**/
 
 footer {
 	text-align: center;
@@ -229,6 +286,12 @@ footer {
 	border-bottom-right-radius: 1rem;
 	border-top: 3px solid #333;
 }
+
+/**
+/*~~~~~~~~~~~~~~~//
+/* MODAL
+/*~~~~~~~~~~~~~~~//
+**/
 
 .modal-wrapper {
 	position: fixed;
@@ -262,15 +325,11 @@ footer {
 	text-align: center;
 }
 
-.datepicker {
-	margin: 1rem auto;
-	border: none;
-	width: 50%;
-	padding: 0.4rem 0;
-	font-family: "ubuntu", sans-serif;
-	background-color: #f4f4f4;
-	border-bottom: 1px dotted #999;
-}
+/**
+/*~~~~~~~~~~~~~~~//
+/* CALENDAR
+/*~~~~~~~~~~~~~~~//
+**/
 
 .calendar {
 	margin-top: 1rem;

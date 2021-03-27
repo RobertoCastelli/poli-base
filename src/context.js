@@ -252,7 +252,6 @@ export default ContextProvider
  *
  *
  * FIXME:
- * cancel button on Modal
  * event ticket on calendar if completed bug
  *
  */
