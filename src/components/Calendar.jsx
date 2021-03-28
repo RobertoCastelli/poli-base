@@ -20,9 +20,9 @@ const Calendar = () => {
 				eventClick={handleCalendarTicket}
 			/>
 			<FilterTicket />
-			<Link to='/'>
-				<button type='button' className='home-icon'>
-					<FaUniversity size={20} />
+			<Link to='/' style={{ textDecoration: "none" }}>
+				<button type='button' name='home' className='home-icon'>
+					<FaUniversity size={20} /> home
 				</button>
 			</Link>
 		</div>

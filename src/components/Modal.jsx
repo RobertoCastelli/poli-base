@@ -24,13 +24,16 @@ const Modal = () => {
 								</option>
 							))}
 						</select>
-
 						<div className='buttons'>
-							<label htmlFor='send'>invia</label>
+							<label className='send' htmlFor='send'>
+								invia
+							</label>
 							<button name='send' type='submit'>
 								<GrSend size={30} />
 							</button>
-							<label htmlFor='cancel'>annulla</label>
+							<label className='cancel' htmlFor='cancel'>
+								annulla
+							</label>
 							<button name='cancel' type='button' onClick={closeModal}>
 								<FcCancel size={30} />
 							</button>

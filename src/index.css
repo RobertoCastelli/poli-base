@@ -261,7 +261,8 @@ button:active,
 	transform: translateY(1px);
 }
 
-label {
+label .send,
+label .cancel {
 	text-transform: uppercase;
 	font-size: 0.6rem;
 	margin-left: 0.5rem;
@@ -359,3 +360,10 @@ footer {
 	content: "[x]";
 	color: red;
 } */
+
+.home-iconn {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

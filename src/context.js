@@ -42,7 +42,7 @@ const ContextProvider = (props) => {
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
-	const [calendarTicket, setCalendarTicket] = useState([])
+	// const [calendarTicket, setCalendarTicket] = useState([])
 
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
@@ -187,12 +187,13 @@ const ContextProvider = (props) => {
 	// HANDLE TICKET "EVENT" ON CALENDAR
 	const handleCalendarTicket = (ticketID) => {
 		const calendarTitle = ticketID.event._def.title
-		dbRef.where("title", "==", calendarTitle).onSnapshot((snapshot) =>
-			console.log(
-				snapshot.docs.map((doc) => ({
-					title: doc.data().title,
-				}))
-			)
+		console.log(calendarTitle)
+		dbRef.get().then((snapshot) =>
+			snapshot.forEach((doc) => {
+				calendarTitle === doc.data().title
+					? console.log(doc.data().title)
+					: console.log("no")
+			})
 		)
 	}
 
@@ -237,7 +238,7 @@ const ContextProvider = (props) => {
 					isOpenModal,
 					ticketsToCalendar,
 					handleCalendarTicket,
-					calendarTicket,
+					// calendarTicket,
 				}}>
 				{props.children}
 			</DataContext.Provider>

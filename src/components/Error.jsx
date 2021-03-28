@@ -1,15 +1,15 @@
 import React from "react"
-import { FcHome } from "react-icons/fc"
+import { FaUniversity } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
 const Error = (props) => {
 	return (
 		<div className='error-page-404'>
 			<h1>ERROR 404</h1>
-			<p>no page foud at ...{props.location.pathname}</p>
-			<Link to='/'>
-				<button>
-					<FcHome size={30} />
+			<p>no page foud at ..{props.location.pathname}</p>
+			<Link to='/' style={{ textDecoration: "none" }}>
+				<button type='button' name='home' className='home-icon'>
+					<FaUniversity size={20} /> home
 				</button>
 			</Link>
 		</div>
