@@ -42,7 +42,7 @@ const ContextProvider = (props) => {
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
-	// const [calendarTicket, setCalendarTicket] = useState([])
+	const [calendarTicket, setCalendarTicket] = useState([])
 
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
@@ -187,14 +187,15 @@ const ContextProvider = (props) => {
 	// HANDLE TICKET "EVENT" ON CALENDAR
 	const handleCalendarTicket = (ticketID) => {
 		const calendarTitle = ticketID.event._def.title
-		console.log(calendarTitle)
-		dbRef.get().then((snapshot) =>
-			snapshot.forEach((doc) => {
-				calendarTitle === doc.data().title
-					? console.log(doc.data().title)
-					: console.log("no")
-			})
-		)
+		dbRef
+			.get()
+			.then((snapshot) =>
+				snapshot.forEach(
+					(doc) =>
+						calendarTitle === doc.data().ticket && setCalendarTicket(doc.data())
+				)
+			)
+			.catch((err) => `hups! ${err.message}`)
 	}
 
 	// SHOW TICKET ON CALENDAR
@@ -238,7 +239,7 @@ const ContextProvider = (props) => {
 					isOpenModal,
 					ticketsToCalendar,
 					handleCalendarTicket,
-					// calendarTicket,
+					calendarTicket,
 				}}>
 				{props.children}
 			</DataContext.Provider>
@@ -252,7 +253,8 @@ export default ContextProvider
  * TODO:
  * hide ORE if they are 0
  * change permission firebase
- * add edificio
+ * add edificio select
+ * dragable/change date calendar tickets
  *
  *
  * FIXME:

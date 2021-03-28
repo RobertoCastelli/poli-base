@@ -324,6 +324,7 @@ footer {
 
 .error-page-404 {
 	text-align: center;
+	color: brown;
 }
 
 /**
@@ -361,9 +362,8 @@ footer {
 	color: red;
 } */
 
-.home-iconn {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+.home-icon {
+	display: grid;
+	place-items: center;
+	margin-top: 3rem;
 }
