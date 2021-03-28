@@ -108,7 +108,8 @@ input:focus {
 /*~~~~~~~~~~~~~~~//
 **/
 
-.filter-title {
+.filter-title,
+h2 {
 	text-align: center;
 	text-transform: uppercase;
 	margin-top: 1rem;
@@ -184,7 +185,6 @@ input:focus {
 		"ticket ore delete"
 		"description description delete";
 }
-
 @keyframes fader {
 	from {
 		opacity: 0;
@@ -193,7 +193,6 @@ input:focus {
 		opacity: 1;
 	}
 }
-
 .delete-todo {
 	grid-area: delete;
 	cursor: pointer;
@@ -202,18 +201,15 @@ input:focus {
 	color: brown;
 	padding: 0.3rem;
 }
-
 .ticket-todo {
 	grid-area: ticket;
 	font-weight: bold;
 }
-
 .desc-todo {
 	grid-area: description;
 	text-transform: lowercase;
 	font-style: italic;
 }
-
 .ore-todo {
 	grid-area: ore;
 	justify-self: center;
@@ -366,4 +362,50 @@ footer {
 	display: grid;
 	place-items: center;
 	margin-top: 3rem;
+	color: #333;
+}
+
+.filtered-calendar-tickets {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: repeat(3, 40px);
+	gap: 2px;
+	grid-template-areas:
+		"ticket ticket date"
+		"description description description"
+		"state ore edit";
+}
+.filtered-calendar-ticket {
+	grid-area: ticket;
+	font-weight: bold;
+}
+.filtered-calendar-date {
+	grid-area: date;
+}
+.filtered-calendar-description {
+	grid-area: description;
+}
+.filtered-calendar-state {
+	grid-area: state;
+	color: green;
+}
+.filtered-calendar-ore {
+	grid-area: ore;
+}
+.filtered-calendar-edit {
+	grid-area: edit;
+	border: 1px solid #333;
+	text-align: center;
+	padding-top: 10px;
+}
+
+.filtered-calendar-ticket,
+.filtered-calendar-date,
+.filtered-calendar-state,
+.filtered-calendar-ore,
+.filtered-calendar-description {
+	border: 1px solid #dddddd;
+	padding-top: 10px;
+	text-align: center;
+	background-color: lightgray;
 }

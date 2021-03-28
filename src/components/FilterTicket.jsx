@@ -6,11 +6,20 @@ export const FilterTicket = () => {
 		calendarTicket: { ticket, description, ore, date },
 	} = useContext(DataContext)
 	return (
-		<div className='filter-ticket'>
-			<div>{ticket}</div>
-			<div>{description}</div>
-			<div>{ore}</div>
-			<div>{date}</div>
-		</div>
+		<>
+			<h2>Ticket Details</h2>
+			{ticket && (
+				<div className='filtered-calendar-tickets'>
+					<div className='filtered-calendar-ticket'>{ticket}</div>
+					<div className='filtered-calendar-date'>{date}</div>
+					<div className='filtered-calendar-description'>{description}</div>
+					<div className='filtered-calendar-ore'>{ore} ore</div>
+					<div className='filtered-calendar-state'>
+						{ore !== 0 ? `complete` : `open`}
+					</div>
+					<div className='filtered-calendar-edit'>edit hours</div>
+				</div>
+			)}
+		</>
 	)
 }
