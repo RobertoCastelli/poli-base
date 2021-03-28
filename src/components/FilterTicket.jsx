@@ -1,12 +1,9 @@
-import React, { useContext } from "react"
-import { DataContext } from "../context"
+import React from "react"
 
 export const FilterTicket = () => {
-	const { filteredCalendarTickets } = useContext(DataContext)
-	console.log()
 	return (
 		<div>
-			<p className='filter-ticket'>{filteredCalendarTickets[0]}</p>
+			<p className='filter-ticket'>test</p>
 		</div>
 	)
 }

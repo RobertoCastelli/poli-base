@@ -42,8 +42,7 @@ const ContextProvider = (props) => {
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
-
-	const [filteredCalendarTickets, setFilteredCalendarTickets] = useState([])
+	const [calendarTicket, setCalendarTicket] = useState([])
 
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
@@ -185,30 +184,29 @@ const ContextProvider = (props) => {
 	//    CALENDAR    //
 	//~~~~~~~~~~~~~~~~//
 
-	// FIXME: HANDLE TICKET "EVENT" ON CALENDAR
+	// HANDLE TICKET "EVENT" ON CALENDAR
 	const handleCalendarTicket = (ticketID) => {
 		const calendarTitle = ticketID.event._def.title
-		if (calendarTitle === "qwe") {
-			console.log(calendarTitle)
-		}
+		dbRef.where("title", "==", calendarTitle).onSnapshot((snapshot) =>
+			console.log(
+				snapshot.docs.map((doc) => ({
+					title: doc.data().title,
+				}))
+			)
+		)
 	}
 
 	// SHOW TICKET ON CALENDAR
 	useEffect(() => {
-		const ticketsToCalendarArr = []
-		dbRef
-			.get()
-			.then((snapshot) => {
-				snapshot.forEach((doc) =>
-					ticketsToCalendarArr.push({
-						title: doc.data().ticket,
-						date: doc.data().date,
-					})
-				)
-			})
-			.catch((err) => `hups! ${err.message}`)
-		setTicketsToCalendar(ticketsToCalendarArr)
-	}, [tickets])
+		dbRef.onSnapshot((snapshot) => {
+			setTicketsToCalendar(
+				snapshot.docs.map((doc) => ({
+					title: doc.data().ticket,
+					date: doc.data().date,
+				}))
+			)
+		})
+	}, [ticket])
 
 	return (
 		<div>
@@ -239,7 +237,7 @@ const ContextProvider = (props) => {
 					isOpenModal,
 					ticketsToCalendar,
 					handleCalendarTicket,
-					filteredCalendarTickets,
+					calendarTicket,
 				}}>
 				{props.children}
 			</DataContext.Provider>
@@ -257,7 +255,5 @@ export default ContextProvider
  *
  *
  * FIXME:
- * event ticket on calendar if completed bug
- * no reset inputs on calendar
  *
  */
