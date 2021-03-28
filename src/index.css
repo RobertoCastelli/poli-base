@@ -18,6 +18,10 @@ body {
 	box-sizing: border-box;
 }
 
+img {
+	cursor: pointer;
+}
+
 /**
 /*~~~~~~~~~~~~~~~//
 /* CONTAINER
@@ -52,7 +56,7 @@ body {
 	border-top-left-radius: 1rem;
 	border-top-right-radius: 1rem;
 	border-bottom: 3px solid #333;
-	cursor: pointer;
+	padding: 0 0.3rem;
 }
 
 .icon {
@@ -257,16 +261,16 @@ button:active,
 	transform: translateY(1px);
 }
 
-label .send,
-label .cancel {
+.send,
+.cancel {
 	text-transform: uppercase;
 	font-size: 0.6rem;
-	margin-left: 0.5rem;
+	margin-left: 1rem;
+	align-self: center;
 }
 
 .buttons {
 	display: flex;
-	align-items: center;
 }
 
 /**
@@ -364,6 +368,11 @@ footer {
 	margin-top: 3rem;
 	color: #333;
 }
+/**
+/*~~~~~~~~~~~~~~~~~~//
+/* CALENDAR DETAILS
+/*~~~~~~~~~~~~~~~~~~//
+**/
 
 .filtered-calendar-tickets {
 	display: grid;
@@ -372,8 +381,8 @@ footer {
 	gap: 2px;
 	grid-template-areas:
 		"ticket ticket date"
-		"description description description"
-		"state ore edit";
+		"state ore edit"
+		"description description description";
 }
 .filtered-calendar-ticket {
 	grid-area: ticket;
@@ -394,9 +403,10 @@ footer {
 }
 .filtered-calendar-edit {
 	grid-area: edit;
-	border: 1px solid #333;
+	border: 1px solid lightgray;
 	text-align: center;
 	padding-top: 10px;
+	cursor: pointer;
 }
 
 .filtered-calendar-ticket,
@@ -404,7 +414,6 @@ footer {
 .filtered-calendar-state,
 .filtered-calendar-ore,
 .filtered-calendar-description {
-	border: 1px solid #dddddd;
 	padding-top: 10px;
 	text-align: center;
 	background-color: lightgray;

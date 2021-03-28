@@ -191,8 +191,13 @@ const ContextProvider = (props) => {
 			.get()
 			.then((snapshot) =>
 				snapshot.forEach(
-					(doc) =>
-						calendarTitle === doc.data().ticket && setCalendarTicket(doc.data())
+					(doc) => {
+						if (calendarTitle === doc.data().ticket) {
+							setCalendarTicket(doc.data())
+							setIndex(doc.id)
+						}
+					}
+					// calendarTitle === doc.data().ticket && setCalendarTicket(doc.data())
 				)
 			)
 			.catch((err) => `hups! ${err.message}`)
