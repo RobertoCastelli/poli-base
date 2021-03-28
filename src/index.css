@@ -118,7 +118,7 @@ h2 {
 .li-count-open,
 .li-count-close,
 .calendar-icon,
-.home-icon {
+.btn-home {
 	display: grid;
 	place-content: center;
 	text-align: center;
@@ -134,7 +134,7 @@ h2 {
 .li-count-close:hover,
 .li-count-list:hover,
 .calendar-icon:hover,
-.home-icon:hover {
+.btn-home:hover {
 	border: 1px solid #333;
 }
 
@@ -358,7 +358,7 @@ footer {
 	color: red;
 } */
 
-.home-icon {
+.btn-home {
 	display: grid;
 	place-items: center;
 	margin-top: 3rem;
@@ -408,4 +408,9 @@ footer {
 	padding-top: 10px;
 	text-align: center;
 	background-color: lightgray;
+}
+
+.filtered-calendar-state-complete {
+	background-color: brown;
+	color: white;
 }

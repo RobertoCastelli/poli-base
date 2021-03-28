@@ -21,7 +21,7 @@ const Calendar = () => {
 			/>
 			<FilterTicket />
 			<Link to='/' style={{ textDecoration: "none" }}>
-				<button type='button' name='home' className='home-icon'>
+				<button type='button' name='home' className='btn-home'>
 					<FaUniversity size={20} /> home
 				</button>
 			</Link>
