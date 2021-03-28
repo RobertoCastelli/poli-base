@@ -396,7 +396,6 @@ footer {
 }
 .filtered-calendar-description {
 	grid-area: description;
-	border-bottom-left-radius: 1rem;
 	padding: 0.5rem;
 }
 .filtered-calendar-state {
