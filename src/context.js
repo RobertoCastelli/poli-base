@@ -260,8 +260,9 @@ export default ContextProvider
  * change permission firebase
  * add edificio select
  * dragable/change date calendar tickets
- *
+ * change color complete/open on calendar
  *
  * FIXME:
+ * edit button calendar
  *
  */

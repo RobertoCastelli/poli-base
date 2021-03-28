@@ -112,8 +112,7 @@ input:focus {
 /*~~~~~~~~~~~~~~~//
 **/
 
-.filter-title,
-h2 {
+.filter-title {
 	text-align: center;
 	text-transform: uppercase;
 	margin-top: 1rem;
@@ -121,7 +120,7 @@ h2 {
 
 .li-count-open,
 .li-count-close,
-.calendar-icon,
+.btn-calendar,
 .btn-home {
 	display: grid;
 	place-content: center;
@@ -137,8 +136,9 @@ h2 {
 .li-count-open:hover,
 .li-count-close:hover,
 .li-count-list:hover,
-.calendar-icon:hover,
-.btn-home:hover {
+.btn-calendar:hover,
+.btn-home:hover,
+.filtered-calendar-edit:hover {
 	border: 1px solid #333;
 }
 
@@ -257,7 +257,9 @@ button:active,
 .delete-todo:active,
 .li-count-open:active,
 .li-count-close:active,
-.li-count-list:active {
+.li-count-list:active,
+.btn-calendar:active,
+.filtered-calendar-edit:active {
 	transform: translateY(1px);
 }
 
@@ -337,7 +339,7 @@ footer {
 	margin-top: 1rem;
 }
 
-.calendar-icon {
+.btn-calendar {
 	color: #333;
 	background-color: lightgray;
 }
@@ -377,12 +379,13 @@ footer {
 .filtered-calendar-tickets {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: repeat(3, 40px);
+	grid-template-rows: 40px 40px 40px;
 	gap: 2px;
+	margin-top: 3rem;
 	grid-template-areas:
-		"ticket ticket date"
-		"state ore edit"
-		"description description description";
+		"ticket state date"
+		"description description ore"
+		"description description edit";
 }
 .filtered-calendar-ticket {
 	grid-area: ticket;
@@ -393,6 +396,8 @@ footer {
 }
 .filtered-calendar-description {
 	grid-area: description;
+	border-bottom-left-radius: 1rem;
+	padding: 0.5rem;
 }
 .filtered-calendar-state {
 	grid-area: state;
@@ -407,6 +412,7 @@ footer {
 	text-align: center;
 	padding-top: 10px;
 	cursor: pointer;
+	box-shadow: 0px 0px 25px -3px lightgray;
 }
 
 .filtered-calendar-ticket,
@@ -420,6 +426,5 @@ footer {
 }
 
 .filtered-calendar-state-complete {
-	background-color: brown;
-	color: white;
+	color: brown;
 }

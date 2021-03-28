@@ -8,7 +8,6 @@ export const FilterTicket = () => {
 
 	return (
 		<>
-			<h2>Ticket Details</h2>
 			{ticket && (
 				<div className='filtered-calendar-tickets'>
 					<div className='filtered-calendar-ticket'>{ticket}</div>
@@ -26,7 +25,7 @@ export const FilterTicket = () => {
 						onClick={() =>
 							alert("Work in progress: Funzionalità ancora non attiva (NdR)")
 						}>
-						edit hours
+						edit
 					</div>
 				</div>
 			)}

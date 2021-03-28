@@ -8,7 +8,7 @@ const Error = (props) => {
 			<h1>ERROR 404</h1>
 			<p>no page foud at ..{props.location.pathname}</p>
 			<Link to='/' style={{ textDecoration: "none" }}>
-				<button type='button' name='home' className='home-icon'>
+				<button type='button' name='home' className='btn-home'>
 					<FaUniversity size={20} /> home
 				</button>
 			</Link>

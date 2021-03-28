@@ -31,7 +31,7 @@ const Counter = () => {
 			</li>
 			<li>
 				<Link to='/calendar'>
-					<div className='calendar-icon'>
+					<div className='btn-calendar'>
 						<BiCalendar size={20} />
 					</div>
 				</Link>
