@@ -29,7 +29,8 @@ export const FilterTicket = () => {
 							// 	openModal("thwy4BDPsSdx2lP638be")
 							// 	console.log(index)
 							// }
-							alert("Work in progress: Funzionalità ancora non attiva (NdR)")
+							() =>
+								alert("Work in progress: Funzionalità ancora non attiva (NdR)")
 						}>
 						edit
 					</div>

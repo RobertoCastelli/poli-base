@@ -193,7 +193,6 @@ const ContextProvider = (props) => {
 				snapshot.forEach((doc) => {
 					if (calendarTitle === doc.data().ticket) {
 						setCalendarTicket(doc.data())
-						setIndex(doc.id)
 					}
 				})
 			)
