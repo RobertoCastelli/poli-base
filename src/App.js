@@ -5,6 +5,7 @@ import Footer from "./components/Footer"
 import Title from "./components/Title"
 import Error from "./components/Error"
 import Home from "./components/Home"
+import Modal from "./components/Modal"
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 						<Route path='/calendar' component={Calendar} />
 						<Route component={Error} />
 					</Switch>
+					<Modal />
 				</div>
 				<Footer />
 			</div>

@@ -26,7 +26,8 @@ export const FilterTicket = () => {
 						className='filtered-calendar-edit'
 						onClick={
 							() => {
-								openModal(index)
+								openModal("thwy4BDPsSdx2lP638be")
+								console.log(index)
 							}
 							// alert("Work in progress: Funzionalità ancora non attiva (NdR)")
 						}>

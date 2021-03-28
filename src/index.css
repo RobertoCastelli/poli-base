@@ -382,7 +382,6 @@ footer {
 	grid-template-rows: 40px 40px 40px;
 	gap: 2px;
 	margin-top: 3rem;
-	border-top: 3px solid #333;
 	grid-template-areas:
 		"ticket state date"
 		"description description ore"
