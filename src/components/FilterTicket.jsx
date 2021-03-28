@@ -3,6 +3,8 @@ import { DataContext } from "../context"
 
 export const FilterTicket = () => {
 	const {
+		index,
+		openModal,
 		calendarTicket: { ticket, description, ore, date },
 	} = useContext(DataContext)
 
@@ -22,8 +24,11 @@ export const FilterTicket = () => {
 					</div>
 					<div
 						className='filtered-calendar-edit'
-						onClick={() =>
-							alert("Work in progress: Funzionalità ancora non attiva (NdR)")
+						onClick={
+							() => {
+								openModal(index)
+							}
+							// alert("Work in progress: Funzionalità ancora non attiva (NdR)")
 						}>
 						edit
 					</div>

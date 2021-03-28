@@ -11,12 +11,11 @@ const TicketList = () => {
 				return (
 					<li className='li-todo' key={tk.id}>
 						<div
-							onClick={() => openModal(tk.id)}
 							className={tk.ore !== 0 ? "completed-todo" : "incomplete-todo"}>
 							<span className='ticket-todo'>{tk.ticket}</span>
 						</div>
 						<div className='desc-todo'>{tk.description}</div>
-						<div className='ore-todo'>
+						<div onClick={() => openModal(tk.id)} className='ore-todo'>
 							ore: <span id='ore'>{tk.ore}</span>
 						</div>
 						<div className='delete-todo' onClick={() => deleteTicket(tk.id)}>

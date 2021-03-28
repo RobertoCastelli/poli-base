@@ -190,15 +190,12 @@ const ContextProvider = (props) => {
 		dbRef
 			.get()
 			.then((snapshot) =>
-				snapshot.forEach(
-					(doc) => {
-						if (calendarTitle === doc.data().ticket) {
-							setCalendarTicket(doc.data())
-							setIndex(doc.id)
-						}
+				snapshot.forEach((doc) => {
+					if (calendarTitle === doc.data().ticket) {
+						setCalendarTicket(doc.data())
+						setIndex(doc.id)
 					}
-					// calendarTitle === doc.data().ticket && setCalendarTicket(doc.data())
-				)
+				})
 			)
 			.catch((err) => `hups! ${err.message}`)
 	}
