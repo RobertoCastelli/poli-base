@@ -354,3 +354,8 @@ footer {
 .fc-h-event:hover {
 	border: 1px dotted #333 !important;
 }
+
+/* .fc-sticky::after {
+	content: "[x]";
+	color: red;
+} */

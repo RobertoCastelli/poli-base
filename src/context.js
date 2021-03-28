@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 import firebase from "firebase/app"
 import { dbRef } from "./firebase"
+import { options } from "./options"
 
 // CREATE CONTEXT
 export const DataContext = React.createContext()
@@ -13,14 +14,14 @@ export const DataContext = React.createContext()
 const today = new Date().toISOString().substring(0, 10)
 
 // TODAY DATE & TIME FROM DB
+const dateAndTimeNow = firebase.firestore.FieldValue.serverTimestamp()
+
+// TODAY DATE & TIME FROM DB
 // let dateAndTimeNow = new Date(
 // 	firebase.firestore.Timestamp.now().seconds * 1000
 // )
 // 	.toLocaleString()
 // 	.split(",")[0]
-
-// TODAY DATE & TIME FROM DB
-const dateAndTimeNow = firebase.firestore.FieldValue.serverTimestamp()
 
 //~~~~~~~~~~~~~~//
 //  FC CONTEXT  //
@@ -41,6 +42,8 @@ const ContextProvider = (props) => {
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
+
+	const [filteredCalendarTickets, setFilteredCalendarTickets] = useState([])
 
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
@@ -103,6 +106,7 @@ const ContextProvider = (props) => {
 
 	// OPEN MODAL
 	const openModal = (ticketID) => {
+		setModalOre(0)
 		setIsOpenModal(true)
 		setIndex(ticketID)
 	}
@@ -181,13 +185,12 @@ const ContextProvider = (props) => {
 	//    CALENDAR    //
 	//~~~~~~~~~~~~~~~~//
 
-	// HANDLE TICKET "EVENT" ON CALENDAR
+	// FIXME: HANDLE TICKET "EVENT" ON CALENDAR
 	const handleCalendarTicket = (ticketID) => {
-		const ticketsTemp = [...tickets]
-		console.log(tickets)
 		const calendarTitle = ticketID.event._def.title
-		const test = ticketsTemp.filter((ticket) => ticket.ticket === calendarTitle)
-		console.log(test.pop().description)
+		if (calendarTitle === "qwe") {
+			console.log(calendarTitle)
+		}
 	}
 
 	// SHOW TICKET ON CALENDAR
@@ -205,7 +208,7 @@ const ContextProvider = (props) => {
 			})
 			.catch((err) => `hups! ${err.message}`)
 		setTicketsToCalendar(ticketsToCalendarArr)
-	}, [])
+	}, [tickets])
 
 	return (
 		<div>
@@ -224,6 +227,7 @@ const ContextProvider = (props) => {
 					deleteTicket,
 					openModal,
 					closeModal,
+					options,
 					oreTotali,
 					filterCompleted,
 					filterIncomplete,
@@ -235,6 +239,7 @@ const ContextProvider = (props) => {
 					isOpenModal,
 					ticketsToCalendar,
 					handleCalendarTicket,
+					filteredCalendarTickets,
 				}}>
 				{props.children}
 			</DataContext.Provider>
@@ -253,5 +258,6 @@ export default ContextProvider
  *
  * FIXME:
  * event ticket on calendar if completed bug
+ * no reset inputs on calendar
  *
  */

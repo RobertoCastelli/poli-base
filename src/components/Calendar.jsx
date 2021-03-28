@@ -5,6 +5,7 @@ import interactionPlugin from "@fullcalendar/interaction"
 import { Link } from "react-router-dom"
 import { FaUniversity } from "react-icons/fa"
 import { DataContext } from "../context"
+import { FilterTicket } from "./FilterTicket"
 
 const Calendar = () => {
 	const { ticketsToCalendar, handleCalendarTicket } = useContext(DataContext)
@@ -18,6 +19,7 @@ const Calendar = () => {
 				events={ticketsToCalendar}
 				eventClick={handleCalendarTicket}
 			/>
+			<FilterTicket />
 			<Link to='/'>
 				<button type='button' className='home-icon'>
 					<FaUniversity size={20} />
