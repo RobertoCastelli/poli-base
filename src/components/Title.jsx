@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
-import { DataContext } from "../context"
 import icon from "../images/icona.png"
+// CONTEXT
+import { DataContext } from "../context"
 
 const Title = () => {
 	const { togglePanel } = useContext(DataContext)

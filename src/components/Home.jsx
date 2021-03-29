@@ -1,4 +1,5 @@
 import React from "react"
+// COMPONENTS
 import FilterTitle from "./FilterTitle"
 import Panel from "./Panel"
 import TicketList from "./TicketList"

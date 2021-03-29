@@ -1,7 +1,9 @@
 import React, { useContext } from "react"
+// REACT ICONS
 import { GrSend } from "react-icons/gr"
-import { DataContext } from "../context"
 import { FcCancel } from "react-icons/fc"
+// CONTEXT
+import { DataContext } from "../context"
 
 const Modal = () => {
 	const {

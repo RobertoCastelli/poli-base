@@ -1,11 +1,15 @@
 import React, { useContext } from "react"
+import { Link } from "react-router-dom"
+// COMPONENTS
+import { FilterTicket } from "./FilterTicket"
+// FULL CALENDAR
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import interactionPlugin from "@fullcalendar/interaction"
-import { Link } from "react-router-dom"
+// REACT ICONS
 import { FaUniversity } from "react-icons/fa"
+// CONTEXT
 import { DataContext } from "../context"
-import { FilterTicket } from "./FilterTicket"
 
 const Calendar = () => {
 	const { ticketsToCalendar, handleCalendarTicket } = useContext(DataContext)

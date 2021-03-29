@@ -1,6 +1,7 @@
 import React from "react"
-import { FaUniversity } from "react-icons/fa"
 import { Link } from "react-router-dom"
+// REACT ICONS
+import { FaUniversity } from "react-icons/fa"
 
 const Error = (props) => {
 	return (

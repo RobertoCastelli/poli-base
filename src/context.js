@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react"
+// FIREBASE
 import firebase from "firebase/app"
 import { dbRef } from "./firebase"
+// DATA
 import { options } from "./options"
 
 // CREATE CONTEXT
@@ -197,6 +199,7 @@ const ContextProvider = (props) => {
 				})
 			)
 			.catch((err) => `hups! ${err.message}`)
+		searchTicket()
 	}
 
 	// SHOW TICKET ON CALENDAR
@@ -210,6 +213,27 @@ const ContextProvider = (props) => {
 			)
 		})
 	}, [ticket])
+
+	const searchTicket = () => {
+		const completedTicketArr = ""
+		dbRef.where("ore", ">", 0).onSnapshot((snapshot) =>
+			snapshot.docs.map((doc) => {
+				console.log(doc.data().ticket)
+				completedTicketArr += doc.data().ticket
+			})
+		)
+		console.log(completedTicketArr)
+		const t = document.querySelectorAll(".fc-daygrid-day-events")
+		try {
+			t.forEach((elem) => {
+				completedTicketArr.includes(elem.textContent)
+					? elem.classList.add("test")
+					: elem.classList.remove("test")
+			})
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
 	return (
 		<div>

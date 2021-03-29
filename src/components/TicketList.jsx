@@ -1,5 +1,7 @@
 import React, { useContext } from "react"
+// REACT ICONS
 import { RiDeleteBinLine } from "react-icons/ri"
+// CONTEXT
 import { DataContext } from "../context"
 
 const TicketList = () => {

@@ -1,3 +1,4 @@
+// SELECT OPTIONS ARRAY
 export const options = [
 	{
 		label: "RESET ORE",

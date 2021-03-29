@@ -345,8 +345,8 @@ footer {
 }
 
 .fc-event-title-container {
-	background-color: lightgrey;
-	color: #333;
+	/* background-color: lightgrey; */
+	/* color: #333; */
 	text-transform: uppercase;
 	cursor: pointer;
 }
@@ -426,4 +426,8 @@ footer {
 
 .filtered-calendar-state-complete {
 	color: brown;
+}
+
+.test {
+	background-color: red !important;
 }

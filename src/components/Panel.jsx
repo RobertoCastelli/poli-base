@@ -1,6 +1,8 @@
 import React, { useContext } from "react"
-import { DataContext } from "../context"
+// REACT ICONS
 import { ImDownload } from "react-icons/im"
+// CONTEXT
+import { DataContext } from "../context"
 
 const Panel = () => {
 	const {

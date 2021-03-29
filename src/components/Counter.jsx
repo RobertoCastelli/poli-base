@@ -1,10 +1,12 @@
 import React, { useContext } from "react"
+import { Link } from "react-router-dom"
+// REACT ICONS
 import { BsFillUnlockFill } from "react-icons/bs"
 import { BsLockFill } from "react-icons/bs"
 import { BiTime } from "react-icons/bi"
-import { DataContext } from "../context"
-import { Link } from "react-router-dom"
 import { BiCalendar } from "react-icons/bi"
+// CONTEXT
+import { DataContext } from "../context"
 
 const Counter = () => {
 	const {
