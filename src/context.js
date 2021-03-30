@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 // FIREBASE
 import firebase from "firebase/app"
-import { dbRef, db } from "./firebase"
+import { dbRef } from "./firebase"
 // DATA
 import { options } from "./options"
 
@@ -214,7 +214,7 @@ const ContextProvider = (props) => {
 		})
 	}, [])
 
-	// CHECK CLOSED TICKETS
+	// CHECK CLOSED TICKETS (AFTER CALENDAR-DID-MOUNT WITH CALENDAR PROP)
 	const checkClosed = () => {
 		let completeTickets = []
 		dbRef.where("ore", ">", 0).onSnapshot((snapshot) => {
@@ -284,7 +284,6 @@ export default ContextProvider
  *
  * FIXME:
  * edit button calendar
- * change color on load calendar
  *
  *
  */

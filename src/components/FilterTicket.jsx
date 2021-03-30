@@ -21,7 +21,7 @@ export const FilterTicket = () => {
 						className={`filtered-calendar-state  ${
 							ore === 0 ? "" : "filtered-calendar-state-complete"
 						}`}>
-						{ore !== 0 ? `complete` : `open`}
+						{ore !== 0 ? `closed` : `open`}
 					</div>
 					<div
 						className='filtered-calendar-edit'
