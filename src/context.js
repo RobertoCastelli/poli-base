@@ -32,10 +32,10 @@ const dateAndTimeNow = firebase.firestore.FieldValue.serverTimestamp()
 const ContextProvider = (props) => {
 	// VARIABLE STATE
 	const [index, setIndex] = useState("")
+	const [tickets, setTickets] = useState([])
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
 	const [date, setDate] = useState(today)
-	const [tickets, setTickets] = useState([])
 	const [isHidden, setIsHidden] = useState(true)
 	const [oreTotali, setOreTotali] = useState(0)
 	const [filterCompleted, setFilterCompleted] = useState(0)
@@ -45,8 +45,7 @@ const ContextProvider = (props) => {
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
 	const [calendarTicket, setCalendarTicket] = useState([])
-
-	const [arrTest, setArrTest] = useState([])
+	const [completeTicketsArray, setCompleteTicketsArray] = useState([])
 
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
@@ -140,7 +139,7 @@ const ContextProvider = (props) => {
 			.where("ore", ">", 0)
 			.get()
 			.then((snapshot) => setFilterCompleted(snapshot.size))
-			.catch((err) => console.log(`hups! ${err.message}`))
+			.catch((err) => console.log(`hups! --> ${err.message}`))
 	}, [tickets])
 
 	// COUNT INCOMPLETE TICKETS
@@ -149,7 +148,7 @@ const ContextProvider = (props) => {
 			.where("ore", "==", 0)
 			.get()
 			.then((snapshot) => setFilterIncomplete(snapshot.size))
-			.catch((err) => console.log(`hups! ${err.message}`))
+			.catch((err) => console.log(`hups! --> ${err.message}`))
 	}, [tickets])
 
 	// BOILERPLATE TEMPLATE
@@ -223,7 +222,8 @@ const ContextProvider = (props) => {
 				completeTickets.push(doc.data().ticket)
 			})
 		)
-		setArrTest(completeTickets)
+		setCompleteTicketsArray(completeTickets)
+		console.log(completeTicketsArray) //<-<< delete this
 	}, [tickets])
 
 	// CHANGE TICKET COLOR ON CALENDAR IF COMPLETE
@@ -231,12 +231,11 @@ const ContextProvider = (props) => {
 	const handleCalendarTicketColor = useCallback(() => {
 		const test = document.querySelectorAll(".fc-sticky")
 		test.forEach((elem) => {
-			arrTest.includes(elem.textContent)
-				? elem.classList.add("test")
-				: elem.classList.remove("test")
+			completeTicketsArray.includes(elem.textContent)
+				? elem.classList.add("fc-sticky-complete")
+				: elem.classList.remove("fc-sticky-complete")
 		})
-		console.log(arrTest)
-	}, [calendarTicket])
+	}, [completeTicketsArray]) //<-<< add "calendarTicket" dependency
 
 	useEffect(() => handleCalendarTicketColor(), [handleCalendarTicketColor])
 
@@ -288,7 +287,7 @@ export default ContextProvider
  *
  * FIXME:
  * edit button calendar
- * change color complete/open on calendar
+ * change color on load calendar
  *
  *
  */
