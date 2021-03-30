@@ -228,22 +228,17 @@ const ContextProvider = (props) => {
 
 	// CHANGE TICKET COLOR ON CALENDAR IF COMPLETE
 	//FIXME: change on load
-	const testing = () => {
+	const handleCalendarTicketColor = useCallback(() => {
 		const test = document.querySelectorAll(".fc-sticky")
-		console.log(test)
-		try {
-			test.forEach((elem) => {
-				console.log("completed ticket: " + elem.textContent)
-				arrTest.includes(elem.textContent)
-					? elem.classList.add("test")
-					: elem.classList.remove("test")
-			})
-		} catch (error) {
-			console.log(`hups! ${error}`)
-		}
+		test.forEach((elem) => {
+			arrTest.includes(elem.textContent)
+				? elem.classList.add("test")
+				: elem.classList.remove("test")
+		})
 		console.log(arrTest)
-	}
-	testing()
+	}, [calendarTicket])
+
+	useEffect(() => handleCalendarTicketColor(), [handleCalendarTicketColor])
 
 	return (
 		<div>

@@ -385,13 +385,16 @@ footer {
 .filtered-calendar-ticket {
 	grid-area: ticket;
 	font-weight: bold;
+	border-top-left-radius: 1rem;
 }
 .filtered-calendar-date {
 	grid-area: date;
+	border-top-right-radius: 1rem;
 }
 .filtered-calendar-description {
 	grid-area: description;
 	padding: 0.5rem;
+	border-bottom-left-radius: 1rem;
 }
 .filtered-calendar-state {
 	grid-area: state;
