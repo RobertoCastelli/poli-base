@@ -201,7 +201,7 @@ const ContextProvider = (props) => {
 				})
 			)
 			.catch((err) => `hups! ${err.message}`)
-		searchTicket()
+		handleCalendarTicketColor()
 	}
 
 	// SHOW TICKET ON CALENDAR
@@ -217,18 +217,18 @@ const ContextProvider = (props) => {
 	}, [ticket])
 
 	//FIXME: CHANGE TICKET BG COLOR IF COMPLETE ON CALENDAR
-	const searchTicket = () => {
-		// CREATE ARRAY TO GATHER COMPLETED TICKETS
-		let completedTicketArr = []
+	const handleCalendarTicketColor = () => {
+		// CREATE ARRAY TO GATHER COMPLETE TICKETS
+		let completeTickets = []
 		dbRef.where("ore", ">", 0).onSnapshot((snapshot) =>
 			snapshot.docs.forEach((doc) => {
-				completedTicketArr.push(doc.data().ticket)
+				completeTickets.push(doc.data().ticket)
 			})
 		)
-		setArrTest(completedTicketArr)
+		setArrTest(completeTickets)
 		// CHANGE CSS COLOR
 		console.log(arrTest)
-		const test = document.querySelectorAll(".fc-daygrid-day-events")
+		const test = document.querySelectorAll(".fc-sticky")
 		try {
 			test.forEach((elem) => {
 				console.log("completed ticket: " + elem.textContent)
@@ -237,7 +237,7 @@ const ContextProvider = (props) => {
 					: elem.classList.remove("test")
 			})
 		} catch (error) {
-			console.log(error)
+			console.log(`hups! ${error}`)
 		}
 	}
 
