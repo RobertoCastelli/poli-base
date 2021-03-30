@@ -201,7 +201,6 @@ const ContextProvider = (props) => {
 				})
 			)
 			.catch((err) => `hups! ${err.message}`)
-		handleCalendarTicketColor()
 	}
 
 	// SHOW TICKET ON CALENDAR
@@ -214,11 +213,10 @@ const ContextProvider = (props) => {
 				}))
 			)
 		})
-	}, [ticket])
+	}, [])
 
-	//FIXME: CHANGE TICKET BG COLOR IF COMPLETE ON CALENDAR
-	const handleCalendarTicketColor = () => {
-		// CREATE ARRAY TO GATHER COMPLETE TICKETS
+	// PUSH COMPLETE TICKETS TO ARRAY
+	useEffect(() => {
 		let completeTickets = []
 		dbRef.where("ore", ">", 0).onSnapshot((snapshot) =>
 			snapshot.docs.forEach((doc) => {
@@ -226,9 +224,13 @@ const ContextProvider = (props) => {
 			})
 		)
 		setArrTest(completeTickets)
-		// CHANGE CSS COLOR
-		console.log(arrTest)
+	}, [tickets])
+
+	// CHANGE TICKET COLOR ON CALENDAR IF COMPLETE
+	//FIXME: change on load
+	const testing = () => {
 		const test = document.querySelectorAll(".fc-sticky")
+		console.log(test)
 		try {
 			test.forEach((elem) => {
 				console.log("completed ticket: " + elem.textContent)
@@ -239,7 +241,9 @@ const ContextProvider = (props) => {
 		} catch (error) {
 			console.log(`hups! ${error}`)
 		}
+		console.log(arrTest)
 	}
+	testing()
 
 	return (
 		<div>
@@ -251,26 +255,26 @@ const ContextProvider = (props) => {
 					setDescription,
 					date,
 					setDate,
-					handleSubmit,
 					tickets,
-					togglePanel,
 					isHidden,
+					togglePanel,
+					handleSubmit,
 					deleteTicket,
+					isOpenModal,
+					handleModal,
 					openModal,
 					closeModal,
+					setModalOre,
 					options,
 					oreTotali,
 					filterCompleted,
 					filterIncomplete,
+					filterTitle,
 					showCompletedTickets,
 					showIncompleteTickets,
-					filterTitle,
-					handleModal,
-					setModalOre,
-					isOpenModal,
 					ticketsToCalendar,
-					handleCalendarTicket,
 					calendarTicket,
+					handleCalendarTicket,
 				}}>
 				{props.children}
 			</DataContext.Provider>
