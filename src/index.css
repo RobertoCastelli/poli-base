@@ -345,8 +345,8 @@ footer {
 }
 
 .fc-event-title-container {
-	/* background-color: lightgrey; */
-	/* color: #333; */
+	background-color: lightgrey;
+	color: #333;
 	text-transform: uppercase;
 	cursor: pointer;
 }
@@ -358,11 +358,6 @@ footer {
 .fc-h-event:hover {
 	border: 1px dotted #333 !important;
 }
-
-/* .fc-sticky::after {
-	content: "[x]";
-	color: red;
-} */
 
 .btn-home {
 	display: grid;
@@ -429,5 +424,5 @@ footer {
 }
 
 .test {
-	background-color: red !important;
+	background-color: brown !important;
 }

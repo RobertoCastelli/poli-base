@@ -46,6 +46,8 @@ const ContextProvider = (props) => {
 	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
 	const [calendarTicket, setCalendarTicket] = useState([])
 
+	const [arrTest, setArrTest] = useState([])
+
 	//~~~~~~~~~~~~~//
 	//    PANEL    //
 	//~~~~~~~~~~~~~//
@@ -214,19 +216,23 @@ const ContextProvider = (props) => {
 		})
 	}, [ticket])
 
+	//FIXME: CHANGE TICKET BG COLOR IF COMPLETE ON CALENDAR
 	const searchTicket = () => {
-		const completedTicketArr = ""
+		// CREATE ARRAY TO GATHER COMPLETED TICKETS
+		let completedTicketArr = []
 		dbRef.where("ore", ">", 0).onSnapshot((snapshot) =>
-			snapshot.docs.map((doc) => {
-				console.log(doc.data().ticket)
-				completedTicketArr += doc.data().ticket
+			snapshot.docs.forEach((doc) => {
+				completedTicketArr.push(doc.data().ticket)
 			})
 		)
-		console.log(completedTicketArr)
-		const t = document.querySelectorAll(".fc-daygrid-day-events")
+		setArrTest(completedTicketArr)
+		// CHANGE CSS COLOR
+		console.log(arrTest)
+		const test = document.querySelectorAll(".fc-daygrid-day-events")
 		try {
-			t.forEach((elem) => {
-				completedTicketArr.includes(elem.textContent)
+			test.forEach((elem) => {
+				console.log("completed ticket: " + elem.textContent)
+				arrTest.includes(elem.textContent)
 					? elem.classList.add("test")
 					: elem.classList.remove("test")
 			})
@@ -280,9 +286,10 @@ export default ContextProvider
  * change permission firebase
  * add edificio select
  * dragable/change date calendar tickets
- * change color complete/open on calendar
  *
  * FIXME:
  * edit button calendar
+ * change color complete/open on calendar
+ *
  *
  */
