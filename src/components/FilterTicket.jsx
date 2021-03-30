@@ -7,8 +7,6 @@ import { DataContext } from "../context"
 
 export const FilterTicket = () => {
 	const {
-		index,
-		openModal,
 		calendarTicket: { ticket, description, ore, date },
 	} = useContext(DataContext)
 
