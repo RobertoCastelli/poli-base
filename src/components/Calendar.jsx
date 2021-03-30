@@ -12,7 +12,9 @@ import { FaUniversity } from "react-icons/fa"
 import { DataContext } from "../context"
 
 const Calendar = () => {
-	const { ticketsToCalendar, handleCalendarTicket } = useContext(DataContext)
+	const { ticketsToCalendar, handleCalendarTicket, checkClosed } = useContext(
+		DataContext
+	)
 
 	return (
 		<div className='calendar'>
@@ -22,6 +24,7 @@ const Calendar = () => {
 				plugins={[dayGridPlugin, interactionPlugin]}
 				events={ticketsToCalendar}
 				eventClick={handleCalendarTicket}
+				eventDidMount={checkClosed}
 			/>
 			<FilterTicket />
 			<Link to='/' style={{ textDecoration: "none" }}>

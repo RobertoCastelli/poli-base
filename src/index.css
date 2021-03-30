@@ -230,7 +230,7 @@ input:focus {
 }
 
 .completed-todo::after {
-	content: " - closed";
+	content: " - worked";
 }
 
 select {
@@ -424,6 +424,10 @@ footer {
 
 .filtered-calendar-state-complete {
 	color: brown;
+}
+
+.fc-sticky {
+	color: green;
 }
 
 .fc-sticky-complete {

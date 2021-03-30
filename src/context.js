@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 // FIREBASE
 import firebase from "firebase/app"
-import { dbRef } from "./firebase"
+import { dbRef, db } from "./firebase"
 // DATA
 import { options } from "./options"
 
@@ -214,30 +214,26 @@ const ContextProvider = (props) => {
 		})
 	}, [])
 
-	// PUSH COMPLETE TICKETS TO ARRAY
-	useEffect(() => {
+	// CHECK CLOSED TICKETS
+	const checkClosed = () => {
 		let completeTickets = []
-		dbRef.where("ore", ">", 0).onSnapshot((snapshot) =>
+		dbRef.where("ore", ">", 0).onSnapshot((snapshot) => {
 			snapshot.docs.forEach((doc) => {
 				completeTickets.push(doc.data().ticket)
 			})
-		)
-		setCompleteTicketsArray(completeTickets)
-		console.log(completeTicketsArray) //<-<< delete this
-	}, [tickets])
+			setCompleteTicketsArray(completeTickets)
+		})
+	}
 
 	// CHANGE TICKET COLOR ON CALENDAR IF COMPLETE
-	//FIXME: change on load
-	const handleCalendarTicketColor = useCallback(() => {
-		const test = document.querySelectorAll(".fc-sticky")
-		test.forEach((elem) => {
+	useEffect(() => {
+		const stickyTitle = document.querySelectorAll(".fc-sticky")
+		stickyTitle.forEach((elem) =>
 			completeTicketsArray.includes(elem.textContent)
 				? elem.classList.add("fc-sticky-complete")
 				: elem.classList.remove("fc-sticky-complete")
-		})
-	}, [completeTicketsArray]) //<-<< add "calendarTicket" dependency
-
-	useEffect(() => handleCalendarTicketColor(), [handleCalendarTicketColor])
+		)
+	}, [completeTicketsArray])
 
 	return (
 		<div>
@@ -269,6 +265,7 @@ const ContextProvider = (props) => {
 					ticketsToCalendar,
 					calendarTicket,
 					handleCalendarTicket,
+					checkClosed,
 				}}>
 				{props.children}
 			</DataContext.Provider>
