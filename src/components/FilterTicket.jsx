@@ -1,4 +1,7 @@
 import React, { useContext } from "react"
+// REACT ICONS
+import { BsFillUnlockFill } from "react-icons/bs"
+import { BsLockFill } from "react-icons/bs"
 // CONTEXT
 import { DataContext } from "../context"
 
@@ -21,7 +24,7 @@ export const FilterTicket = () => {
 						className={`filtered-calendar-state  ${
 							ore === 0 ? "" : "filtered-calendar-state-complete"
 						}`}>
-						{ore !== 0 ? `closed` : `open`}
+						{ore !== 0 ? <BsLockFill /> : <BsFillUnlockFill />}
 					</div>
 					<div
 						className='filtered-calendar-edit'

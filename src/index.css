@@ -129,6 +129,7 @@ input:focus {
 	box-shadow: 0px 0px 25px -3px lightgray;
 	cursor: pointer;
 	border-radius: 1rem;
+	letter-spacing: 0.07rem;
 }
 
 .li-count-open:hover,
@@ -368,11 +369,12 @@ footer {
 .filtered-calendar-tickets {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 40px 40px 40px;
-	gap: 2px;
+	grid-template-rows: 40px 40px 40px 40px;
+	gap: 0.1rem;
 	margin-top: 3rem;
 	grid-template-areas:
-		"ticket state date"
+		"ticket ticket state"
+		"description description date"
 		"description description ore"
 		"description description edit";
 }
@@ -383,16 +385,15 @@ footer {
 }
 .filtered-calendar-date {
 	grid-area: date;
-	border-top-right-radius: 1rem;
 }
 .filtered-calendar-description {
 	grid-area: description;
 	padding: 0.5rem;
-	border-bottom-left-radius: 1rem;
 }
 .filtered-calendar-state {
 	grid-area: state;
 	color: green;
+	border-top-right-radius: 1rem;
 }
 .filtered-calendar-ore {
 	grid-area: ore;
