@@ -128,7 +128,7 @@ input:focus {
 	padding: 0.5rem;
 	box-shadow: 0px 0px 25px -3px lightgray;
 	cursor: pointer;
-	border-radius: 1rem;
+	border-radius: 0.5rem;
 	letter-spacing: 0.07rem;
 }
 
@@ -176,16 +176,20 @@ input:focus {
 }
 
 .li-todo {
+	position: relative;
 	animation: fader 0.5s ease-in;
-	margin-bottom: 0.5rem;
+	margin-bottom: 1.2rem;
 	padding: 0.5rem;
-	background-color: lightgrey;
+	background-color: lightgray;
+	border-top-left-radius: 1rem;
+	border-radius: 0.5rem;
 	display: grid;
-	grid-template-columns: 1fr 1fr auto;
-	grid-template-rows: repeat(2, 1fr);
+	align-items: center;
+	grid-template-columns: repeat(3, 1fr) 30px 30px;
+	grid-template-rows: 20px 20px;
 	grid-template-areas:
-		"ticket ore delete"
-		"description description delete";
+		".  date ore edit delete"
+		"description description description edit delete";
 }
 @keyframes fader {
 	from {
@@ -195,27 +199,41 @@ input:focus {
 		opacity: 1;
 	}
 }
+.ticket-todo {
+	position: absolute;
+	padding: 0.3rem;
+	background-color: #f4f4f4;
+	box-shadow: 0px 2px 20px -3px grey;
+	border-radius: 0.3rem;
+	top: -20%;
+	left: 3%;
+	font-weight: bold;
+	text-transform: uppercase;
+}
 .delete-todo {
 	grid-area: delete;
 	cursor: pointer;
-	justify-self: right;
-	align-self: center;
 	color: brown;
-	padding: 0.3rem;
+	text-align: center;
 }
-.ticket-todo {
-	grid-area: ticket;
-	font-weight: bold;
+.edit-todo {
+	grid-area: edit;
+	cursor: pointer;
+	color: cadetblue;
+	text-align: center;
 }
 .desc-todo {
 	grid-area: description;
-	text-transform: lowercase;
 	font-style: italic;
 }
 .ore-todo {
 	grid-area: ore;
-	justify-self: center;
 	cursor: pointer;
+	text-align: center;
+}
+.date-todo {
+	grid-area: date;
+	text-align: center;
 }
 
 .incomplete-todo,
@@ -225,10 +243,6 @@ input:focus {
 
 .completed-todo {
 	color: brown;
-}
-
-.completed-todo::after {
-	content: " - closed";
 }
 
 select {
@@ -311,7 +325,7 @@ footer {
 	border: 3px solid #333;
 	padding: 3rem;
 	margin: 1rem;
-	border-radius: 1rem;
+	border-radius: 0.5rem;
 	background-color: #f4f4f4;
 	text-align: center;
 }
@@ -367,55 +381,61 @@ footer {
 **/
 
 .filtered-calendar-tickets {
+	position: relative;
+	animation: fader 0.5s ease;
+	padding: 0.5rem 1rem;
+	text-align: center;
+	align-items: center;
+	background-color: lightgray;
+	border-radius: 0.5rem;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 40px 40px 40px 40px;
-	gap: 0.1rem;
-	margin-top: 3rem;
+	grid-template-columns: 1fr 1fr 1fr 30px;
+	grid-template-rows: 20px 20px;
+	margin-top: 2rem;
 	grid-template-areas:
-		"ticket ticket state"
-		"description description date"
-		"description description ore"
-		"description description edit";
+		"ticket date ore edit"
+		"description description description edit";
 }
 .filtered-calendar-ticket {
+	position: absolute;
+	padding: 0.3rem;
+	background-color: #f4f4f4;
+	box-shadow: 0px 2px 20px -3px grey;
+	color: green;
+	border-radius: 0.3rem;
+	top: -100%;
+	left: 0%;
 	grid-area: ticket;
 	font-weight: bold;
-	border-top-left-radius: 1rem;
 }
 .filtered-calendar-date {
 	grid-area: date;
 }
 .filtered-calendar-description {
 	grid-area: description;
-	padding: 0.5rem;
+	text-align: left;
 }
 .filtered-calendar-state {
 	grid-area: state;
 	color: green;
-	border-top-right-radius: 1rem;
 }
 .filtered-calendar-ore {
 	grid-area: ore;
 }
 .filtered-calendar-edit {
 	grid-area: edit;
-	border: 1px solid lightgray;
-	text-align: center;
-	padding-top: 10px;
 	cursor: pointer;
-	box-shadow: 0px 0px 25px -3px lightgray;
+	color: cadetblue;
 }
 
-.filtered-calendar-ticket,
+/* .filtered-calendar-ticket,
 .filtered-calendar-date,
 .filtered-calendar-state,
 .filtered-calendar-ore,
 .filtered-calendar-description {
-	padding-top: 10px;
 	text-align: center;
 	background-color: lightgray;
-}
+} */
 
 .filtered-calendar-state-complete {
 	color: brown;

@@ -1,11 +1,10 @@
 import React, { useContext } from "react"
 // REACT ICONS
-import { BsFillUnlockFill } from "react-icons/bs"
-import { BsLockFill } from "react-icons/bs"
+import { BiTime } from "react-icons/bi"
 // CONTEXT
 import { DataContext } from "../context"
 
-export const FilterTicket = () => {
+export const CalendarList = () => {
 	const {
 		calendarTicket: { ticket, description, ore, date },
 	} = useContext(DataContext)
@@ -14,16 +13,16 @@ export const FilterTicket = () => {
 		<>
 			{ticket && (
 				<div className='filtered-calendar-tickets'>
-					<div className='filtered-calendar-ticket'>{ticket}</div>
+					<div
+						className={`filtered-calendar-ticket ${
+							ore === 0 ? "" : "filtered-calendar-state-complete"
+						}`}>
+						{ticket}
+					</div>
 					<div className='filtered-calendar-date'>{date}</div>
 					<div className='filtered-calendar-ore'>{ore} ore</div>
 					<div className='filtered-calendar-description'>{description}</div>
-					<div
-						className={`filtered-calendar-state  ${
-							ore === 0 ? "" : "filtered-calendar-state-complete"
-						}`}>
-						{ore !== 0 ? <BsLockFill /> : <BsFillUnlockFill />}
-					</div>
+
 					<div
 						className='filtered-calendar-edit'
 						onClick={
@@ -34,7 +33,7 @@ export const FilterTicket = () => {
 							() =>
 								alert("Work in progress: Funzionalità ancora non attiva (NdR)")
 						}>
-						edit
+						<BiTime size={20} />
 					</div>
 				</div>
 			)}

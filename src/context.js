@@ -156,6 +156,8 @@ const ContextProvider = (props) => {
 		id: doc.id,
 		ticket: doc.data().ticket,
 		description: doc.data().description,
+		date: doc.data().date,
+		createdAt: doc.data().createdAt,
 		ore: doc.data().ore,
 	})
 
