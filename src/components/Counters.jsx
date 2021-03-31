@@ -8,7 +8,7 @@ import { BiCalendar } from "react-icons/bi"
 // CONTEXT
 import { DataContext } from "../context"
 
-const Counter = () => {
+const Counters = () => {
 	const {
 		oreTotali,
 		filterCompleted,
@@ -48,4 +48,4 @@ const Counter = () => {
 	)
 }
 
-export default Counter
+export default Counters

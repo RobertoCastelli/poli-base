@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 // CONTEXT
 import { DataContext } from "../context"
 
-const FilterTitle = () => {
+const TitleState = () => {
 	const { filterTitle } = useContext(DataContext)
 	return (
 		<div className='filter-title'>
@@ -11,4 +11,4 @@ const FilterTitle = () => {
 	)
 }
 
-export default FilterTitle
+export default TitleState

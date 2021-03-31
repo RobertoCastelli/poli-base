@@ -136,8 +136,7 @@ input:focus {
 .li-count-close:hover,
 .li-count-list:hover,
 .btn-calendar:hover,
-.btn-home:hover,
-.filtered-calendar-edit:hover {
+.btn-home:hover {
 	border: 1px solid #333;
 }
 
@@ -427,15 +426,6 @@ footer {
 	cursor: pointer;
 	color: cadetblue;
 }
-
-/* .filtered-calendar-ticket,
-.filtered-calendar-date,
-.filtered-calendar-state,
-.filtered-calendar-ore,
-.filtered-calendar-description {
-	text-align: center;
-	background-color: lightgray;
-} */
 
 .filtered-calendar-state-complete {
 	color: brown;

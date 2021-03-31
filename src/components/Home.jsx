@@ -1,16 +1,16 @@
 import React from "react"
 // COMPONENTS
-import FilterTitle from "./FilterTitle"
 import Panel from "./Panel"
 import TicketList from "./TicketList"
-import Counter from "./Counter"
+import Counters from "./Counters"
+import TitleState from "./TitleState"
 
 const Home = () => {
 	return (
 		<div>
 			<Panel />
-			<Counter />
-			<FilterTitle />
+			<Counters />
+			<TitleState />
 			<TicketList />
 		</div>
 	)
