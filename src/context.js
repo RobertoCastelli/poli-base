@@ -91,17 +91,6 @@ const ContextProvider = (props) => {
 				.catch((err) => console.log(`hups! --> ${err.message}`))
 	}
 
-	// UPDATE TICKET STATE (IN ORE MODAL)
-	const updateTicketStateAndOre = () => {
-		dbRef
-			.doc(index)
-			.update({
-				ore: parseInt(modalOre),
-			})
-			.then(() => console.log(`edited ore ID: ${index} to ${modalOre} ore`))
-			.catch((err) => `hups! --> ${err.message}`)
-	}
-
 	//~~~~~~~~~~~//
 	//   MODAL   //
 	//~~~~~~~~~~~//
@@ -111,6 +100,17 @@ const ContextProvider = (props) => {
 		setModalOre(0)
 		setIsOpenModal(true)
 		setIndex(ticketID)
+	}
+
+	// UPDATE TICKET STATE (IN ORE MODAL)
+	const updateTicketStateAndOre = () => {
+		dbRef
+			.doc(index)
+			.update({
+				ore: parseInt(modalOre),
+			})
+			.then(() => console.log(`edited ore ID: ${index} to ${modalOre} ore`))
+			.catch((err) => `hups! --> ${err.message}`)
 	}
 
 	// CLOSE MODAL
@@ -209,6 +209,7 @@ const ContextProvider = (props) => {
 		dbRef.onSnapshot((snapshot) => {
 			setTicketsToCalendar(
 				snapshot.docs.map((doc) => ({
+					id: doc.id,
 					title: doc.data().ticket,
 					date: doc.data().date,
 				}))
@@ -236,6 +237,13 @@ const ContextProvider = (props) => {
 				: elem.classList.remove("fc-sticky-complete")
 		)
 	}, [completeTicketsArray])
+
+	const updateCalendarTicketOre = (ticketID) => {
+		const calendarIndex = ticketsToCalendar.filter(
+			(doc) => doc.title === ticketID
+		)
+		openModal(calendarIndex[0].id)
+	}
 
 	return (
 		<div>
@@ -268,6 +276,7 @@ const ContextProvider = (props) => {
 					calendarTicket,
 					handleCalendarTicket,
 					checkClosed,
+					updateCalendarTicketOre,
 				}}>
 				{props.children}
 			</DataContext.Provider>

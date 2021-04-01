@@ -6,6 +6,7 @@ import { DataContext } from "../context"
 
 export const CalendarList = () => {
 	const {
+		updateCalendarTicketOre,
 		calendarTicket: { ticket, description, ore, date },
 	} = useContext(DataContext)
 
@@ -22,17 +23,9 @@ export const CalendarList = () => {
 					<div className='filtered-calendar-date'>{date}</div>
 					<div className='filtered-calendar-ore'>{ore} ore</div>
 					<div className='filtered-calendar-description'>{description}</div>
-
 					<div
 						className='filtered-calendar-edit'
-						onClick={
-							// () => {
-							// 	openModal("thwy4BDPsSdx2lP638be")
-							// 	console.log(index)
-							// }
-							() =>
-								alert("Work in progress: Funzionalità ancora non attiva (NdR)")
-						}>
+						onClick={() => updateCalendarTicketOre(ticket)}>
 						<BiTime size={20} />
 					</div>
 				</div>
