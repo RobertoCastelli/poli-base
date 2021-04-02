@@ -36,7 +36,7 @@ const ContextProvider = (props) => {
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
 	const [date, setDate] = useState(today)
-	const [isHidden, setIsHidden] = useState(false)
+	const [isHidden, setIsHidden] = useState(true)
 	const [oreTotali, setOreTotali] = useState(0)
 	const [filterCompleted, setFilterCompleted] = useState(0)
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
@@ -47,19 +47,21 @@ const ContextProvider = (props) => {
 	const [calendarTicket, setCalendarTicket] = useState([])
 	const [completeTicketsArray, setCompleteTicketsArray] = useState([])
 
-	//~~~~~~~~~~~~~//
-	//    PANEL    //
-	//~~~~~~~~~~~~~//
+	//~~~~~~~~~~~~~~~~~~~//
+	//    TITLE PANEL    //
+	//~~~~~~~~~~~~~~~~~~~//
 
 	// TOGGLE ADMIN INPUT PANEL
 	const togglePanel = () => {
 		setIsHidden(!isHidden)
 	}
 
-	// TOGGLE ANIMATION ON ARROW MENU
+	// TOGGLE ANIMATION ON MENU
 	useEffect(() => {
 		const btnMenu = document.querySelector(".btn-menu")
-		btnMenu.classList.toggle("btn-menu-arrow-animation")
+		const ulMenu = document.querySelector(".ul-count")
+		ulMenu.classList.toggle("ul-count-animation")
+		btnMenu.classList.toggle("btn-menu-animation")
 	}, [isHidden])
 
 	// ADD TICKET TO DB

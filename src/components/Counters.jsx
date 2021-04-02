@@ -16,61 +16,58 @@ const Counters = () => {
 		filterIncomplete,
 		showCompletedTickets,
 		showIncompleteTickets,
-		isHidden,
 	} = useContext(DataContext)
 
 	return (
 		<>
-			{isHidden && (
-				<ul className='ul-count'>
-					<li className='li-count-add' name='add'>
-						<Link to='admin-panel'>
-							<div>
-								<AiOutlineFileAdd size={20} />
-							</div>
-							<label htmlFor='add'>+ ticket</label>
-						</Link>
-					</li>
-					<li
-						className='li-count-open'
-						name='open'
-						onClick={() => showIncompleteTickets()}>
+			<ul className='ul-count'>
+				<li className='li-count-add' name='add'>
+					<Link to='admin-panel'>
 						<div>
-							<BsFillUnlockFill size={20} />
+							<AiOutlineFileAdd size={20} />
 						</div>
-						<label htmlFor='open'>open {filterIncomplete}</label>
-					</li>
-					<li
-						className='li-count-close'
-						name='close'
-						onClick={() => showCompletedTickets()}>
+						<label htmlFor='add'>+ ticket</label>
+					</Link>
+				</li>
+				<li
+					className='li-count-open'
+					name='open'
+					onClick={() => showIncompleteTickets()}>
+					<div>
+						<BsFillUnlockFill size={20} />
+					</div>
+					<label htmlFor='open'>open {filterIncomplete}</label>
+				</li>
+				<li
+					className='li-count-close'
+					name='close'
+					onClick={() => showCompletedTickets()}>
+					<div>
+						<BsLockFill size={20} />
+					</div>
+					<label htmlFor='close'>closed {filterCompleted}</label>
+				</li>
+				<li className='li-count-calendar' name='calendar'>
+					<Link to='/calendar'>
 						<div>
-							<BsLockFill size={20} />
+							<BiCalendar size={20} />
 						</div>
-						<label htmlFor='close'>closed {filterCompleted}</label>
-					</li>
-					<li className='li-count-calendar' name='calendar'>
-						<Link to='/calendar'>
-							<div>
-								<BiCalendar size={20} />
-							</div>
-							<label htmlFor='calendar'>calendar</label>
-						</Link>
-					</li>
-					<li className='li-count-ore' name='ore'>
-						<div>
-							<BiTime size={20} />
-						</div>
-						<label htmlFor='ore'>hours {oreTotali}</label>
-					</li>
-					<li className='li-count-clear' name='clear'>
-						<div>
-							<AiOutlineClear size={20} />
-						</div>
-						<label htmlFor='clear'>clear db</label>
-					</li>
-				</ul>
-			)}
+						<label htmlFor='calendar'>calendar</label>
+					</Link>
+				</li>
+				<li className='li-count-ore' name='ore'>
+					<div>
+						<BiTime size={20} />
+					</div>
+					<label htmlFor='ore'>hours {oreTotali}</label>
+				</li>
+				<li className='li-count-clear' name='clear'>
+					<div>
+						<AiOutlineClear size={20} />
+					</div>
+					<label htmlFor='clear'>clear db</label>
+				</li>
+			</ul>
 		</>
 	)
 }

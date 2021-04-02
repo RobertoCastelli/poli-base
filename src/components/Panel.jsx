@@ -31,7 +31,7 @@ const Panel = () => {
 					type='text'
 					className='description-panel'
 					placeholder='description'
-					maxLength='28'
+					maxLength='40'
 					onChange={(e) => setDescription(e.target.value)}
 					value={description}
 					required
