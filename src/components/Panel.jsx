@@ -17,7 +17,7 @@ const Panel = () => {
 
 	return (
 		<>
-			<form className='admin-panel' onSubmit={handleSubmit}>
+			<form className='input-panel' onSubmit={handleSubmit}>
 				<input
 					type='text'
 					className='ticket-panel'

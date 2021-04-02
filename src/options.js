@@ -1,7 +1,7 @@
 // SELECT OPTIONS ARRAY
 export const options = [
 	{
-		label: "RESET ORE",
+		label: "0 ore",
 		value: 0,
 	},
 	{

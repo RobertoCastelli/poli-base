@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 // REACT ICONS
 import { GrSend } from "react-icons/gr"
-import { FcCancel } from "react-icons/fc"
+import { IoMdClose } from "react-icons/io"
 // CONTEXT
 import { DataContext } from "../context"
 
@@ -18,27 +18,33 @@ const Modal = () => {
 			{isOpenModal && (
 				<div className='modal-wrapper'>
 					<form className='modal' onSubmit={handleModal}>
-						<div className='modal-title'>inserire le ore</div>
-						<select onChange={(e) => setModalOre(e.target.value)}>
+						<div className='modal-title'>inserire ore lavorate</div>
+						<select
+							className='modal-select'
+							onChange={(e) => setModalOre(e.target.value)}>
 							{options.map((opt) => (
 								<option key={opt.value} value={opt.value}>
 									{opt.label}
 								</option>
 							))}
 						</select>
-						<div className='buttons'>
-							<label className='send' htmlFor='send'>
-								invia
-							</label>
-							<button name='send' type='submit'>
-								<GrSend size={30} />
-							</button>
-							<label className='cancel' htmlFor='cancel'>
-								annulla
-							</label>
-							<button name='cancel' type='button' onClick={closeModal}>
-								<FcCancel size={30} />
-							</button>
+						<div className='modal-buttons'>
+							<div>
+								<button className='send' name='send' type='submit'>
+									<GrSend size={30} />
+								</button>
+								<label htmlFor='send'>invia</label>
+							</div>
+							<div>
+								<button
+									className='cancel'
+									name='cancel'
+									type='button'
+									onClick={closeModal}>
+									<IoMdClose size={30} />
+								</button>
+								<label htmlFor='cancel'>annulla</label>
+							</div>
 						</div>
 					</form>
 				</div>

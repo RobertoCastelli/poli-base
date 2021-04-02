@@ -37,6 +37,7 @@ a {
 	--white: #f4f4f4;
 	--green: #5f9ea0;
 	--red: #a52a2a;
+	--grey: #808080;
 	--lightgrey: #e8e8e8;
 	--lightyellow: #fff2cc;
 	--lightblue: rgba(203, 225, 239, 0.5);
@@ -76,7 +77,7 @@ a {
 	border-bottom: 2px solid var(--black);
 	border-top-left-radius: 1rem;
 	border-top-right-radius: 1rem;
-	box-shadow: 5px 5px 8px -3px grey;
+	box-shadow: 5px 5px 8px -3px var(--grey);
 }
 .logo-politecnico {
 	margin: 1rem auto;
@@ -99,7 +100,7 @@ a {
 
 /**
 /*~~~~~~~~~~~~~~~//
-/* FILTER COUNT
+/* ADMIN PANEL
 /*~~~~~~~~~~~~~~~//
 **/
 
@@ -169,24 +170,25 @@ a {
 .ul-todo {
 	padding: 0;
 	list-style-type: none;
-	display: grid;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
 	gap: 0.5rem;
-	grid-template-columns: 1fr 1fr 1fr;
 }
 .li-todo {
-	background-color: var(--lightgrey);
-	box-shadow: 5px 5px 8px -3px grey;
+	background-color: var(--lightyellow);
+	box-shadow: 5px 5px 8px -3px var(--grey);
 	transform: rotate(1deg);
 	transition: transform 0.2s linear;
 	display: grid;
 	align-items: center;
-	justify-content: center;
 	grid-template-columns: repeat(2, 80px);
 	grid-template-rows: repeat(4, 40px);
 	grid-template-areas:
 		"ticket date"
 		"description description"
-		"ore ."
+		"ore ore"
 		"edit delete";
 }
 .li-todo:nth-child(odd) {
@@ -194,7 +196,7 @@ a {
 }
 .li-todo:hover {
 	transform: rotate(0deg);
-	transform: scale(1.2);
+	transform: scale(1.1);
 	z-index: 1;
 }
 .ticket-todo {
@@ -208,6 +210,8 @@ a {
 }
 .ore-todo {
 	grid-area: ore;
+	padding: 0.5rem;
+	border-bottom: 1px dotted var(--grey);
 }
 .date-todo {
 	grid-area: date;
@@ -221,7 +225,6 @@ a {
 }
 .delete-todo,
 .edit-todo {
-	text-align: center;
 	cursor: pointer;
 }
 
@@ -239,7 +242,7 @@ a {
 /*~~~~~~~~~~~~~~~//
 **/
 
-.admin-panel {
+.input-panel {
 	padding: 1rem 1rem;
 	border-bottom-left-radius: 1rem;
 	border-bottom-right-radius: 1rem;
@@ -322,19 +325,51 @@ footer {
 	z-index: 1;
 	background-color: rgba(128, 128, 128, 0.8);
 }
-
 .modal {
-	border: 3px solid #333;
-	padding: 3rem;
-	margin: 1rem;
+	display: grid;
+	align-items: center;
+	grid-template-columns: 200px;
+	grid-template-rows: repeat(3, 60px);
+	row-gap: 0.5rem;
+	padding: 2rem 1rem;
+	border: 2px solid var(--black);
 	border-radius: 0.5rem;
-	background-color: #f4f4f4;
+	background-color: var(--lightgrey);
+}
+.modal-title {
+	text-transform: uppercase;
 	text-align: center;
 }
 
-.modal-title {
-	margin: 1rem;
+.modal-buttons {
+	display: grid;
+	justify-content: space-evenly;
+	grid-template-columns: 50px 50px;
 }
+.modal-select {
+	margin: auto;
+	background-color: var(--lightgrey);
+	height: 30px;
+	width: 100px;
+	border: none;
+	border-bottom: 1px dotted var(--grey);
+	outline: none;
+}
+.send,
+.cancel {
+	border: none;
+	cursor: pointer;
+	background-color: var(--lightgrey);
+}
+.cancel {
+	color: var(--red);
+}
+
+/**
+/*~~~~~~~~~~~~~~~//
+/* ERROR 404
+/*~~~~~~~~~~~~~~~//
+**/
 
 .error-page-404 {
 	text-align: center;
