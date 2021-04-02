@@ -1,8 +1,10 @@
 import React, { useContext } from "react"
 // REACT ICONS
-// import { ImDownload } from "react-icons/im"
+import { IoMdClose } from "react-icons/io"
+import { AiOutlineFileAdd, AiOutlineHome } from "react-icons/ai"
 // CONTEXT
 import { DataContext } from "../context"
+import { Link } from "react-router-dom"
 
 const Panel = () => {
 	const {
@@ -17,6 +19,7 @@ const Panel = () => {
 
 	return (
 		<>
+			<h3 className='input-title'>add ticket panel</h3>
 			<form className='input-panel' onSubmit={handleSubmit}>
 				<input
 					type='text'
@@ -43,10 +46,28 @@ const Panel = () => {
 					value={date}
 					required
 				/>
-				<button className='btn-panel' type='submit'>
-					add ticket
-					{/* <ImDownload size={20} /> */}
-				</button>
+				<div className='panel-buttons'>
+					<div>
+						<button className='btn-panel-add' type='submit' name='add'>
+							<AiOutlineFileAdd size={20} />
+						</button>
+						<label htmlFor='add'>add</label>
+					</div>
+					<div>
+						<button className='btn-panel-cancel' type='button' name='cancel'>
+							<IoMdClose size={20} />
+						</button>
+						<label htmlFor='cancel'>annulla</label>
+					</div>
+					<div>
+						<Link to='/'>
+							<button className='btn-panel-home' type='button' name='home'>
+								<AiOutlineHome size={20} />
+							</button>
+							<label htmlFor='home'>home</label>
+						</Link>
+					</div>
+				</div>
 			</form>
 		</>
 	)

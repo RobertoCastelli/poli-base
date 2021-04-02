@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import icon from "../images/icona.png"
 // REACT ICONS
-import { GrSettingsOption } from "react-icons/gr"
+import { GiBigGear } from "react-icons/gi"
 // CONTEXT
 import { DataContext } from "../context"
 
@@ -14,7 +14,7 @@ const Title = () => {
 			<div>gestione ticket presidio</div>
 			<img className='logo-politecnico' src={icon} alt='icon' />
 			<div className='btn-menu' onClick={togglePanel}>
-				<GrSettingsOption size={30} />
+				<GiBigGear size={30} />
 			</div>
 		</div>
 	)

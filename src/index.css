@@ -242,52 +242,53 @@ a {
 /*~~~~~~~~~~~~~~~//
 **/
 
+.input-title {
+	text-align: center;
+	margin-top: 3rem;
+}
 .input-panel {
-	padding: 1rem 1rem;
-	border-bottom-left-radius: 1rem;
-	border-bottom-right-radius: 1rem;
-	justify-content: center;
 	display: grid;
-	row-gap: 0.5rem;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 30px 30px;
-	grid-template-areas:
-		"ticket datapicker"
-		"description button";
-}
-.ticket-panel {
-	grid-area: ticket;
-}
-.description-panel {
-	grid-area: description;
-}
-.btn-panel {
-	grid-area: button;
-	justify-self: center;
-}
-.datapicker-panel {
-	grid-area: datapicker;
-	border: none;
-	width: 90%;
-	padding: 0.5rem;
-	color: var(--black);
-	font-family: "ubuntu", sans-serif;
-	background-color: var(--white);
-	letter-spacing: 0.07rem;
-	border-bottom: 1px dotted var(--lightgrey);
+	place-content: center;
+	gap: 1rem;
 }
 .ticket-panel,
 .description-panel {
-	background-color: var(--white);
-	padding-left: 0.5rem;
-	width: 90%;
-	height: 2rem;
 	border: none;
-	border-bottom: 1px dotted var(--lightgrey);
+	outline: none;
+	height: 30px;
+	padding: 1rem;
+	border-bottom: 1px dotted var(--grey);
+}
+.datapicker-panel {
+	border: none;
+	padding: 0.5rem;
+	color: var(--black);
+	font-family: "ubuntu", sans-serif;
+	letter-spacing: 0.07rem;
+	border-bottom: 1px dotted var(--grey);
 }
 input:focus {
-	border-bottom: 2px solid var(--black);
-	outline: none;
+	border-bottom: 1px solid var(--green);
+	color: var(--green);
+}
+.panel-buttons {
+	display: grid;
+	justify-content: space-evenly;
+	align-items: center;
+	grid-template-columns: repeat(2, 100px);
+	grid-template-rows: repeat(2, 50px);
+	grid-template-areas:
+		"add-ticket cancel"
+		"home home";
+}
+.btn-panel-add {
+	grid-area: add-ticket;
+}
+.btn-panel-cancel {
+	grid-area: cancel;
+}
+.btn-panel-home {
+	grid-area: home;
 }
 
 /**
