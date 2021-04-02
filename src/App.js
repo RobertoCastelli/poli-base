@@ -6,6 +6,7 @@ import Title from "./components/Title"
 import Error from "./components/Error"
 import Home from "./components/Home"
 import Modal from "./components/Modal"
+import Panel from "./components/Panel"
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 					<Switch>
 						<Route exact path='/' component={Home} />
 						<Route path='/calendar' component={Calendar} />
+						<Route path='/admin-panel' component={Panel} />
 						<Route component={Error} />
 					</Switch>
 					<Modal />

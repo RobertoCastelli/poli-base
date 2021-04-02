@@ -17,9 +17,6 @@ body {
 * {
 	box-sizing: border-box;
 }
-img {
-	cursor: pointer;
-}
 a {
 	text-decoration: none;
 	color: var(--black);
@@ -37,7 +34,9 @@ a {
 	--white: #f4f4f4;
 	--green: #5f9ea0;
 	--red: #a52a2a;
-	--lightgrey: #e0e0e0;
+	--lightgrey: #d3d3d3;
+	--lightyellow: #fdf8e2;
+	--lightblue: #cbe1ef;
 }
 
 /**
@@ -48,12 +47,12 @@ a {
 
 .container {
 	position: relative;
-	display: flex;
-	flex-direction: column;
-	max-width: 500px;
-	height: 100vh;
 	margin: auto;
 	padding: 0.3rem;
+	max-width: 500px;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
 }
 .content {
 	flex-grow: 1;
@@ -66,16 +65,30 @@ a {
 **/
 
 .title-politecnico {
+	position: relative;
 	display: grid;
 	text-align: center;
 	background-color: var(--lightgrey);
+	border-bottom: 3px solid var(--black);
 	border-top-left-radius: 1rem;
 	border-top-right-radius: 1rem;
-	border-bottom: 3px solid var(--black);
 }
 .logo-politecnico {
 	margin: 1rem auto;
 	width: 80px;
+}
+.btn-menu {
+	position: absolute;
+	top: 92.5%;
+	left: 85%;
+	transition: transform 0.2s linear;
+	transform: rotate(360deg);
+	background-color: var(--lightgrey);
+	border-radius: 50%;
+	cursor: pointer;
+}
+.btn-menu-arrow-animation {
+	transform: rotate(0deg);
 }
 
 /**
@@ -147,11 +160,11 @@ input:focus {
 	display: grid;
 	place-content: center;
 	justify-content: space-around;
-	grid-template-columns: 80px 80px;
+	grid-template-columns: 80px 80px 80px;
 	grid-template-rows: 50px 50px;
 	grid-template-areas:
-		"lockopen calendar"
-		"lockclose ore";
+		"ticket-add calendar ore"
+		"lockopen lockclose clear ";
 }
 .li-count-open {
 	grid-area: lockopen;
@@ -167,10 +180,26 @@ input:focus {
 .li-count-ore {
 	grid-area: ore;
 }
+.li-count-add {
+	grid-area: ticket-add;
+}
+.li-couunt-clear {
+	grid-area: clear;
+}
 .li-count-open,
 .li-count-close,
-.li-count-calendar {
+.li-count-calendar,
+.li-count-add,
+.li-count-clear {
 	cursor: pointer;
+}
+.li-count-open:hover,
+.li-count-close:hover,
+.li-count-calendar:hover,
+.li-count-add:hover,
+.li-count-clear:hover {
+	transition: all 0.2s ease-in;
+	transform: scale(1.1);
 }
 
 /**
@@ -188,7 +217,7 @@ input:focus {
 	flex-wrap: wrap;
 }
 .li-todo {
-	background-color: var(--lightgrey);
+	background-color: var(--lightblue);
 	display: grid;
 	align-items: center;
 	margin: 0.2rem;
@@ -280,7 +309,7 @@ lendar:active,
 footer {
 	text-align: center;
 	padding: 1rem;
-	background-color: lightgrey;
+	background-color: var(--lightgrey);
 	border-bottom-left-radius: 1rem;
 	border-bottom-right-radius: 1rem;
 	border-top: 3px solid #333;
