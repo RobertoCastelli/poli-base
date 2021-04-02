@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 // REACT ICONS
-import { BiTime } from "react-icons/bi"
+import { FcServices } from "react-icons/fc"
 // CONTEXT
 import { DataContext } from "../context"
 
@@ -26,7 +26,7 @@ export const CalendarList = () => {
 					<div
 						className='filtered-calendar-edit'
 						onClick={() => updateCalendarTicketOre(ticket)}>
-						<BiTime size={20} />
+						<FcServices size={20} />
 					</div>
 				</div>
 			)}

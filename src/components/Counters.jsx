@@ -19,30 +19,37 @@ const Counters = () => {
 
 	return (
 		<ul className='ul-count'>
-			<li className='li-count-open' onClick={() => showIncompleteTickets()}>
+			<li
+				className='li-count-open'
+				name='open'
+				onClick={() => showIncompleteTickets()}>
 				<div>
 					<BsFillUnlockFill size={20} />
 				</div>
-				<div>open {filterIncomplete}</div>
+				<label htmlFor='open'>open {filterIncomplete}</label>
 			</li>
-			<li className='li-count-close' onClick={() => showCompletedTickets()}>
+			<li
+				className='li-count-close'
+				name='close'
+				onClick={() => showCompletedTickets()}>
 				<div>
 					<BsLockFill size={20} />
 				</div>
-				<div>closed {filterCompleted}</div>
+				<label htmlFor='close'>closed {filterCompleted}</label>
 			</li>
 			<li>
 				<Link to='/calendar'>
-					<div className='btn-calendar'>
+					<div className='li-count-calendar' name='calendar'>
 						<BiCalendar size={20} />
 					</div>
+					<label htmlFor='calendar'>calendar</label>
 				</Link>
 			</li>
-			<li className='li-count-time'>
+			<li className='li-count-ore' name='ore'>
 				<div>
 					<BiTime size={20} />
 				</div>
-				<div>hours {oreTotali}</div>
+				<label htmlFor='ore'>hours {oreTotali}</label>
 			</li>
 		</ul>
 	)

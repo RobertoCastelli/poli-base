@@ -6,20 +6,38 @@
 
 body {
 	margin: 0;
-	color: #333;
+	color: var(--black);
 	letter-spacing: 0.07rem;
-	background-color: #f4f4f4;
+	font-size: 0.8rem;
+	background-color: var(--white);
 	font-family: "ubuntu", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
 * {
 	box-sizing: border-box;
 }
-
 img {
 	cursor: pointer;
+}
+a {
+	text-decoration: none;
+	color: var(--black);
+	cursor: pointer;
+}
+
+/**
+/*~~~~~~~~~~~~~~~//
+/* COLORS
+/*~~~~~~~~~~~~~~~//
+**/
+
+:root {
+	--black: #333;
+	--white: #f4f4f4;
+	--green: #5f9ea0;
+	--red: #a52a2a;
+	--lightgrey: #e0e0e0;
 }
 
 /**
@@ -30,15 +48,13 @@ img {
 
 .container {
 	position: relative;
-	font-size: 0.8rem;
 	display: flex;
 	flex-direction: column;
-	margin: auto;
-	padding: 0.2rem;
 	max-width: 500px;
 	height: 100vh;
+	margin: auto;
+	padding: 0.3rem;
 }
-
 .content {
 	flex-grow: 1;
 }
@@ -49,17 +65,15 @@ img {
 /*~~~~~~~~~~~~~~~//
 **/
 
-.title {
-	text-align: center;
+.title-politecnico {
 	display: grid;
-	background-color: lightgrey;
+	text-align: center;
+	background-color: var(--lightgrey);
 	border-top-left-radius: 1rem;
 	border-top-right-radius: 1rem;
-	border-bottom: 3px solid #333;
-	padding: 0 0.3rem;
+	border-bottom: 3px solid var(--black);
 }
-
-.icon {
+.logo-politecnico {
 	margin: 1rem auto;
 	width: 80px;
 }
@@ -70,38 +84,51 @@ img {
 /*~~~~~~~~~~~~~~~//
 **/
 
-.panel {
-	box-shadow: 0px 0px 25px -3px lightgray;
-	padding: 1rem 1rem 0.5rem 1rem;
+.admin-panel {
+	padding: 1rem 1rem;
 	border-bottom-left-radius: 1rem;
 	border-bottom-right-radius: 1rem;
+	justify-content: center;
 	display: grid;
+	row-gap: 0.5rem;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 30px 30px;
+	grid-template-areas:
+		"ticket datapicker"
+		"description button";
 }
-
-.datepicker {
-	margin: 1rem auto;
+.ticket-panel {
+	grid-area: ticket;
+}
+.description-panel {
+	grid-area: description;
+}
+.btn-panel {
+	grid-area: button;
+	justify-self: center;
+}
+.datapicker-panel {
+	grid-area: datapicker;
 	border: none;
-	width: 50%;
-	padding: 0.4rem 0;
+	width: 90%;
+	padding: 0.5rem;
+	color: var(--black);
 	font-family: "ubuntu", sans-serif;
-	background-color: #f4f4f4;
-	border-bottom: 1px dotted #999;
+	background-color: var(--white);
+	letter-spacing: 0.07rem;
+	border-bottom: 1px dotted var(--lightgrey);
 }
-
-input[type="number"] {
-	width: 50px;
-}
-
-input[type="text"] {
-	background-color: #f4f4f4;
-	padding-left: 1rem;
+.ticket-panel,
+.description-panel {
+	background-color: var(--white);
+	padding-left: 0.5rem;
+	width: 90%;
 	height: 2rem;
 	border: none;
-	border-bottom: 1px dotted #999;
+	border-bottom: 1px dotted var(--lightgrey);
 }
-
 input:focus {
-	border-bottom: 2px solid #333;
+	border-bottom: 2px solid var(--black);
 	outline: none;
 }
 
@@ -111,57 +138,39 @@ input:focus {
 /*~~~~~~~~~~~~~~~//
 **/
 
-.filter-title {
+.ul-count {
+	list-style-type: none;
 	text-align: center;
-	margin-top: 1rem;
+	padding: 1rem 0;
+	margin: 0;
+	background-color: var(--lightgrey);
+	display: grid;
+	place-content: center;
+	justify-content: space-around;
+	grid-template-columns: 80px 80px;
+	grid-template-rows: 50px 50px;
+	grid-template-areas:
+		"lockopen calendar"
+		"lockclose ore";
 }
-
+.li-count-open {
+	grid-area: lockopen;
+	color: var(--green);
+}
+.li-count-close {
+	grid-area: lockclose;
+	color: var(--red);
+}
+.li-count-calendar {
+	grid-area: calendar;
+}
+.li-count-ore {
+	grid-area: ore;
+}
 .li-count-open,
 .li-count-close,
-.btn-calendar,
-.btn-home {
-	display: grid;
-	place-content: center;
-	text-align: center;
-	width: 60px;
-	height: 60px;
-	padding: 0.5rem;
-	box-shadow: 0px 0px 25px -3px lightgray;
+.li-count-calendar {
 	cursor: pointer;
-	border-radius: 0.5rem;
-	letter-spacing: 0.07rem;
-}
-
-.li-count-open:hover,
-.li-count-close:hover,
-.li-count-list:hover,
-.btn-calendar:hover,
-.btn-home:hover {
-	border: 1px solid #333;
-}
-
-.li-count-time {
-	display: grid;
-	place-content: center;
-	text-align: center;
-	width: 60px;
-	padding: 0.5rem;
-}
-
-.ul-count {
-	list-style: none;
-	padding: 0;
-	margin: 1rem;
-	display: flex;
-	justify-content: space-around;
-}
-
-.li-count-open {
-	color: cadetblue;
-}
-
-.li-count-close {
-	color: brown;
 }
 
 /**
@@ -169,84 +178,54 @@ input:focus {
 /* TICKET LIST
 /*~~~~~~~~~~~~~~~//
 **/
-
+.title-ticket-state {
+	text-align: center;
+}
 .ul-todo {
 	padding: 0;
+	list-style-type: none;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .li-todo {
-	position: relative;
-	animation: fader 0.5s ease-in;
-	margin-bottom: 1.2rem;
-	padding: 0.5rem;
-	background-color: lightgray;
-	border-top-left-radius: 1rem;
-	border-radius: 0.5rem;
 	display: grid;
-	align-items: center;
-	grid-template-columns: repeat(3, 1fr) 30px 30px;
-	grid-template-rows: 20px 20px;
+	grid-template-columns: 80px 80px;
+	grid-template-rows: 30px 30px 30px 30px;
 	grid-template-areas:
-		".  date ore edit delete"
-		"description description description edit delete";
+		"ticket ticket"
+		"description description"
+		"date ore"
+		"edit delete";
 }
-@keyframes fader {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
+
 .ticket-todo {
-	position: absolute;
-	padding: 0.3rem;
-	background-color: #f4f4f4;
-	box-shadow: 0px 2px 20px -3px grey;
-	border-radius: 0.3rem;
-	top: -20%;
-	left: 3%;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-.delete-todo {
-	grid-area: delete;
-	cursor: pointer;
-	color: brown;
-	text-align: center;
-}
-.edit-todo {
-	grid-area: edit;
-	cursor: pointer;
-	color: cadetblue;
-	text-align: center;
+	grid-area: ticket;
 }
 .desc-todo {
 	grid-area: description;
-	font-style: italic;
 }
 .ore-todo {
 	grid-area: ore;
-	cursor: pointer;
-	text-align: center;
 }
 .date-todo {
 	grid-area: date;
-	text-align: center;
+	font-size: 12px;
+}
+.delete-todo {
+	grid-area: delete;
+}
+.edit-todo {
+	grid-area: edit;
 }
 
 .incomplete-todo,
 .completed-todo {
-	color: cadetblue;
+	color: var(--green);
 }
 
 .completed-todo {
-	color: brown;
-}
-
-select {
-	margin: 1rem;
-	padding: 0.5rem;
+	color: var(--red);
 }
 
 /**
@@ -255,7 +234,9 @@ select {
 /*~~~~~~~~~~~~~~~//
 **/
 
-button {
+.delete-todo:active,
+lendar:active,
+.filtered-calendar-edit:active {
 	width: 100%;
 	border: none;
 	margin: 0.5rem auto;
@@ -264,7 +245,6 @@ button {
 	cursor: pointer;
 }
 
-button:active,
 .delete-todo:active,
 .li-count-open:active,
 .li-count-close:active,
@@ -424,7 +404,9 @@ footer {
 .filtered-calendar-edit {
 	grid-area: edit;
 	cursor: pointer;
-	color: cadetblue;
+	animation: pulse 1s infinite alternate;
+	cursor: pointer;
+	text-align: center;
 }
 
 .filtered-calendar-state-complete {

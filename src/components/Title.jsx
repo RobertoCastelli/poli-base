@@ -7,10 +7,15 @@ const Title = () => {
 	const { togglePanel } = useContext(DataContext)
 
 	return (
-		<div className='title'>
+		<div className='title-politecnico'>
 			<h2>Politecnico di Milano 1863</h2>
 			<div>gestione ticket presidio</div>
-			<img className='icon' src={icon} alt='icon' onClick={togglePanel} />
+			<img
+				className='logo-politecnico'
+				src={icon}
+				alt='icon'
+				onClick={togglePanel}
+			/>
 		</div>
 	)
 }

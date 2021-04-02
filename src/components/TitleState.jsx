@@ -5,8 +5,8 @@ import { DataContext } from "../context"
 const TitleState = () => {
 	const { filterTitle } = useContext(DataContext)
 	return (
-		<div className='filter-title'>
-			<div>{filterTitle}</div>
+		<div className='title-ticket-state'>
+			<h3>{filterTitle}</h3>
 		</div>
 	)
 }
