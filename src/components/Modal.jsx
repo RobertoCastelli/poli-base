@@ -30,14 +30,14 @@ const Modal = () => {
 						</select>
 						<div className='modal-buttons'>
 							<div>
-								<button className='send' name='send' type='submit'>
+								<button className='btn-modal-send' name='send' type='submit'>
 									<GrSend size={30} />
 								</button>
 								<label htmlFor='send'>invia</label>
 							</div>
 							<div>
 								<button
-									className='cancel'
+									className='btn-modal-cancel'
 									name='cancel'
 									type='button'
 									onClick={closeModal}>

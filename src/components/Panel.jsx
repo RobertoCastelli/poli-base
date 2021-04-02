@@ -49,22 +49,19 @@ const Panel = () => {
 				<div className='panel-buttons'>
 					<div>
 						<button className='btn-panel-add' type='submit' name='add'>
-							<AiOutlineFileAdd size={20} />
+							<AiOutlineFileAdd size={30} />
 						</button>
-						<label htmlFor='add'>add</label>
 					</div>
 					<div>
 						<button className='btn-panel-cancel' type='button' name='cancel'>
-							<IoMdClose size={20} />
+							<IoMdClose size={30} />
 						</button>
-						<label htmlFor='cancel'>annulla</label>
 					</div>
 					<div>
 						<Link to='/'>
 							<button className='btn-panel-home' type='button' name='home'>
-								<AiOutlineHome size={20} />
+								<AiOutlineHome size={30} />
 							</button>
-							<label htmlFor='home'>home</label>
 						</Link>
 					</div>
 				</div>

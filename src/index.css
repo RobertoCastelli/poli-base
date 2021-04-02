@@ -248,8 +248,10 @@ a {
 }
 .input-panel {
 	display: grid;
+	grid-template-rows: repeat(4, 50px);
+	row-gap: 0.1rem;
 	place-content: center;
-	gap: 1rem;
+	text-align: center;
 }
 .ticket-panel,
 .description-panel {
@@ -257,35 +259,33 @@ a {
 	outline: none;
 	height: 30px;
 	padding: 1rem;
-	border-bottom: 1px dotted var(--grey);
+	border-bottom: 1px solid var(--grey);
 }
 .datapicker-panel {
 	border: none;
 	padding: 0.5rem;
+	height: 35px;
 	color: var(--black);
 	font-family: "ubuntu", sans-serif;
 	letter-spacing: 0.07rem;
-	border-bottom: 1px dotted var(--grey);
+	border-bottom: 1px solid var(--grey);
+	outline: none;
 }
 input:focus {
 	border-bottom: 1px solid var(--green);
 	color: var(--green);
 }
 .panel-buttons {
-	display: grid;
+	display: flex;
 	justify-content: space-evenly;
-	align-items: center;
-	grid-template-columns: repeat(2, 100px);
-	grid-template-rows: repeat(2, 50px);
-	grid-template-areas:
-		"add-ticket cancel"
-		"home home";
 }
 .btn-panel-add {
 	grid-area: add-ticket;
+	color: var(--green);
 }
 .btn-panel-cancel {
 	grid-area: cancel;
+	color: var(--red);
 }
 .btn-panel-home {
 	grid-area: home;
@@ -341,7 +341,6 @@ footer {
 	text-transform: uppercase;
 	text-align: center;
 }
-
 .modal-buttons {
 	display: grid;
 	justify-content: space-evenly;
@@ -356,13 +355,16 @@ footer {
 	border-bottom: 1px dotted var(--grey);
 	outline: none;
 }
-.send,
-.cancel {
+.btn-modal-send,
+.btn-modal-cancel,
+.btn-panel-home,
+.btn-panel-cancel,
+.btn-panel-add {
 	border: none;
 	cursor: pointer;
-	background-color: var(--lightgrey);
+	background-color: transparent;
 }
-.cancel {
+.btn-modal-cancel {
 	color: var(--red);
 }
 
