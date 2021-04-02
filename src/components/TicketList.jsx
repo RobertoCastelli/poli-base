@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 // REACT ICONS
-import { FcServices, FcCancel } from "react-icons/fc"
+import { GrEdit } from "react-icons/gr"
+import { RiDeleteBinLine } from "react-icons/ri"
 // CONTEXT
 import { DataContext } from "../context"
 
@@ -22,10 +23,10 @@ const TicketList = () => {
 							<span id='ore'>{tk.ore} ore</span>
 						</div>
 						<div className='edit-todo' onClick={() => openModal(tk.id)}>
-							<FcServices size={20} />
+							<GrEdit size={20} />
 						</div>
 						<div className='delete-todo' onClick={() => deleteTicket(tk.id)}>
-							<FcCancel size={20} />
+							<RiDeleteBinLine size={20} />
 						</div>
 					</li>
 				)

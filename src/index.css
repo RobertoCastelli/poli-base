@@ -187,9 +187,11 @@ input:focus {
 	display: flex;
 	flex-wrap: wrap;
 }
-
 .li-todo {
+	background-color: var(--lightgrey);
 	display: grid;
+	align-items: center;
+	margin: 0.2rem;
 	grid-template-columns: 80px 80px;
 	grid-template-rows: 30px 30px 30px 30px;
 	grid-template-areas:
@@ -198,7 +200,6 @@ input:focus {
 		"date ore"
 		"edit delete";
 }
-
 .ticket-todo {
 	grid-area: ticket;
 }
@@ -210,7 +211,6 @@ input:focus {
 }
 .date-todo {
 	grid-area: date;
-	font-size: 12px;
 }
 .delete-todo {
 	grid-area: delete;
@@ -219,8 +219,14 @@ input:focus {
 	grid-area: edit;
 }
 
-.incomplete-todo,
-.completed-todo {
+.delete-todo,
+.edit-todo,
+.date-todo,
+.ore-todo {
+	text-align: center;
+}
+
+.incomplete-todo {
 	color: var(--green);
 }
 
