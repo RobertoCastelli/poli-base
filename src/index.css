@@ -5,6 +5,9 @@
 **/
 
 body {
+	background-image: url("./images/bg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
 	margin: 0;
 	color: var(--black);
 	letter-spacing: 0.07rem;
@@ -36,7 +39,7 @@ a {
 	--red: #a52a2a;
 	--lightgrey: #e8e8e8;
 	--lightyellow: #fff2cc;
-	--lightblue: #cbe1ef;
+	--lightblue: rgba(203, 225, 239, 0.5);
 }
 
 /**
@@ -70,9 +73,10 @@ a {
 	display: grid;
 	text-align: center;
 	background-color: var(--lightgrey);
-	border-bottom: 3px solid var(--black);
+	border-bottom: 2px solid var(--black);
 	border-top-left-radius: 1rem;
 	border-top-right-radius: 1rem;
+	box-shadow: 5px 5px 8px -3px grey;
 }
 .logo-politecnico {
 	margin: 1rem auto;
@@ -106,7 +110,7 @@ a {
 	text-align: center;
 	padding: 1rem 0;
 	margin: 0;
-	background-color: var(--lightgrey);
+	background-color: var(--lightblue, 0.5);
 	display: grid;
 	place-content: center;
 	justify-content: space-around;
@@ -136,7 +140,7 @@ a {
 .li-count-add {
 	grid-area: ticket-add;
 }
-.li-couunt-clear {
+.li-count-clear {
 	grid-area: clear;
 }
 .li-count-open,
@@ -146,13 +150,12 @@ a {
 .li-count-clear {
 	cursor: pointer;
 }
-.li-count-open:hover,
-.li-count-close:hover,
-.li-count-calendar:hover,
-.li-count-add:hover,
-.li-count-clear:hover {
-	transition: all 0.2s ease-in;
-	transform: scale(1.1);
+.li-count-open:active,
+.li-count-close:active,
+.li-count-calendae:active,
+.li-count-add:active,
+.li-count-clear:active {
+	transform: translateY(2px);
 }
 
 /**
@@ -171,23 +174,23 @@ a {
 	grid-template-columns: 1fr 1fr 1fr;
 }
 .li-todo {
-	background-color: var(--lightblue);
-	box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+	background-color: var(--lightgrey);
+	box-shadow: 5px 5px 8px -3px grey;
 	transform: rotate(1deg);
 	transition: transform 0.2s linear;
 	display: grid;
 	align-items: center;
-	grid-template-columns: 80px 80px;
-	grid-template-rows: 30px 30px 30px 30px;
+	justify-content: center;
+	grid-template-columns: repeat(2, 80px);
+	grid-template-rows: repeat(4, 40px);
 	grid-template-areas:
-		"ticket ticket"
+		"ticket date"
 		"description description"
-		"date ore"
+		"ore ."
 		"edit delete";
 }
 .li-todo:nth-child(odd) {
-	background-color: var(--lightyellow);
-	transform: rotate(-2deg);
+	transform: rotate(-1deg);
 }
 .li-todo:hover {
 	transform: rotate(0deg);
@@ -197,6 +200,7 @@ a {
 .ticket-todo {
 	grid-area: ticket;
 	font-weight: bold;
+	font-size: 1rem;
 	text-transform: uppercase;
 }
 .desc-todo {
@@ -210,20 +214,15 @@ a {
 }
 .delete-todo {
 	grid-area: delete;
-	cursor: pointer;
 	color: var(--red);
 }
 .edit-todo {
 	grid-area: edit;
-	cursor: pointer;
 }
-
 .delete-todo,
-.edit-todo,
-.date-todo,
-.ore-todo,
-.desc-todo {
+.edit-todo {
 	text-align: center;
+	cursor: pointer;
 }
 
 .incomplete-todo {
@@ -290,43 +289,6 @@ input:focus {
 
 /**
 /*~~~~~~~~~~~~~~~//
-/* BUTTONS
-/*~~~~~~~~~~~~~~~//
-**/
-
-.delete-todo:active,
-lendar:active,
-.filtered-calendar-edit:active {
-	width: 100%;
-	border: none;
-	margin: 0.5rem auto;
-	outline: none;
-	background-color: #f4f4f4;
-	cursor: pointer;
-}
-
-.delete-todo:active,
-.li-count-open:active,
-.li-count-close:active,
-.li-count-list:active,
-.btn-calendar:active,
-.filtered-calendar-edit:active {
-	transform: translateY(1px);
-}
-
-.send,
-.cancel {
-	font-size: 0.6rem;
-	margin-left: 1rem;
-	align-self: center;
-}
-
-.buttons {
-	display: flex;
-}
-
-/**
-/*~~~~~~~~~~~~~~~//
 /* FOOTER
 /*~~~~~~~~~~~~~~~//
 **/
@@ -337,7 +299,8 @@ footer {
 	background-color: var(--lightgrey);
 	border-bottom-left-radius: 1rem;
 	border-bottom-right-radius: 1rem;
-	border-top: 3px solid #333;
+	border-top: 2px solid #333;
+	box-shadow: 5px -5px 8px -3px grey;
 }
 
 /**
