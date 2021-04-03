@@ -211,7 +211,7 @@ a {
 .ore-todo {
 	grid-area: ore;
 	padding: 0.5rem;
-	border-bottom: 1px dotted var(--grey);
+	border-bottom: 1px solid var(--grey);
 }
 .date-todo {
 	grid-area: date;
@@ -227,7 +227,10 @@ a {
 .edit-todo {
 	cursor: pointer;
 }
-
+.edit-todo:active,
+.delete-todo:active {
+	transform: translateY(2px);
+}
 .incomplete-todo {
 	color: var(--green);
 }
@@ -260,6 +263,7 @@ a {
 	height: 30px;
 	padding: 1rem;
 	border-bottom: 1px solid var(--grey);
+	background-color: transparent;
 }
 .datapicker-panel {
 	border: none;
@@ -269,6 +273,7 @@ a {
 	font-family: "ubuntu", sans-serif;
 	letter-spacing: 0.07rem;
 	border-bottom: 1px solid var(--grey);
+	background-color: transparent;
 	outline: none;
 }
 input:focus {
@@ -352,7 +357,7 @@ footer {
 	height: 30px;
 	width: 100px;
 	border: none;
-	border-bottom: 1px dotted var(--grey);
+	border-bottom: 1px solid var(--grey);
 	outline: none;
 }
 .btn-modal-send,
@@ -363,9 +368,17 @@ footer {
 	border: none;
 	cursor: pointer;
 	background-color: transparent;
+	outline: none;
 }
 .btn-modal-cancel {
 	color: var(--red);
+}
+.btn-modal-send:active,
+.btn-modal-cancel:active,
+.btn-panel-home:active,
+.btn-panel-cancel:active,
+.btn-panel-add:active {
+	transform: translateY(2px);
 }
 
 /**
