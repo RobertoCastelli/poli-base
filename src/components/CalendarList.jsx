@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 // REACT ICONS
-import { FcServices } from "react-icons/fc"
+import { GrEdit } from "react-icons/gr"
 // CONTEXT
 import { DataContext } from "../context"
 
@@ -23,11 +23,12 @@ export const CalendarList = () => {
 					<div className='filtered-calendar-date'>{date}</div>
 					<div className='filtered-calendar-ore'>{ore} ore</div>
 					<div className='filtered-calendar-description'>{description}</div>
-					<div
-						className='filtered-calendar-edit'
+					<button
+						className='btn-calendar-edit'
+						type='button'
 						onClick={() => updateCalendarTicketOre(ticket)}>
-						<FcServices size={20} />
-					</div>
+						<GrEdit size={20} />
+					</button>
 				</div>
 			)}
 		</>

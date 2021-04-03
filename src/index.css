@@ -153,10 +153,17 @@ a {
 }
 .li-count-open:active,
 .li-count-close:active,
-.li-count-calendae:active,
+.li-count-calendar:active,
 .li-count-add:active,
 .li-count-clear:active {
 	transform: translateY(2px);
+}
+.li-count-open:hover,
+.li-count-close:hover,
+.li-count-calendar:hover,
+.li-count-add:hover,
+.li-count-clear:hover {
+	font-weight: bold;
 }
 
 /**
@@ -252,8 +259,8 @@ a {
 .input-panel {
 	display: grid;
 	grid-template-rows: repeat(4, 50px);
-	row-gap: 0.1rem;
 	place-content: center;
+	align-items: center;
 	text-align: center;
 }
 .ticket-panel,
@@ -283,6 +290,7 @@ input:focus {
 .panel-buttons {
 	display: flex;
 	justify-content: space-evenly;
+	margin-top: 3rem;
 }
 .btn-panel-add {
 	grid-area: add-ticket;
@@ -364,7 +372,8 @@ footer {
 .btn-modal-cancel,
 .btn-panel-home,
 .btn-panel-cancel,
-.btn-panel-add {
+.btn-panel-add,
+.btn-calendar-home {
 	border: none;
 	cursor: pointer;
 	background-color: transparent;
@@ -377,7 +386,9 @@ footer {
 .btn-modal-cancel:active,
 .btn-panel-home:active,
 .btn-panel-cancel:active,
-.btn-panel-add:active {
+.btn-panel-add:active,
+.btn-calendar-home:active,
+.btn-calendar-edit:active {
 	transform: translateY(2px);
 }
 
@@ -400,33 +411,25 @@ footer {
 
 .calendar {
 	margin-top: 1rem;
+	background-color: var(--lightblue) !important;
 }
-
-.btn-calendar {
-	color: #333;
-	background-color: lightgray;
-}
-
 .fc-event-title-container {
-	background-color: lightgrey;
-	color: #333;
+	background-color: var(--lightyellow);
 	cursor: pointer;
 }
-
 .fc-h-event {
-	border: 1px solid lightgray !important;
+	border: 1px solid var(--lightyellow) !important;
+	margin: 0.1rem;
 }
-
 .fc-h-event:hover {
-	border: 1px dotted #333 !important;
+	border: 1px solid var(--black) !important;
 }
 
-.btn-home {
-	display: grid;
-	place-items: center;
-	margin-top: 3rem;
-	color: #333;
+.calendar-buttons {
+	margin: 1rem;
+	text-align: center;
 }
+
 /**
 /*~~~~~~~~~~~~~~~~~~//
 /* CALENDAR DETAILS
@@ -439,7 +442,7 @@ footer {
 	padding: 0.5rem 1rem;
 	text-align: center;
 	align-items: center;
-	background-color: lightgray;
+	background-color: var(--lightgrey);
 	border-radius: 0.5rem;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 30px;
@@ -452,7 +455,7 @@ footer {
 .filtered-calendar-ticket {
 	position: absolute;
 	padding: 0.3rem;
-	background-color: #f4f4f4;
+	background-color: var(--white);
 	box-shadow: 0px 2px 20px -3px grey;
 	color: green;
 	border-radius: 0.3rem;
@@ -475,10 +478,8 @@ footer {
 .filtered-calendar-ore {
 	grid-area: ore;
 }
-.filtered-calendar-edit {
+.btn-calendar-edit {
 	grid-area: edit;
-	cursor: pointer;
-	animation: pulse 1s infinite alternate;
 	cursor: pointer;
 	text-align: center;
 }
@@ -493,4 +494,9 @@ footer {
 
 .fc-sticky-complete {
 	color: brown;
+}
+.calendar {
+	background-color: var(--lighty);
+	border-bottom-left-radius: 0.5rem;
+	border-bottom-right-radius: 0.5rem;
 }

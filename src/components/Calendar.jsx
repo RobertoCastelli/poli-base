@@ -7,7 +7,7 @@ import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import interactionPlugin from "@fullcalendar/interaction"
 // REACT ICONS
-import { FaUniversity } from "react-icons/fa"
+import { AiOutlineHome } from "react-icons/ai"
 // CONTEXT
 import { DataContext } from "../context"
 
@@ -27,11 +27,13 @@ const Calendar = () => {
 				eventDidMount={checkClosed}
 			/>
 			<CalendarList />
-			<Link to='/' style={{ textDecoration: "none" }}>
-				<button type='button' name='home' className='btn-home'>
-					<FaUniversity size={20} /> home
-				</button>
-			</Link>
+			<div className='calendar-buttons'>
+				<Link to='/'>
+					<button className='btn-calendar-home' type='button' name='home'>
+						<AiOutlineHome size={30} />
+					</button>
+				</Link>
+			</div>
 		</div>
 	)
 }

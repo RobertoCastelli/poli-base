@@ -302,9 +302,11 @@ export default ContextProvider
  * change permission firebase
  * add edificio select
  * dragable/change date calendar tickets
+ * confirm after ticket and hors sent
  *
  * FIXME:
  * edit button calendar
+ * option button not working on other pages
  *
  *
  */
