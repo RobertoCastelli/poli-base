@@ -21,8 +21,8 @@ export const CalendarList = () => {
 						{ticket}
 					</div>
 					<div className='filtered-calendar-date'>{date}</div>
-					<div className='filtered-calendar-ore'>{ore} ore</div>
 					<div className='filtered-calendar-description'>{description}</div>
+					<div className='filtered-calendar-ore'>{ore} ore</div>
 					<button
 						className='btn-calendar-edit'
 						type='button'

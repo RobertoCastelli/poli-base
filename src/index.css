@@ -183,7 +183,8 @@ a {
 	text-align: center;
 	gap: 0.5rem;
 }
-.li-todo {
+.li-todo,
+.filtered-calendar-tickets {
 	background-color: var(--lightyellow);
 	box-shadow: 5px 5px 8px -3px var(--grey);
 	transform: rotate(1deg);
@@ -206,16 +207,19 @@ a {
 	transform: scale(1.1);
 	z-index: 1;
 }
-.ticket-todo {
+.ticket-todo,
+.filtered-calendar-ticket {
 	grid-area: ticket;
 	font-weight: bold;
 	font-size: 1rem;
 	text-transform: uppercase;
 }
-.desc-todo {
+.desc-todo,
+.filtered-calendar-description {
 	grid-area: description;
 }
-.ore-todo {
+.ore-todo,
+.filtered-calendar-ore {
 	grid-area: ore;
 	padding: 0.5rem;
 	border-bottom: 1px solid var(--grey);
@@ -234,15 +238,12 @@ a {
 .edit-todo {
 	cursor: pointer;
 }
-.edit-todo:active,
-.delete-todo:active {
-	transform: translateY(2px);
-}
-.incomplete-todo {
+.incomplete-todo,
+.filtered-calendar-state {
 	color: var(--green);
 }
-
-.completed-todo {
+.completed-todo,
+.filtered-calendar-state-complete {
 	color: var(--red);
 }
 
@@ -388,7 +389,9 @@ footer {
 .btn-panel-cancel:active,
 .btn-panel-add:active,
 .btn-calendar-home:active,
-.btn-calendar-edit:active {
+.btn-calendar-edit:active,
+.edit-todo:active,
+.delete-todo:active {
 	transform: translateY(2px);
 }
 
@@ -412,6 +415,8 @@ footer {
 .calendar {
 	margin-top: 1rem;
 	background-color: var(--lightblue) !important;
+	border-bottom-left-radius: 0.5rem;
+	border-bottom-right-radius: 0.5rem;
 }
 .fc-event-title-container {
 	background-color: var(--lightyellow);
@@ -424,10 +429,15 @@ footer {
 .fc-h-event:hover {
 	border: 1px solid var(--black) !important;
 }
-
 .calendar-buttons {
 	margin: 1rem;
 	text-align: center;
+}
+.fc-sticky {
+	color: green;
+}
+.fc-sticky-complete {
+	color: brown;
 }
 
 /**
@@ -437,66 +447,15 @@ footer {
 **/
 
 .filtered-calendar-tickets {
-	position: relative;
-	animation: fader 0.5s ease;
-	padding: 0.5rem 1rem;
-	text-align: center;
-	align-items: center;
-	background-color: var(--lightgrey);
-	border-radius: 0.5rem;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 30px;
-	grid-template-rows: 20px 20px;
-	margin-top: 2rem;
-	grid-template-areas:
-		"ticket date ore edit"
-		"description description description edit";
+	place-content: center;
+	width: 200px;
+	margin: auto;
+	text-align: center;
 }
 .filtered-calendar-ticket {
-	position: absolute;
-	padding: 0.3rem;
-	background-color: var(--white);
-	box-shadow: 0px 2px 20px -3px grey;
-	color: green;
-	border-radius: 0.3rem;
-	top: -100%;
-	left: 0%;
-	grid-area: ticket;
-	font-weight: bold;
 }
-.filtered-calendar-date {
-	grid-area: date;
-}
-.filtered-calendar-description {
-	grid-area: description;
-	text-align: left;
-}
-.filtered-calendar-state {
-	grid-area: state;
-	color: green;
-}
-.filtered-calendar-ore {
-	grid-area: ore;
+.filtered-calendar-state-complete {
 }
 .btn-calendar-edit {
-	grid-area: edit;
-	cursor: pointer;
-	text-align: center;
-}
-
-.filtered-calendar-state-complete {
-	color: brown;
-}
-
-.fc-sticky {
-	color: green;
-}
-
-.fc-sticky-complete {
-	color: brown;
-}
-.calendar {
-	background-color: var(--lighty);
-	border-bottom-left-radius: 0.5rem;
-	border-bottom-right-radius: 0.5rem;
 }
