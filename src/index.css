@@ -6,7 +6,7 @@
 
 body {
 	background-image: url("./images/bg.jpg");
-	background-size: cover;
+
 	margin: 0;
 	color: var(--black);
 	letter-spacing: 0.07rem;
@@ -416,7 +416,7 @@ footer {
 
 .calendar {
 	margin-top: 1rem;
-	background-color: var(--lightblue) !important;
+	background-color: var(--lightgrey) !important;
 	border-bottom-left-radius: 0.5rem;
 	border-bottom-right-radius: 0.5rem;
 	/* background-image: url("./images/bg.jpg");
