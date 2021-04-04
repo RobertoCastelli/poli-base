@@ -26,7 +26,7 @@ const Panel = () => {
 					type='text'
 					className='ticket-panel'
 					placeholder='ticket'
-					maxLength='10'
+					maxLength='9'
 					onChange={(e) => setTicket(e.target.value)}
 					value={ticket}
 					required

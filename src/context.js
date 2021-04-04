@@ -39,7 +39,7 @@ const ContextProvider = (props) => {
 	const [oreTotali, setOreTotali] = useState(0)
 	const [filterCompleted, setFilterCompleted] = useState(0)
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
-	const [messagePanel, setMessagePanel] = useState("input data")
+	const [messagePanel, setMessagePanel] = useState("ready ⟹ input data")
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
@@ -74,7 +74,7 @@ const ContextProvider = (props) => {
 				createdAt: dateAndTimeNow,
 			})
 			.then((docRef) => console.log(`ticket added ID: ${docRef.id}`))
-			.catch((err) => console.log(`hups! --> ${err.message}`))
+			.catch((err) => console.log(`hups! ⟹ ${err.message}`))
 	}
 
 	// INPUT MESSAGE W/ TIMER
@@ -85,7 +85,7 @@ const ContextProvider = (props) => {
 
 	// CLEAR INPUT FIELDS
 	const cancelInputs = () => {
-		inputMessage("fields cleared", "input data", 2000)
+		inputMessage("fields cleared", "ready ⟹ input data", 2000)
 		setTicket("")
 		setDescription("")
 	}
@@ -94,7 +94,7 @@ const ContextProvider = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		addTicket()
-		inputMessage("ticket added to DB", "input data", 2000)
+		inputMessage("ticket added to DB", "ready ⟹ input data", 2000)
 		setTicket("")
 		setDescription("")
 	}
@@ -110,7 +110,7 @@ const ContextProvider = (props) => {
 			.doc(ticketID)
 			.delete()
 			.then(() => console.log(`ticket deleted ID: ${ticketID}`))
-			.catch((err) => console.log(`hups! --> ${err.message}`))
+			.catch((err) => console.log(`hups!⟹ ${err.message}`))
 
 	//~~~~~~~~~~~//
 	//   MODAL   //
@@ -130,8 +130,10 @@ const ContextProvider = (props) => {
 			.update({
 				ore: parseInt(modalOre),
 			})
-			.then(() => console.log(`edited ore ID: ${index} to ${modalOre} ore`))
-			.catch((err) => `hups! --> ${err.message}`)
+			.then(() =>
+				alert(`Ticket ID: ${index} \nSent data to DB ⟹ ${modalOre} ore`)
+			)
+			.catch((err) => `hups! ⟹ ${err.message}`)
 	}
 
 	// CLOSE MODAL
@@ -160,7 +162,7 @@ const ContextProvider = (props) => {
 			.where("ore", ">", 0)
 			.get()
 			.then((snapshot) => setFilterCompleted(snapshot.size))
-			.catch((err) => console.log(`hups! --> ${err.message}`))
+			.catch((err) => console.log(`hups! ⟹ ${err.message}`))
 	}, [tickets])
 
 	// COUNT INCOMPLETE TICKETS
@@ -169,12 +171,12 @@ const ContextProvider = (props) => {
 			.where("ore", "==", 0)
 			.get()
 			.then((snapshot) => setFilterIncomplete(snapshot.size))
-			.catch((err) => console.log(`hups! --> ${err.message}`))
+			.catch((err) => console.log(`hups! ⟹ ${err.message}`))
 	}, [tickets])
 
 	// CLEAR DB
 	const clearDB = () =>
-		window.confirm("ATTENZIONE! premi OK per cancellare TUTTO il DB") &&
+		window.confirm("🔥 ATTENZIONE 🔥 \npremi OK per cancellare TUTTO il DB") &&
 		dbRef.get().then((snapshot) => snapshot.forEach((doc) => doc.ref.delete()))
 
 	// BOILERPLATE TEMPLATE
@@ -322,11 +324,12 @@ export default ContextProvider
  * change permission firebase
  * add edificio select
  * dragable/change date calendar tickets
- * confirm after ticket and hors sent
+
  *
  * FIXME:
  * edit button calendar
  * option button not working on other pages
+ * clear all tickets on calendar page too
  *
  *
  */

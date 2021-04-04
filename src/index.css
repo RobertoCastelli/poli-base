@@ -6,7 +6,6 @@
 
 body {
 	background-image: url("./images/bg.jpg");
-	background-repeat: no-repeat;
 	background-size: cover;
 	margin: 0;
 	color: var(--black);
@@ -422,6 +421,9 @@ footer {
 	background-color: var(--lightblue) !important;
 	border-bottom-left-radius: 0.5rem;
 	border-bottom-right-radius: 0.5rem;
+	/* background-image: url("./images/bg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover; */
 }
 .fc-event-title-container {
 	background-color: var(--lightyellow);
