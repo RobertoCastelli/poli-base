@@ -16,11 +16,11 @@ const Panel = () => {
 		setDate,
 		handleSubmit,
 		cancelInputs,
+		messagePanel,
 	} = useContext(DataContext)
 
 	return (
 		<>
-			<h3 className='input-title'>add ticket panel</h3>
 			<form className='input-panel' onSubmit={handleSubmit}>
 				<input
 					type='text'
@@ -70,6 +70,7 @@ const Panel = () => {
 						</Link>
 					</div>
 				</div>
+				<p className='info-message-panel'>{messagePanel}</p>
 			</form>
 		</>
 	)

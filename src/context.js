@@ -11,19 +11,18 @@ export const DataContext = React.createContext()
 //~~~~~~~~~~~~~~~//
 //  DATE & TIME  //
 //~~~~~~~~~~~~~~~//
-
-// TODAY DATEPICKER
-const today = new Date().toISOString().substring(0, 10)
-
-// TODAY DATE & TIME FROM DB
-const dateAndTimeNow = firebase.firestore.FieldValue.serverTimestamp()
-
 // TODAY DATE & TIME FROM DB
 // let dateAndTimeNow = new Date(
 // 	firebase.firestore.Timestamp.now().seconds * 1000
 // )
 // 	.toLocaleString()
 // 	.split(",")[0]
+
+// TODAY DATEPICKER
+const today = new Date().toISOString().substring(0, 10)
+
+// TODAY DATE & TIME FROM DB
+const dateAndTimeNow = firebase.firestore.FieldValue.serverTimestamp()
 
 //~~~~~~~~~~~~~~//
 //  FC CONTEXT  //
@@ -40,7 +39,7 @@ const ContextProvider = (props) => {
 	const [oreTotali, setOreTotali] = useState(0)
 	const [filterCompleted, setFilterCompleted] = useState(0)
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
-	const [filterTitle, setFilterTitle] = useState("")
+	const [messagePanel, setMessagePanel] = useState("ready to input data")
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
@@ -87,6 +86,8 @@ const ContextProvider = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		addTicket()
+		setMessagePanel("ticket added to DB")
+		setTimeout(() => setMessagePanel(""), 2000)
 		setTicket("")
 		setDescription("")
 	}
@@ -96,15 +97,13 @@ const ContextProvider = (props) => {
 	//~~~~~~~~~~~~~~~~~//
 
 	// DELETE TICKET
-	const deleteTicket = (ticketID) => {
-		let result = window.confirm("premere OK per cancellare il TICKET")
-		result &&
-			dbRef
-				.doc(ticketID)
-				.delete()
-				.then(() => console.log(`ticket deleted ID: ${ticketID}`))
-				.catch((err) => console.log(`hups! --> ${err.message}`))
-	}
+	const deleteTicket = (ticketID) =>
+		window.confirm("premere OK per cancellare il TICKET") &&
+		dbRef
+			.doc(ticketID)
+			.delete()
+			.then(() => console.log(`ticket deleted ID: ${ticketID}`))
+			.catch((err) => console.log(`hups! --> ${err.message}`))
 
 	//~~~~~~~~~~~//
 	//   MODAL   //
@@ -166,6 +165,11 @@ const ContextProvider = (props) => {
 			.catch((err) => console.log(`hups! --> ${err.message}`))
 	}, [tickets])
 
+	// CLEAR DB
+	const clearDB = () =>
+		window.confirm("ATTENZIONE! premi OK per cancellare TUTTO il DB") &&
+		dbRef.get().then((snapshot) => snapshot.forEach((doc) => doc.ref.delete()))
+
 	// BOILERPLATE TEMPLATE
 	const template = (doc) => ({
 		id: doc.id,
@@ -178,7 +182,6 @@ const ContextProvider = (props) => {
 
 	// SHOW INCOMPLETE TICKETS ON CLICK
 	const showIncompleteTickets = useCallback(() => {
-		setFilterTitle("open tickets")
 		dbRef
 			.orderBy("createdAt", "desc")
 			.where("ore", "==", 0)
@@ -189,7 +192,6 @@ const ContextProvider = (props) => {
 
 	// SHOW COMPLETED TICKETS ON CLICK
 	const showCompletedTickets = () => {
-		setFilterTitle("closed tickets")
 		dbRef
 			.where("ore", ">", 0)
 			.onSnapshot((snapshot) =>
@@ -260,6 +262,10 @@ const ContextProvider = (props) => {
 		openModal(calendarIndex[0].id)
 	}
 
+	//~~~~~~~~~~~~~~~~//
+	//    RENDER      //
+	//~~~~~~~~~~~~~~~~//
+
 	return (
 		<div>
 			<DataContext.Provider
@@ -285,9 +291,10 @@ const ContextProvider = (props) => {
 					oreTotali,
 					filterCompleted,
 					filterIncomplete,
-					filterTitle,
+					messagePanel,
 					showCompletedTickets,
 					showIncompleteTickets,
+					clearDB,
 					ticketsToCalendar,
 					calendarTicket,
 					handleCalendarTicket,

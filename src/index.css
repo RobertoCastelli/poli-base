@@ -255,10 +255,11 @@ a {
 
 .input-title {
 	text-align: center;
-	margin-top: 3rem;
 }
 .input-panel {
+	margin-top: 3rem;
 	display: grid;
+	grid-template-columns: 300px;
 	grid-template-rows: repeat(4, 50px);
 	place-content: center;
 	align-items: center;
@@ -303,6 +304,9 @@ input:focus {
 }
 .btn-panel-home {
 	grid-area: home;
+}
+.info-message-panel {
+	margin: 3rem;
 }
 
 /**

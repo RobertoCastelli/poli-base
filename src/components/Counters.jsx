@@ -16,6 +16,7 @@ const Counters = () => {
 		filterIncomplete,
 		showCompletedTickets,
 		showIncompleteTickets,
+		clearDB,
 	} = useContext(DataContext)
 
 	return (
@@ -61,7 +62,7 @@ const Counters = () => {
 					</div>
 					<label htmlFor='ore'>hours {oreTotali}</label>
 				</li>
-				<li className='li-count-clear' name='clear'>
+				<li className='li-count-clear' name='clear' onClick={() => clearDB()}>
 					<div>
 						<AiOutlineClear size={20} />
 					</div>
