@@ -84,7 +84,8 @@ a {
 }
 .btn-menu {
 	position: absolute;
-	top: 92.5%;
+	z-index: 2;
+	top: 13.3%;
 	left: 90%;
 	border-radius: 50%;
 	height: 30px;
@@ -190,7 +191,7 @@ a {
 	transition: transform 0.2s linear;
 	display: grid;
 	align-items: center;
-	grid-template-columns: repeat(2, 80px);
+	grid-template-columns: repeat(2, 87px);
 	grid-template-rows: repeat(4, 40px);
 	grid-template-areas:
 		"ticket date"
@@ -303,9 +304,6 @@ input:focus {
 }
 .btn-panel-home {
 	grid-area: home;
-}
-.info-message-panel {
-	margin: 3rem;
 }
 
 /**
@@ -456,7 +454,7 @@ footer {
 .filtered-calendar-tickets {
 	display: grid;
 	place-content: center;
-	width: 200px;
+	width: 176px;
 	margin: auto;
 	text-align: center;
 }

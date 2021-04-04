@@ -35,7 +35,6 @@ const ContextProvider = (props) => {
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
 	const [date, setDate] = useState(today)
-	const [isHidden, setIsHidden] = useState(true)
 	const [oreTotali, setOreTotali] = useState(0)
 	const [filterCompleted, setFilterCompleted] = useState(0)
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
@@ -50,18 +49,13 @@ const ContextProvider = (props) => {
 	//    ADD TICKET PANEL    //
 	//~~~~~~~~~~~~~~~~~~~~~~~~//
 
-	// TOGGLE ADMIN INPUT PANEL
+	// TOGGLE ADMIN OPTION PANEL
 	const togglePanel = () => {
-		setIsHidden(!isHidden)
-	}
-
-	// TOGGLE ANIMATION ON MENU
-	useEffect(() => {
 		const btnMenu = document.querySelector(".btn-menu")
 		const ulMenu = document.querySelector(".ul-count")
 		ulMenu.classList.toggle("ul-count-animation")
 		btnMenu.classList.toggle("btn-menu-animation")
-	}, [isHidden])
+	}
 
 	// ADD TICKET TO DB
 	const addTicket = () => {
@@ -85,7 +79,7 @@ const ContextProvider = (props) => {
 
 	// CLEAR INPUT FIELDS
 	const cancelInputs = () => {
-		inputMessage("fields cleared", "ready ⟹ input data", 2000)
+		inputMessage("fields cleared", "ready ⟹ input data", 1500)
 		setTicket("")
 		setDescription("")
 	}
@@ -94,7 +88,7 @@ const ContextProvider = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		addTicket()
-		inputMessage("ticket added to DB", "ready ⟹ input data", 2000)
+		inputMessage("ticket added to DB", "ready ⟹ input data", 1500)
 		setTicket("")
 		setDescription("")
 	}
@@ -130,9 +124,7 @@ const ContextProvider = (props) => {
 			.update({
 				ore: parseInt(modalOre),
 			})
-			.then(() =>
-				alert(`Ticket ID: ${index} \nSent data to DB ⟹ ${modalOre} ore`)
-			)
+			.then(() => alert(`sent data to DB ⟹ ${modalOre} ore`))
 			.catch((err) => `hups! ⟹ ${err.message}`)
 	}
 
@@ -287,7 +279,6 @@ const ContextProvider = (props) => {
 					setDate,
 					cancelInputs,
 					tickets,
-					isHidden,
 					togglePanel,
 					handleSubmit,
 					deleteTicket,
@@ -328,7 +319,6 @@ export default ContextProvider
  *
  * FIXME:
  * edit button calendar
- * option button not working on other pages
  * clear all tickets on calendar page too
  *
  *

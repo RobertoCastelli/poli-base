@@ -22,6 +22,7 @@ const Panel = () => {
 	return (
 		<>
 			<form className='input-panel' onSubmit={handleSubmit}>
+				<p className='info-message-panel'>{messagePanel}</p>
 				<input
 					type='text'
 					className='ticket-panel'
@@ -70,7 +71,6 @@ const Panel = () => {
 						</Link>
 					</div>
 				</div>
-				<p className='info-message-panel'>{messagePanel}</p>
 			</form>
 		</>
 	)
