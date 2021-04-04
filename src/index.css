@@ -39,7 +39,7 @@ a {
 	--grey: #808080;
 	--lightgrey: #e8e8e8;
 	--lightyellow: #fff2cc;
-	--lightblue: rgba(203, 225, 239, 0.5);
+	--lightblue: rgba(203, 225, 239, 0.7);
 }
 
 /**
@@ -59,6 +59,7 @@ a {
 }
 .content {
 	flex-grow: 1;
+	position: relative;
 }
 
 /**
@@ -68,7 +69,6 @@ a {
 **/
 
 .title-politecnico {
-	position: relative;
 	z-index: 1;
 	display: grid;
 	text-align: center;
@@ -85,7 +85,7 @@ a {
 .btn-menu {
 	position: absolute;
 	z-index: 1;
-	top: 13.2%;
+	top: -1.5%;
 	left: 90%;
 	border-radius: 50%;
 	height: 30px;
@@ -111,7 +111,7 @@ a {
 	text-align: center;
 	padding: 1rem 0;
 	margin: 0;
-	background-color: var(--lightblue, 0.5);
+	background-color: var(--lightblue);
 	display: grid;
 	place-content: center;
 	justify-content: space-around;
@@ -144,11 +144,8 @@ a {
 .li-count-clear {
 	grid-area: clear;
 }
-.li-count-open,
-.li-count-close,
-.li-count-calendar,
-.li-count-add,
-.li-count-clear {
+svg,
+label {
 	cursor: pointer;
 }
 .li-count-open:active,
@@ -163,7 +160,8 @@ a {
 .li-count-calendar:hover,
 .li-count-add:hover,
 .li-count-clear:hover {
-	font-weight: bold;
+	transition: transform 0.2s ease-in;
+	transform: scale(1.1);
 }
 
 /**
@@ -257,7 +255,10 @@ a {
 	text-align: center;
 }
 .input-panel {
-	margin-top: 3rem;
+	background-color: var(--lightgrey);
+	margin-top: 1rem;
+	padding: 1rem;
+	border-radius: 0.5rem;
 	display: grid;
 	grid-template-columns: 300px;
 	grid-template-rows: repeat(4, 50px);
@@ -435,7 +436,6 @@ footer {
 	border: 1px solid var(--black) !important;
 }
 .calendar-buttons {
-	margin: 1rem;
 	text-align: center;
 }
 .fc-sticky {
@@ -444,7 +444,14 @@ footer {
 .fc-sticky-complete {
 	color: brown;
 }
-
+.fc-media-screen {
+	margin: 1rem;
+	border-bottom: 2px solid var(--black);
+	box-shadow: 0px 5px 8px -3px var(--grey);
+}
+.btn-calendar-home {
+	margin: 1rem;
+}
 /**
 /*~~~~~~~~~~~~~~~~~~//
 /* CALENDAR DETAILS
@@ -463,7 +470,4 @@ footer {
 }
 .filtered-calendar-state-complete {
 	color: var(--red);
-}
-.fc-media-screen {
-	margin-bottom: 1rem;
 }
