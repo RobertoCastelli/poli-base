@@ -84,8 +84,8 @@ a {
 }
 .btn-menu {
 	position: absolute;
-	z-index: 2;
-	top: 13.3%;
+	z-index: 1;
+	top: 17%;
 	left: 90%;
 	border-radius: 50%;
 	height: 30px;
