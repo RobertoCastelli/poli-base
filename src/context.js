@@ -39,7 +39,7 @@ const ContextProvider = (props) => {
 	const [oreTotali, setOreTotali] = useState(0)
 	const [filterCompleted, setFilterCompleted] = useState(0)
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
-	const [messagePanel, setMessagePanel] = useState("ready to input data")
+	const [messagePanel, setMessagePanel] = useState("input data")
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
@@ -77,7 +77,15 @@ const ContextProvider = (props) => {
 			.catch((err) => console.log(`hups! --> ${err.message}`))
 	}
 
+	// INPUT MESSAGE W/ TIMER
+	const inputMessage = (message1, message2, timer) => {
+		setMessagePanel(message1)
+		setTimeout(() => setMessagePanel(message2), timer)
+	}
+
+	// CLEAR INPUT FIELDS
 	const cancelInputs = () => {
+		inputMessage("fields cleared", "input data", 2000)
 		setTicket("")
 		setDescription("")
 	}
@@ -86,8 +94,7 @@ const ContextProvider = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		addTicket()
-		setMessagePanel("ticket added to DB")
-		setTimeout(() => setMessagePanel(""), 2000)
+		inputMessage("ticket added to DB", "input data", 2000)
 		setTicket("")
 		setDescription("")
 	}
