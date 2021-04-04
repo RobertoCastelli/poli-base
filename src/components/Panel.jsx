@@ -15,6 +15,7 @@ const Panel = () => {
 		date,
 		setDate,
 		handleSubmit,
+		cancelInputs,
 	} = useContext(DataContext)
 
 	return (
@@ -53,7 +54,11 @@ const Panel = () => {
 						</button>
 					</div>
 					<div>
-						<button className='btn-panel-cancel' type='button' name='cancel'>
+						<button
+							className='btn-panel-cancel'
+							type='button'
+							name='cancel'
+							onClick={() => cancelInputs()}>
 							<IoMdClose size={30} />
 						</button>
 					</div>

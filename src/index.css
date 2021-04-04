@@ -374,7 +374,8 @@ footer {
 .btn-panel-home,
 .btn-panel-cancel,
 .btn-panel-add,
-.btn-calendar-home {
+.btn-calendar-home,
+.btn-calendar-edit {
 	border: none;
 	cursor: pointer;
 	background-color: transparent;
@@ -454,8 +455,11 @@ footer {
 	text-align: center;
 }
 .filtered-calendar-ticket {
+	color: var(--green);
 }
 .filtered-calendar-state-complete {
+	color: var(--red);
 }
-.btn-calendar-edit {
+.fc-media-screen {
+	margin-bottom: 1rem;
 }

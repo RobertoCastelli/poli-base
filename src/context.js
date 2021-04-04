@@ -47,9 +47,9 @@ const ContextProvider = (props) => {
 	const [calendarTicket, setCalendarTicket] = useState([])
 	const [completeTicketsArray, setCompleteTicketsArray] = useState([])
 
-	//~~~~~~~~~~~~~~~~~~~//
-	//    TITLE PANEL    //
-	//~~~~~~~~~~~~~~~~~~~//
+	//~~~~~~~~~~~~~~~~~~~~~~~~//
+	//    ADD TICKET PANEL    //
+	//~~~~~~~~~~~~~~~~~~~~~~~~//
 
 	// TOGGLE ADMIN INPUT PANEL
 	const togglePanel = () => {
@@ -76,6 +76,11 @@ const ContextProvider = (props) => {
 			})
 			.then((docRef) => console.log(`ticket added ID: ${docRef.id}`))
 			.catch((err) => console.log(`hups! --> ${err.message}`))
+	}
+
+	const cancelInputs = () => {
+		setTicket("")
+		setDescription("")
 	}
 
 	// SUBMIT TICKET + clean inputs
@@ -133,9 +138,9 @@ const ContextProvider = (props) => {
 		setIsOpenModal(false)
 	}
 
-	//~~~~~~~~~~~~~~~//
-	//    FILTERS    //
-	//~~~~~~~~~~~~~~~//
+	//~~~~~~~~~~~~~~~~~~//
+	//    ADMIN PANEL   //
+	//~~~~~~~~~~~~~~~~~~//
 
 	// SUM ALL ORE
 	useEffect(() => {
@@ -265,6 +270,7 @@ const ContextProvider = (props) => {
 					setDescription,
 					date,
 					setDate,
+					cancelInputs,
 					tickets,
 					isHidden,
 					togglePanel,
