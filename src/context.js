@@ -4,7 +4,6 @@ import firebase from "firebase/app"
 import { dbRef } from "./firebase"
 // DATA
 import { options } from "./options"
-import { CalendarList } from "./components/CalendarList"
 
 // CREATE CONTEXT
 export const DataContext = React.createContext()
@@ -315,6 +314,7 @@ export default ContextProvider
  * change permission firebase
  * add edificio select
  * dragable/change date calendar tickets
+ * add auth for DB rules restriction
 
  *
  * FIXME:
