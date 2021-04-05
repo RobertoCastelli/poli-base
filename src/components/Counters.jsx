@@ -6,6 +6,7 @@ import { BsLockFill } from "react-icons/bs"
 import { BiTime } from "react-icons/bi"
 import { BiCalendar } from "react-icons/bi"
 import { AiOutlineFileAdd, AiOutlineClear } from "react-icons/ai"
+import { GrSettingsOption } from "react-icons/gr"
 // CONTEXT
 import { DataContext } from "../context"
 
@@ -17,10 +18,14 @@ const Counters = () => {
 		showCompletedTickets,
 		showIncompleteTickets,
 		clearDB,
+		togglePanel,
 	} = useContext(DataContext)
 
 	return (
 		<>
+			<div className='btn-menu' onClick={togglePanel}>
+				<GrSettingsOption size={30} />
+			</div>
 			<ul className='ul-count'>
 				<li className='li-count-add' name='add'>
 					<Link to='admin-panel'>

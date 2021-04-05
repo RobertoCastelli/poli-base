@@ -2,20 +2,15 @@ import React, { useContext } from "react"
 // REACT ICONS
 import { GrEdit } from "react-icons/gr"
 import { RiDeleteBinLine } from "react-icons/ri"
-import { GrSettingsOption } from "react-icons/gr"
+
 // CONTEXT
 import { DataContext } from "../context"
 
 const TicketList = () => {
-	const { tickets, deleteTicket, openModal, togglePanel } = useContext(
-		DataContext
-	)
+	const { tickets, deleteTicket, openModal } = useContext(DataContext)
 
 	return (
 		<>
-			<div className='btn-menu' onClick={togglePanel}>
-				<GrSettingsOption size={30} />
-			</div>
 			<ul className='ul-todo'>
 				{tickets.map((tk) => {
 					return (

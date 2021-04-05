@@ -49,7 +49,6 @@ a {
 **/
 
 .container {
-	position: relative;
 	margin: auto;
 	padding: 0.3rem;
 	max-width: 550px;
@@ -59,7 +58,6 @@ a {
 }
 .content {
 	flex-grow: 1;
-	position: relative;
 }
 
 /**
@@ -83,13 +81,13 @@ a {
 	width: 80px;
 }
 .btn-menu {
+	display: flex;
 	position: absolute;
 	z-index: 1;
-	top: -2.1%;
-	left: 90%;
+	top: 170px;
+	left: 75%;
 	border-radius: 50%;
-	height: 30px;
-	background-color: var(--lightgrey);
+	background-color: var(--red);
 	transition: transform 0.5s ease-in;
 	transform: rotate(360deg);
 	cursor: pointer;
@@ -169,11 +167,9 @@ label {
 /* TICKET LIST
 /*~~~~~~~~~~~~~~~//
 **/
-.title-ticket-state {
-	text-align: center;
-}
 .ul-todo {
 	padding: 0;
+	position: relative;
 	list-style-type: none;
 	display: flex;
 	flex-wrap: wrap;
