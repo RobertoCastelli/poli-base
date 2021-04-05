@@ -147,6 +147,10 @@ svg,
 label {
 	cursor: pointer;
 }
+.li-count-ore svg,
+.li-count-ore label {
+	cursor: default;
+}
 .li-count-open:active,
 .li-count-close:active,
 .li-count-calendar:active,
@@ -447,6 +451,8 @@ footer {
 }
 .btn-calendar-home {
 	margin: 1rem;
+	background-color: var(--lightgrey);
+	border-radius: 0.5rem;
 }
 /**
 /*~~~~~~~~~~~~~~~~~~//
@@ -460,6 +466,10 @@ footer {
 	width: 176px;
 	margin: auto;
 	text-align: center;
+}
+
+.filtered-calendar-ticket {
+	color: var(--green);
 }
 
 .filtered-calendar-state-complete {

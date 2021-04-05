@@ -249,21 +249,36 @@ const ContextProvider = (props) => {
 	// CHANGE TICKET COLOR ON CALENDAR IF COMPLETE
 	useEffect(() => {
 		const stickyTitle = document.querySelectorAll(".fc-sticky")
-		stickyTitle.forEach((elem) =>
-			completeTicketsArray.includes(elem.textContent)
-				? elem.classList.add("fc-sticky-complete")
-				: elem.classList.remove("fc-sticky-complete")
-		)
+		stickyTitle &&
+			stickyTitle.forEach((elem) =>
+				completeTicketsArray.includes(elem.textContent)
+					? elem.classList.add("fc-sticky-complete")
+					: elem.classList.remove("fc-sticky-complete")
+			)
 	}, [completeTicketsArray])
 
+	// CHANGE TICKET COLOR ON TICKET DETAIL IF COMPLETE
+	useEffect(() => {
+		const calendarTicketDetail = document.querySelectorAll(
+			".filtered-calendar-ticket"
+		)
+		calendarTicketDetail &&
+			calendarTicketDetail.forEach((elem) =>
+				completeTicketsArray.includes(elem.textContent)
+					? elem.classList.add("filtered-calendar-state-complete")
+					: elem.classList.remove("filtered-calendar-state-complete")
+			)
+	}, [completeTicketsArray])
+
+	// UPDATE CALENDAR ORE --> MODAL
 	const updateCalendarTicketOre = (ticketID) => {
 		const calendarIndex = ticketsToCalendar.filter(
 			(doc) => doc.title === ticketID
 		)
-
 		openModal(calendarIndex[0].id)
 	}
 
+	// DELETE CALENDAR TICKET
 	const deleteCalendarTicket = (ticketID) => {
 		const calendarIndex = ticketsToCalendar.filter(
 			(doc) => doc.title === ticketID
@@ -331,7 +346,6 @@ export default ContextProvider
  * calendar ticket stays even after calendar is empty
  * edit button calendar color changing
  * optimize component ticket --> props
- * take off cursor pointer on hours icon
  *
  *
  */
