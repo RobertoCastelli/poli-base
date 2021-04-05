@@ -257,19 +257,6 @@ const ContextProvider = (props) => {
 			)
 	}, [completeTicketsArray])
 
-	// CHANGE TICKET COLOR ON TICKET DETAIL IF COMPLETE
-	useEffect(() => {
-		const calendarTicketDetail = document.querySelectorAll(
-			".filtered-calendar-ticket"
-		)
-		calendarTicketDetail &&
-			calendarTicketDetail.forEach((elem) =>
-				completeTicketsArray.includes(elem.textContent)
-					? elem.classList.add("filtered-calendar-state-complete")
-					: elem.classList.remove("filtered-calendar-state-complete")
-			)
-	}, [completeTicketsArray])
-
 	// UPDATE CALENDAR ORE --> MODAL
 	const updateCalendarTicketOre = (ticketID) => {
 		const calendarIndex = ticketsToCalendar.filter(

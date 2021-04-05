@@ -467,11 +467,6 @@ footer {
 	margin: auto;
 	text-align: center;
 }
-
-.filtered-calendar-ticket {
-	color: var(--green);
-}
-
 .filtered-calendar-state-complete {
 	color: var(--red);
 }
