@@ -63,15 +63,15 @@ const Panel = () => {
 							<IoMdClose size={30} />
 						</button>
 					</div>
-					<div>
-						<Link to='/'>
-							<button className='btn-panel-home' type='button' name='home'>
-								<AiOutlineHome size={30} />
-							</button>
-						</Link>
-					</div>
 				</div>
 			</form>
+			<div className='panel-buttons-home'>
+				<Link to='/'>
+					<button className='btn-panel-home' type='button' name='home'>
+						<AiOutlineHome size={30} />
+					</button>
+				</Link>
+			</div>
 		</>
 	)
 }

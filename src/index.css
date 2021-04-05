@@ -299,15 +299,10 @@ input:focus {
 	margin-top: 3rem;
 }
 .btn-panel-add {
-	grid-area: add-ticket;
 	color: var(--green);
 }
 .btn-panel-cancel {
-	grid-area: cancel;
 	color: var(--red);
-}
-.btn-panel-home {
-	grid-area: home;
 }
 
 /**
@@ -377,6 +372,7 @@ footer {
 .btn-modal-send,
 .btn-modal-cancel,
 .btn-panel-home,
+.btn-error-home,
 .btn-panel-cancel,
 .btn-panel-add,
 .btn-calendar-home,
@@ -391,11 +387,12 @@ footer {
 }
 .btn-modal-send:active,
 .btn-modal-cancel:active,
-.btn-panel-home:active,
 .btn-panel-cancel:active,
 .btn-panel-add:active,
+.btn-panel-home:active,
 .btn-calendar-home:active,
 .btn-calendar-edit:active,
+.btn-error-home:active,
 .edit-todo:active,
 .delete-todo:active {
 	transform: translateY(2px);
@@ -410,6 +407,10 @@ footer {
 .error-page-404 {
 	text-align: center;
 	color: brown;
+	background-color: var(--lightgrey);
+	border-radius: 0.5rem;
+	padding: 2rem;
+	margin-top: 1rem;
 }
 
 /**
@@ -434,7 +435,9 @@ footer {
 .fc-h-event:hover {
 	border: 1px solid var(--black) !important;
 }
-.calendar-buttons {
+.calendar-buttons,
+.panel-buttons-home,
+.error-buttons-home {
 	text-align: center;
 }
 .fc-sticky {
@@ -449,8 +452,10 @@ footer {
 	box-shadow: 5px 5px 8px -3px var(--grey);
 	background-color: var(--lightgrey) !important;
 }
-.btn-calendar-home {
-	margin: 1rem;
+.btn-calendar-home,
+.btn-panel-home,
+.btn-error-home {
+	margin-top: 1rem;
 	background-color: var(--lightgrey);
 	border-radius: 0.5rem;
 }

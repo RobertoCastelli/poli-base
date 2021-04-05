@@ -1,19 +1,23 @@
 import React from "react"
 import { Link } from "react-router-dom"
 // REACT ICONS
-import { FaUniversity } from "react-icons/fa"
+import { AiOutlineHome } from "react-icons/ai"
 
 const Error = (props) => {
 	return (
-		<div className='error-page-404'>
-			<h1>ERROR 404</h1>
-			<p>no page foud at ..{props.location.pathname}</p>
-			<Link to='/' style={{ textDecoration: "none" }}>
-				<button type='button' name='home' className='btn-home'>
-					<FaUniversity size={20} /> home
-				</button>
-			</Link>
-		</div>
+		<>
+			<div className='error-page-404'>
+				<h1>ERROR 404</h1>
+				<p>no page foud at ..{props.location.pathname}</p>
+			</div>
+			<div className='error-buttons-home'>
+				<Link to='/'>
+					<button className='btn-error-home' type='button' name='home'>
+						<AiOutlineHome size={30} />
+					</button>
+				</Link>
+			</div>
+		</>
 	)
 }
 
