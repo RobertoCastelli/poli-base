@@ -260,8 +260,17 @@ const ContextProvider = (props) => {
 		const calendarIndex = ticketsToCalendar.filter(
 			(doc) => doc.title === ticketID
 		)
+
 		openModal(calendarIndex[0].id)
 	}
+
+	const deleteCalendarTicket = (ticketID) => {
+		const calendarIndex = ticketsToCalendar.filter(
+			(doc) => doc.title === ticketID
+		)
+		deleteTicket(calendarIndex[0].id)
+	}
+
 	//~~~~~~~~~~~~~~~~//
 	//    RENDER      //
 	//~~~~~~~~~~~~~~~~//
@@ -299,6 +308,7 @@ const ContextProvider = (props) => {
 					handleCalendarTicket,
 					checkClosed,
 					updateCalendarTicketOre,
+					deleteCalendarTicket,
 				}}>
 				{props.children}
 			</DataContext.Provider>
@@ -320,7 +330,8 @@ export default ContextProvider
  * FIXME:
  * calendar ticket stays even after calendar is empty
  * edit button calendar color changing
- * check cog position 
+ * optimize component ticket --> props
+ * take off cursor pointer on hours icon
  *
  *
  */
