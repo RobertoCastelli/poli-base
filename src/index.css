@@ -416,12 +416,8 @@ footer {
 
 .calendar {
 	margin-top: 1rem;
-	background-color: var(--lightgrey) !important;
 	border-bottom-left-radius: 0.5rem;
 	border-bottom-right-radius: 0.5rem;
-	/* background-image: url("./images/bg.jpg");
-	background-repeat: no-repeat;
-	background-size: cover; */
 }
 .fc-event-title-container {
 	background-color: var(--lightyellow);
@@ -444,9 +440,10 @@ footer {
 	color: brown;
 }
 .fc-media-screen {
-	margin: 1rem;
+	margin-bottom: 1rem;
 	border-bottom: 2px solid var(--black);
-	box-shadow: 0px 5px 8px -3px var(--grey);
+	box-shadow: 5px 5px 8px -3px var(--grey);
+	background-color: var(--lightgrey) !important;
 }
 .btn-calendar-home {
 	margin: 1rem;
