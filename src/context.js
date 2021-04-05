@@ -79,7 +79,7 @@ const ContextProvider = (props) => {
 
 	// CLEAR INPUT FIELDS
 	const cancelInputs = () => {
-		inputMessage("fields cleared", "ready ⟹ input data", 1500)
+		inputMessage("fields cleared", "ready ⟹ input data", 1200)
 		setTicket("")
 		setDescription("")
 	}
@@ -88,7 +88,7 @@ const ContextProvider = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		addTicket()
-		inputMessage("ticket added to DB", "ready ⟹ input data", 1500)
+		inputMessage("ticket added to DB", "ready ⟹ input data", 1200)
 		setTicket("")
 		setDescription("")
 	}
