@@ -82,12 +82,12 @@ a {
 }
 .btn-menu {
 	display: flex;
-	position: absolute;
+	position: absolute; /* <-<< POSITION ABSOLUTE */
 	z-index: 1;
 	top: 170px;
 	left: 75%;
 	border-radius: 50%;
-	background-color: var(--red);
+	background-color: var(--lightgrey);
 	transition: transform 0.5s ease-in;
 	transform: rotate(360deg);
 	cursor: pointer;
@@ -169,7 +169,7 @@ label {
 **/
 .ul-todo {
 	padding: 0;
-	position: relative;
+	position: relative; /* <-<< POSITION RELATIVE */
 	list-style-type: none;
 	display: flex;
 	flex-wrap: wrap;
@@ -461,9 +461,7 @@ footer {
 	margin: auto;
 	text-align: center;
 }
-.filtered-calendar-ticket {
-	color: var(--green);
-}
+
 .filtered-calendar-state-complete {
 	color: var(--red);
 }

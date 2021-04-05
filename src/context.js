@@ -4,6 +4,7 @@ import firebase from "firebase/app"
 import { dbRef } from "./firebase"
 // DATA
 import { options } from "./options"
+import { CalendarList } from "./components/CalendarList"
 
 // CREATE CONTEXT
 export const DataContext = React.createContext()
@@ -219,7 +220,7 @@ const ContextProvider = (props) => {
 					}
 				})
 			)
-			.catch((err) => `hups! ${err.message}`)
+			.catch((err) => `hups! ⟹ ${err.message}`)
 	}
 
 	// SHOW TICKET ON CALENDAR
@@ -262,7 +263,6 @@ const ContextProvider = (props) => {
 		)
 		openModal(calendarIndex[0].id)
 	}
-
 	//~~~~~~~~~~~~~~~~//
 	//    RENDER      //
 	//~~~~~~~~~~~~~~~~//
@@ -318,8 +318,9 @@ export default ContextProvider
 
  *
  * FIXME:
- * edit button calendar
- * clear all tickets on calendar page too
+ * calendar ticket stays even after calendar is empty
+ * edit button calendar color changing
+ * check cog position 
  *
  *
  */
