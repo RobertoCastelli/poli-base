@@ -4,10 +4,10 @@ import { AiOutlineHome } from "react-icons/ai"
 import { DataContext } from "../context"
 
 const SignIn = () => {
-	const { user, setUser } = useContext(DataContext)
+	const { user, setUser, handleSignIn } = useContext(DataContext)
 	return (
 		<div>
-			<form>
+			<form onSubmit={handleSignIn}>
 				<input
 					type='email'
 					className='email'
@@ -24,6 +24,7 @@ const SignIn = () => {
 					value={user.password}
 					required
 				/>
+				<button type='submit'>invia</button>
 			</form>
 			<div className='panel-buttons-home'>
 				<Link to='/'>

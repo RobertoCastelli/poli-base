@@ -49,14 +49,27 @@ const ContextProvider = (props) => {
 	const [calendarTicket, setCalendarTicket] = useState([])
 	const [completeTicketsArray, setCompleteTicketsArray] = useState([])
 	// AUTH STATE
-	const [user, setUser] = useState({ nickname: "", email: "", password: "" })
+	const [user, setUser] = useState({ email: "", password: "" })
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~//
 	//    AUTH SIGN IN/OUT    //
 	//~~~~~~~~~~~~~~~~~~~~~~~~//
+
+	// SING IN
+	const handleSignIn = async (e) => {
+		e.preventDefault()
+		await auth
+			.signInWithEmailAndPassword(user.email, user.password)
+			.then((res) => {
+				inputMessage("sign in successful", `${res.user.email}`, 1500)
+			})
+			.catch((err) => console.log(`hups! ⟹ ${err.message}`))
+	}
+
+	// SIGN OUT
 	const handleSignOut = (e) => {
 		e.preventDefault()
-		inputMessage(`${user.nickname} signed out succesful`, "guest user", 1500)
+		inputMessage("signed out succesful", "guest user", 1500)
 		auth.signOut()
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -323,9 +336,10 @@ const ContextProvider = (props) => {
 					checkClosed,
 					updateCalendarTicketOre,
 					deleteCalendarTicket,
-					handleSignOut,
 					user,
 					setUser,
+					handleSignIn,
+					handleSignOut,
 				}}>
 				{props.children}
 			</DataContext.Provider>
