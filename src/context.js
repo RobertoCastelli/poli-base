@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 // FIREBASE
 import firebase from "firebase/app"
-import { dbRef } from "./firebase"
+import { dbRef, auth } from "./firebase"
 // DATA
 import { options } from "./options"
 

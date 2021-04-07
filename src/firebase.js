@@ -1,5 +1,6 @@
 import firebase from "firebase/app"
 import "firebase/firebase-firestore"
+import "firebase/auth"
 
 const firebaseConfig = {
 	apiKey: "AIzaSyAF395G2nP9M-GNwC5tHcH_rZftBjapKyQ",
@@ -12,6 +13,7 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
+const auth = firebase.auth()
 const dbRef = db.collection("tickets")
 
-export { dbRef }
+export { dbRef, auth }

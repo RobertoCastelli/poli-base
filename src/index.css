@@ -77,8 +77,9 @@ a {
 	border-top-right-radius: 1rem;
 	box-shadow: 5px 5px 8px -3px var(--grey);
 }
+
 .logo-politecnico {
-	margin: 1rem auto;
+	margin: auto;
 	width: 80px;
 }
 .btn-menu {
@@ -95,6 +96,15 @@ a {
 }
 .btn-menu-animation {
 	transform: rotate(0deg);
+}
+.access-politecnico {
+	display: flex;
+	list-style-type: none;
+	justify-content: space-evenly;
+	padding: 0;
+}
+.access-politecnico li {
+	cursor: pointer;
 }
 
 /**
@@ -475,3 +485,9 @@ footer {
 .filtered-calendar-state-complete {
 	color: var(--red);
 }
+
+/**
+/*~~~~~~~~~~~~~~~//
+/* SIGN IN/OUT
+/*~~~~~~~~~~~~~~~//
+**/
