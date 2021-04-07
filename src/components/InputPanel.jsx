@@ -6,7 +6,7 @@ import { AiOutlineFileAdd, AiOutlineHome } from "react-icons/ai"
 import { DataContext } from "../context"
 import { Link } from "react-router-dom"
 
-const Panel = () => {
+const InputPanel = () => {
 	const {
 		ticket,
 		description,
@@ -16,13 +16,11 @@ const Panel = () => {
 		setDate,
 		handleSubmit,
 		cancelInputs,
-		messagePanel,
 	} = useContext(DataContext)
 
 	return (
 		<>
 			<form className='input-panel' onSubmit={handleSubmit}>
-				<p className='info-message-panel'>{messagePanel}</p>
 				<input
 					type='text'
 					className='ticket-panel'
@@ -76,4 +74,4 @@ const Panel = () => {
 	)
 }
 
-export default Panel
+export default InputPanel

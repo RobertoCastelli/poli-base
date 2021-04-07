@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 // COMPONENTS
-import { CalendarList } from "./CalendarList"
+import CalendarList from "./CalendarList"
 // FULL CALENDAR
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"

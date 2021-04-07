@@ -7,10 +7,11 @@ import { BiTime } from "react-icons/bi"
 import { BiCalendar } from "react-icons/bi"
 import { AiOutlineFileAdd, AiOutlineClear } from "react-icons/ai"
 import { GrSettingsOption } from "react-icons/gr"
+import { GoSignIn, GoSignOut } from "react-icons/go"
 // CONTEXT
 import { DataContext } from "../context"
 
-const Counters = () => {
+const OptionMenu = () => {
 	const {
 		oreTotali,
 		filterCompleted,
@@ -19,6 +20,7 @@ const Counters = () => {
 		showIncompleteTickets,
 		clearDB,
 		togglePanel,
+		handleSignOut,
 	} = useContext(DataContext)
 
 	return (
@@ -73,9 +75,23 @@ const Counters = () => {
 					</div>
 					<label htmlFor='clear'>clear db</label>
 				</li>
+				<Link to='/sign-in'>
+					<li className='li-sign-in' name='sign-in'>
+						<div>
+							<GoSignIn size={20} />
+						</div>
+						<label htmlFor='sign-in'>sign in</label>
+					</li>
+				</Link>
+				<li className='li-sign-out' name='sign-out' onClick={handleSignOut}>
+					<div>
+						<GoSignOut size={20} />
+					</div>
+					<label htmlFor='sign-out'>sign out</label>
+				</li>
 			</ul>
 		</>
 	)
 }
 
-export default Counters
+export default OptionMenu

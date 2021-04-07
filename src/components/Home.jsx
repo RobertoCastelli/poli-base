@@ -1,12 +1,12 @@
 import React from "react"
 // COMPONENTS
 import TicketList from "./TicketList"
-import Counters from "./Counters"
+import OptionMenu from "./OptionMenu"
 
 const Home = () => {
 	return (
 		<div>
-			<Counters />
+			<OptionMenu />
 			<TicketList />
 		</div>
 	)

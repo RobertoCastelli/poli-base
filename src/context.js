@@ -29,22 +29,36 @@ const dateAndTimeNow = firebase.firestore.FieldValue.serverTimestamp()
 //~~~~~~~~~~~~~~//
 
 const ContextProvider = (props) => {
-	// VARIABLE STATE
+	// TICKET STATE
 	const [index, setIndex] = useState("")
 	const [tickets, setTickets] = useState([])
 	const [ticket, setTicket] = useState("")
 	const [description, setDescription] = useState("")
 	const [date, setDate] = useState(today)
+	// ADMIN PANEL STATE
 	const [oreTotali, setOreTotali] = useState(0)
 	const [filterCompleted, setFilterCompleted] = useState(0)
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
-	const [messagePanel, setMessagePanel] = useState("ready ⟹ input data")
+	// INPUT PANEL STATE
+	const [messagePanel, setMessagePanel] = useState("guest user")
+	// MODAL STATE
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
+	// CALENDAR STATE
 	const [ticketsToCalendar, setTicketsToCalendar] = useState([])
 	const [calendarTicket, setCalendarTicket] = useState([])
 	const [completeTicketsArray, setCompleteTicketsArray] = useState([])
+	// AUTH STATE
+	const [user, setUser] = useState({ nickname: "", email: "", password: "" })
 
+	//~~~~~~~~~~~~~~~~~~~~~~~~//
+	//    AUTH SIGN IN/OUT    //
+	//~~~~~~~~~~~~~~~~~~~~~~~~//
+	const handleSignOut = (e) => {
+		e.preventDefault()
+		inputMessage(`${user.nickname} signed out succesful`, "guest user", 1500)
+		auth.signOut()
+	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~//
 	//    ADD TICKET PANEL    //
 	//~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -79,7 +93,6 @@ const ContextProvider = (props) => {
 
 	// CLEAR INPUT FIELDS
 	const cancelInputs = () => {
-		inputMessage("fields cleared", "ready ⟹ input data", 1200)
 		setTicket("")
 		setDescription("")
 	}
@@ -88,7 +101,6 @@ const ContextProvider = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		addTicket()
-		inputMessage("ticket added to DB", "ready ⟹ input data", 1200)
 		setTicket("")
 		setDescription("")
 	}
@@ -311,6 +323,9 @@ const ContextProvider = (props) => {
 					checkClosed,
 					updateCalendarTicketOre,
 					deleteCalendarTicket,
+					handleSignOut,
+					user,
+					setUser,
 				}}>
 				{props.children}
 			</DataContext.Provider>

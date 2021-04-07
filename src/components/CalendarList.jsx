@@ -5,7 +5,7 @@ import { RiDeleteBinLine } from "react-icons/ri"
 // CONTEXT
 import { DataContext } from "../context"
 
-export const CalendarList = () => {
+const CalendarList = () => {
 	const {
 		updateCalendarTicketOre,
 		deleteCalendarTicket,
@@ -36,3 +36,5 @@ export const CalendarList = () => {
 		</>
 	)
 }
+
+export default CalendarList
