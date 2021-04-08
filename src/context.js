@@ -67,9 +67,9 @@ const ContextProvider = (props) => {
 	)
 
 	// SING IN
-	const handleSignIn = (e) => {
+	const handleSignIn = async (e) => {
 		e.preventDefault()
-		auth
+		await auth
 			.signInWithEmailAndPassword(user.email, user.password)
 			.then()
 			.catch((err) => inputMessage("checking user...", `${err.message}`, 1500))
@@ -110,12 +110,6 @@ const ContextProvider = (props) => {
 	const inputMessage = (message1, message2, timer) => {
 		setMessagePanel(message1)
 		setTimeout(() => setMessagePanel(message2), timer)
-	}
-
-	// CLEAR INPUT FIELDS
-	const cancelInputs = () => {
-		setTicket("")
-		setDescription("")
 	}
 
 	// SUBMIT TICKET + clean inputs
@@ -320,7 +314,6 @@ const ContextProvider = (props) => {
 					setDescription,
 					date,
 					setDate,
-					cancelInputs,
 					tickets,
 					togglePanel,
 					handleSubmit,

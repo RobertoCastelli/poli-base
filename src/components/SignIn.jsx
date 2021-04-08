@@ -5,6 +5,7 @@ import { AiOutlineHome } from "react-icons/ai"
 import { BsPersonCheck } from "react-icons/bs"
 // CONTEXT
 import { DataContext } from "../context"
+import { GrServerCluster } from "react-icons/gr"
 
 const SignIn = () => {
 	const { user, setUser, handleSignIn } = useContext(DataContext)
@@ -16,6 +17,7 @@ const SignIn = () => {
 					className='sign-in-email'
 					placeholder='email'
 					onChange={(e) => setUser({ ...user, email: e.target.value })}
+					onFocus={(e) => setUser({ ...user, email: "" })}
 					value={user.email}
 					required
 				/>
@@ -24,6 +26,7 @@ const SignIn = () => {
 					className='sing-in-password'
 					placeholder='password'
 					onChange={(e) => setUser({ ...user, password: e.target.value })}
+					onFocus={(e) => setUser({ ...user, password: "" })}
 					value={user.password}
 					required
 				/>

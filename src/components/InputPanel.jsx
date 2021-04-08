@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 // REACT ICONS
-import { IoMdClose } from "react-icons/io"
 import { AiOutlineFileAdd, AiOutlineHome } from "react-icons/ai"
 // CONTEXT
 import { DataContext } from "../context"
@@ -15,7 +14,6 @@ const InputPanel = () => {
 		date,
 		setDate,
 		handleSubmit,
-		cancelInputs,
 	} = useContext(DataContext)
 
 	return (
@@ -50,15 +48,6 @@ const InputPanel = () => {
 					<div>
 						<button className='btn-panel-add' type='submit' name='add'>
 							<AiOutlineFileAdd size={30} />
-						</button>
-					</div>
-					<div>
-						<button
-							className='btn-panel-cancel'
-							type='button'
-							name='cancel'
-							onClick={() => cancelInputs()}>
-							<IoMdClose size={30} />
 						</button>
 					</div>
 				</div>

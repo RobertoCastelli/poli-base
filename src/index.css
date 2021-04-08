@@ -305,12 +305,9 @@ input:focus {
 	display: flex;
 	justify-content: space-evenly;
 }
-.btn-panel-add {
+.btn-panel-add,
+.btn-sign-in-submit {
 	color: var(--green);
-	margin-top: 1rem;
-}
-.btn-panel-cancel {
-	color: var(--red);
 	margin-top: 1rem;
 }
 
