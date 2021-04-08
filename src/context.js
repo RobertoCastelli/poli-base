@@ -363,13 +363,10 @@ export default ContextProvider
  * change permission firebase
  * add edificio select
  * dragable/change date calendar tickets
- * add auth for DB rules restriction
-
+ *
  *
  * FIXME:
- * calendar ticket stays even after calendar is empty
- * edit button calendar color changing
- * optimize component ticket --> props
- *
+ * update state of calendar ticket detail
+ * change route page on log in
  *
  */
