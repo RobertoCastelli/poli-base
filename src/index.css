@@ -461,7 +461,7 @@ footer {
 .btn-calendar-home,
 .btn-panel-home,
 .btn-error-home {
-	margin-top: 1rem;
+	margin: 1rem;
 	background-color: var(--lightgrey);
 	border-radius: 0.5rem;
 }

@@ -40,7 +40,7 @@ const ContextProvider = (props) => {
 	const [filterCompleted, setFilterCompleted] = useState(0)
 	const [filterIncomplete, setFilterIncomplete] = useState(0)
 	// INPUT PANEL STATE
-	const [messagePanel, setMessagePanel] = useState("guest user")
+	const [messagePanel, setMessagePanel] = useState("")
 	// MODAL STATE
 	const [modalOre, setModalOre] = useState(0)
 	const [isOpenModal, setIsOpenModal] = useState(false)
@@ -55,21 +55,29 @@ const ContextProvider = (props) => {
 	//    AUTH SIGN IN/OUT    //
 	//~~~~~~~~~~~~~~~~~~~~~~~~//
 
+	// CHECK USER STATE
+	useEffect(
+		() =>
+			auth.onAuthStateChanged((user) => {
+				user
+					? inputMessage("checking user...", `${auth.currentUser.email}`, 1500)
+					: inputMessage("checking user...", "user signed out", 1500)
+			}),
+		[]
+	)
+
 	// SING IN
-	const handleSignIn = async (e) => {
+	const handleSignIn = (e) => {
 		e.preventDefault()
-		await auth
+		auth
 			.signInWithEmailAndPassword(user.email, user.password)
-			.then((res) => {
-				inputMessage("sign in successful", `${res.user.email}`, 1500)
-			})
-			.catch((err) => console.log(`hups! ⟹ ${err.message}`))
+			.then()
+			.catch((err) => inputMessage("checking user...", `${err.message}`, 1500))
 	}
 
 	// SIGN OUT
 	const handleSignOut = (e) => {
 		e.preventDefault()
-		inputMessage("signed out succesful", "guest user", 1500)
 		auth.signOut()
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~//
