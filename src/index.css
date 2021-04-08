@@ -261,7 +261,8 @@ label {
 /*~~~~~~~~~~~~~~~//
 **/
 
-.input-panel {
+.input-panel,
+.input-sign-in {
 	background-color: var(--lightgrey);
 	margin-top: 1rem;
 	padding: 3rem;
@@ -274,7 +275,9 @@ label {
 	text-align: center;
 }
 .ticket-panel,
-.description-panel {
+.description-panel,
+.sign-in-email,
+.sing-in-password {
 	text-transform: uppercase;
 	border: none;
 	outline: none;
@@ -382,7 +385,9 @@ footer {
 .btn-panel-cancel,
 .btn-panel-add,
 .btn-calendar-home,
-.btn-calendar-edit {
+.btn-calendar-edit,
+.btn-sign-in-home,
+.btn-sign-in-submit {
 	border: none;
 	cursor: pointer;
 	background-color: transparent;
@@ -398,6 +403,7 @@ footer {
 .btn-panel-home:active,
 .btn-calendar-home:active,
 .btn-calendar-edit:active,
+.btn-sign-in-home:active,
 .btn-error-home:active,
 .edit-todo:active,
 .delete-todo:active {
@@ -443,7 +449,8 @@ footer {
 }
 .calendar-buttons,
 .panel-buttons-home,
-.error-buttons-home {
+.error-buttons-home,
+.sign-in-buttons-home {
 	text-align: center;
 }
 .fc-sticky {
@@ -460,7 +467,8 @@ footer {
 }
 .btn-calendar-home,
 .btn-panel-home,
-.btn-error-home {
+.btn-error-home,
+.btn-sign-in-home {
 	margin: 1rem;
 	background-color: var(--lightgrey);
 	border-radius: 0.5rem;
