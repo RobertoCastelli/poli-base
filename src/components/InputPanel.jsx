@@ -25,6 +25,7 @@ const InputPanel = () => {
 					placeholder='ticket'
 					maxLength='9'
 					onChange={(e) => setTicket(e.target.value)}
+					onFocus={() => setTicket("")}
 					value={ticket}
 					required
 				/>
@@ -34,6 +35,7 @@ const InputPanel = () => {
 					placeholder='description'
 					maxLength='40'
 					onChange={(e) => setDescription(e.target.value)}
+					onFocus={() => setDescription("")}
 					value={description}
 					required
 				/>
