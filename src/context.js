@@ -141,7 +141,7 @@ const ContextProvider = (props) => {
 				ore: parseInt(modalOre),
 			})
 			.then(() => alert(`sent data to DB ⟹ ${modalOre} ore`))
-			.catch((err) => console.log(`hups! ⟹ ${err.message}`))
+			.catch((err) => alert(`hups! ⟹ ${err.message}`))
 	}
 
 	// CLOSE MODAL
@@ -178,7 +178,7 @@ const ContextProvider = (props) => {
 			.where("ore", ">", 0)
 			.get()
 			.then((snapshot) => setFilterCompleted(snapshot.size))
-			.catch((err) => console.log(`hups! ⟹ ${err.message}`))
+			.catch((err) => alert(`hups! ⟹ ${err.message}`))
 	}, [tickets])
 
 	// COUNT INCOMPLETE TICKETS
@@ -187,7 +187,7 @@ const ContextProvider = (props) => {
 			.where("ore", "==", 0)
 			.get()
 			.then((snapshot) => setFilterIncomplete(snapshot.size))
-			.catch((err) => console.log(`hups! ⟹ ${err.message}`))
+			.catch((err) => alert(`hups! ⟹ ${err.message}`))
 	}, [tickets])
 
 	// CLEAR DB
@@ -246,7 +246,7 @@ const ContextProvider = (props) => {
 					}
 				})
 			)
-			.catch((err) => `hups! ⟹ ${err.message}`)
+			.catch((err) => alert(`hups! ⟹ ${err.message}`))
 	}
 
 	// SHOW TICKET ON CALENDAR
@@ -360,6 +360,5 @@ export default ContextProvider
  *
  * FIXME:
  * update state of calendar ticket detail
- * change route page on log in
  *
  */
