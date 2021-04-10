@@ -103,7 +103,7 @@ const ContextProvider = (props) => {
 				createdAt: dateAndTimeNow,
 			})
 			.then((docRef) => console.log(`ticket added ID: ${docRef.id}`))
-			.catch((err) => console.log(`hups! ⟹ ${err.message}`))
+			.catch((err) => alert(`hups! ⟹ ${err.message}`))
 	}
 
 	// INPUT MESSAGE W/ TIMER
@@ -131,7 +131,7 @@ const ContextProvider = (props) => {
 			.doc(ticketID)
 			.delete()
 			.then(() => console.log(`ticket deleted ID: ${ticketID}`))
-			.catch((err) => console.log(`hups!⟹ ${err.message}`))
+			.catch((err) => alert(`hups!⟹ ${err.message}`))
 
 	//~~~~~~~~~~~//
 	//   MODAL   //
@@ -196,7 +196,10 @@ const ContextProvider = (props) => {
 	// CLEAR DB
 	const clearDB = () =>
 		window.confirm("🔥 ATTENZIONE 🔥 \npremi OK per cancellare TUTTO il DB") &&
-		dbRef.get().then((snapshot) => snapshot.forEach((doc) => doc.ref.delete()))
+		dbRef
+			.get()
+			.then((snapshot) => snapshot.forEach((doc) => doc.ref.delete()))
+			.catch((err) => alert(`hups ⟹ ${err.message}`))
 
 	// BOILERPLATE TEMPLATE
 	const template = (doc) => ({
