@@ -4,7 +4,6 @@ import firebase from "firebase/app"
 import { dbRef, auth } from "./firebase"
 // DATA
 import { options } from "./options"
-
 // CREATE CONTEXT
 export const DataContext = React.createContext()
 
@@ -50,7 +49,6 @@ const ContextProvider = (props) => {
 	const [completeTicketsArray, setCompleteTicketsArray] = useState([])
 	// AUTH STATE
 	const [user, setUser] = useState({ email: "", password: "" })
-
 	//~~~~~~~~~~~~~~~~~~~~~~~~//
 	//    AUTH SIGN IN/OUT    //
 	//~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -59,38 +57,35 @@ const ContextProvider = (props) => {
 	useEffect(
 		() =>
 			auth.onAuthStateChanged((user) => {
-				user
-					? inputMessage("checking user...", `${auth.currentUser.email}`, 1500)
-					: inputMessage("checking user...", "user signed out", 1500)
+				if (user) {
+					const email = auth.currentUser.email
+					const userName = email.substring(0, email.lastIndexOf("@"))
+					setMessagePanel(`${userName}`)
+				} else {
+					setMessagePanel("user signed out")
+				}
 			}),
 		[]
 	)
-
 	// SING IN
+
 	const handleSignIn = async (e) => {
 		e.preventDefault()
 		await auth
 			.signInWithEmailAndPassword(user.email, user.password)
-			.then()
-			.catch((err) => inputMessage("checking user...", `${err.message}`, 1500))
+			.then(() => (window.location = "/"))
+			.catch((err) => setMessagePanel(`${err.message}`))
 	}
 
 	// SIGN OUT
-	const handleSignOut = (e) => {
+	const handleSignOut = async (e) => {
 		e.preventDefault()
-		auth.signOut()
+		await auth.signOut()
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~//
-	//    ADD TICKET PANEL    //
-	//~~~~~~~~~~~~~~~~~~~~~~~~//
 
-	// TOGGLE ADMIN OPTION PANEL
-	const togglePanel = () => {
-		const btnMenu = document.querySelector(".btn-menu")
-		const ulMenu = document.querySelector(".ul-count")
-		ulMenu.classList.toggle("ul-count-animation")
-		btnMenu.classList.toggle("btn-menu-animation")
-	}
+	//~~~~~~~~~~~~~~~~~~//
+	//    ADD TICKET    //
+	//~~~~~~~~~~~~~~~~~~//
 
 	// ADD TICKET TO DB
 	const addTicket = () => {
@@ -104,12 +99,6 @@ const ContextProvider = (props) => {
 			})
 			.then((docRef) => console.log(`ticket added ID: ${docRef.id}`))
 			.catch((err) => alert(`hups! ⟹ ${err.message}`))
-	}
-
-	// INPUT MESSAGE W/ TIMER
-	const inputMessage = (message1, message2, timer) => {
-		setMessagePanel(message1)
-		setTimeout(() => setMessagePanel(message2), timer)
 	}
 
 	// SUBMIT TICKET + clean inputs
@@ -168,6 +157,14 @@ const ContextProvider = (props) => {
 	//~~~~~~~~~~~~~~~~~~//
 	//    ADMIN PANEL   //
 	//~~~~~~~~~~~~~~~~~~//
+
+	// TOGGLE ADMIN OPTION PANEL
+	const togglePanel = () => {
+		const btnMenu = document.querySelector(".btn-menu")
+		const ulMenu = document.querySelector(".ul-count")
+		ulMenu.classList.toggle("ul-count-animation")
+		btnMenu.classList.toggle("btn-menu-animation")
+	}
 
 	// SUM ALL ORE
 	useEffect(() => {

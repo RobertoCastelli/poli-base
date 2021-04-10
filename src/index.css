@@ -99,6 +99,9 @@ a {
 .btn-menu-animation {
 	transform: rotate(0deg);
 }
+.user-politecnico {
+	padding: 0.5rem;
+}
 
 /**
 /*~~~~~~~~~~~~~~~//
@@ -298,6 +301,7 @@ label {
 	border-bottom: 1px solid var(--grey);
 	background-color: transparent;
 	outline: none;
+	width: 100%;
 }
 input:focus {
 	border-bottom: 1px solid var(--green);
