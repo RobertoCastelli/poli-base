@@ -152,7 +152,7 @@ const ContextProvider = (props) => {
 				ore: parseInt(modalOre),
 			})
 			.then(() => alert(`sent data to DB ⟹ ${modalOre} ore`))
-			.catch((err) => `hups! ⟹ ${err.message}`)
+			.catch((err) => console.log(`hups! ⟹ ${err.message}`))
 	}
 
 	// CLOSE MODAL
